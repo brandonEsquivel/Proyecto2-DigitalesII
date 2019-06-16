@@ -9,17 +9,17 @@ VISUAL := gtkwave
 YS = yosy.ys
 
 # Tags de Variables de modulo con valores por defecto 
-TOP_NAME := contador_gray_cond
+TOP_NAME := RAM_memory
 TARGET_TOP := testbench.v
-TARGET_VIS := contador_gray.vcd
+TARGET_VIS := RAM_memory.vcd
 GTK_CONFIG := config.gtkw
-OUTPUT_SIM := contador.out
+OUTPUT_SIM := RAM.out
 export LIB := CMOS/cmos_cells.lib
 export VLOG_FILE_NAME := testbench.v
-NEW_VLOG_FILE_NAME = $(TOP_NAME)_synth.v
+NEW_VLOG_FILE_NAME = $(TOP_NAME)_Synth.v
 export TOP_MODULE := $(TOP_NAME) 
-NEW_TOP_MODULE = $(TOP_NAME)_synth
-export OUTPUT_SYNTH = $(TOP_NAME)_synth.v
+NEW_TOP_MODULE = $(TOP_NAME)_Synth
+export OUTPUT_SYNTH = $(TOP_NAME)_Synth.v
 
 .PHONY: clean
 
@@ -45,12 +45,12 @@ sim:
 	@echo 'Show simulation on GTKWave $(TARGET_VIS)'
 	$(VISUAL) $(TARGET_VIS) $(GTK_CONFIG)
 
-#synth:
-#	@echo 'Synthetizing module $(TOP_MODULE) with $(LIB)'
-#	$(CC_SYNTH) $(YS)
-#rename:
-#	@echo 'Renaming module $(NEW_TOP_MODULE)'
-#	sed -i 's/$(TOP_MODULE)/$(NEW_TOP_MODULE)/' $(NEW_VLOG_FILE_NAME)
+synth:
+	@echo 'Synthetizing module $(TOP_MODULE) with $(LIB)'
+	$(CC_SYNTH) $(YS)
+rename:
+	@echo 'Renaming module $(NEW_TOP_MODULE)'
+	sed -i 's/$(TOP_MODULE)/$(NEW_TOP_MODULE)/' $(NEW_VLOG_FILE_NAME)
 
 testbench: assign_testbench compile run sim clean
 	@echo 'Testbench has been tested'

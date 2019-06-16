@@ -1,5 +1,5 @@
 read_verilog RAM_memory.v
-hierarchy -check -top gen_clk
+hierarchy -check -top RAM_memory
 
 proc; opt; fsm; opt; memory; opt; techmap; opt;
 
@@ -11,4 +11,4 @@ clean
 
 show -notitle -format pdf -prefix modulo_diagramCMOS -lib ./CMOS/cmos_cells.v
 
-write_verilog -noattr RAM_memory_Synth.v
+write_verilog  RAM_memory_Synth.v

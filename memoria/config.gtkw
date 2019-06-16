@@ -1,0 +1,37 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Sun Jun 16 16:31:58 2019
+[*]
+[dumpfile] "/home/moi/Documents/digitales_II/Proyecto/2/memoria/RAM_memory.vcd"
+[dumpfile_mtime] "Sun Jun 16 16:30:09 2019"
+[dumpfile_size] 394896
+[savefile] "/home/moi/Documents/digitales_II/Proyecto/2/memoria/config.gtkw"
+[timestart] 0
+[size] 1853 1025
+[pos] -1 -1
+*-15.593846 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[sst_width] 43
+[signals_width] 198
+[sst_expanded] 0
+[sst_vpaned_height] 301
+@28
+testbench.clk
+@22
+testbench.data_in[3:0]
+testbench.data_out_cond[3:0]
+testbench.data_out_estruct[3:0]
+testbench.rd_ptr[5:0]
+@28
+testbench.read
+testbench.reset_L
+@22
+testbench.wr_ptr[5:0]
+@28
+testbench.write
+@200
+-Checker
+@29
+testbench.probador.RAM_checks_out
+[pattern_trace] 1
+[pattern_trace] 0

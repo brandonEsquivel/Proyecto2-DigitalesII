@@ -20,27 +20,37 @@ module probador #(
 	output reg [DATA_SIZE-1:0]          wr_ptr,
 	output reg [DATA_SIZE-1:0]          rd_ptr,
 	output reg [MAIN_QUEUE_SIZE-1:0]    data_in,
-	input      [MAIN_QUEUE_SIZE-1:0]    data_out);
+	input      [MAIN_QUEUE_SIZE-1:0]    data_out_cond,
+	input      [MAIN_QUEUE_SIZE-1:0]    data_out_estruct);
 
 //reg f2_cond,f2_estruct,f_cond,f_estruct;
 
-    checker_RAM RAM_checkout(/*AUTOINST*/);
+    checker_RAM RAM_checkout(/*AUTOINST*/
+			     // Outputs
+			     .RAM_checks_out	(RAM_checks_out),
+			     // Inputs
+			     .clk		(clk),
+			     .reset_L		(reset_L),
+			     .salida_gray_c	(data_out_cond[3:0]),
+			     .salida_gray_e	(data_out_estruct[3:0]));
 
  initial begin
 
     $dumpfile("RAM_memory.vcd");        //Dumpfile to make in current folder
     $dumpvars;
     data_in <= 	'b0;
-    wr_ptr <= 	'b0;					//se resetea direccion
-    rd_ptr <= 	'b0;                    //se resetea direccion
+    wr_ptr  <= 	'b0;					//se resetea direccion
+    rd_ptr  <= 	'b0;                    //se resetea direccion
     reset_L <= 	'b0;                    //a relojes se resetean            
+    read    <=  'b0;
+    write   <=  'b0;
 
     //prueba de escritura
     @(posedge clk)
-    reset_L <= 1; 
+    reset_L <= 1;     
     write <= 1;
     
-    repeat(20)begin
+    repeat(30)begin
         @(posedge clk)
         //mandar direcciones random a wr_ptr
         data_in <= data_in + 1;
@@ -51,23 +61,33 @@ module probador #(
         @(posedge clk)
         read <= 1;
 
-     repeat(20)begin
+    repeat(30)begin
         @(posedge clk)
         //mandar direcciones random a wr_ptr
         data_in <= data_in + 1;
         rd_ptr <= rd_ptr + 1;
-     end
+        wr_ptr <= wr_ptr + 1;
+    end
         
 
-        # 20;
-      data_in <= 	'b0;
-     repeat(20)begin  
-        @(posedge clk)
-        reset_L <= 0;
-     end
-     $finish;
-end
+    # 20;
+    @(posedge clk)
+    data_in   <= data_in + 1;
+    write     <= 0;
 
+    repeat(20)begin  
+        @(posedge clk)
+        data_in   <= data_in + 1;
+        rd_ptr <= rd_ptr + 1;
+    end
+
+    @(posedge clk)
+    reset_L <= 0;
+    #20
+
+    $finish;
+end
+    initial clk <= 0;
     always # 2 clk <= ~clk;       //genera señal 4 ns 
 
 endmodule

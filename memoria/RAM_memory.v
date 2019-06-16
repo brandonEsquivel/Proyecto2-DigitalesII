@@ -23,7 +23,7 @@ module RAM_memory #(
             data_out <= 'b0;
         end
         else begin
-            if( write ) begin                    //Read, else write
+            if( write ) begin                    //Read, and write conditions
                 ram_mem[wr_ptr] <= data_in;
             end
             if ( read ) begin
