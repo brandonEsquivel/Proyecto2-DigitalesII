@@ -1,0 +1,54 @@
+[*]
+[*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
+[*] Wed Jun 19 23:01:20 2019
+[*]
+[dumpfile] "/home/evalverde95/Proyecto2-DigitalesII/fsm/bancopruebas.vcd"
+[dumpfile_mtime] "Wed Jun 19 23:00:01 2019"
+[dumpfile_size] 10106
+[savefile] "/home/evalverde95/Proyecto2-DigitalesII/fsm/config.gtkw"
+[timestart] 0
+[size] 1366 713
+[pos] -1 -1
+*-13.638336 10000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[sst_width] 223
+[signals_width] 245
+[sst_expanded] 1
+[sst_vpaned_height] 192
+@200
+-Input
+@28
+testbench.cond.clk
+testbench.cond.init
+testbench.cond.reset_L
+@22
+testbench.cond.FIFO_empties[4:0]
+testbench.cond.FIFO_errors[4:0]
+@24
+testbench.probador.aeDs[2:0]
+testbench.probador.afDs[2:0]
+@200
+-Conductual
+@28
+testbench.cond.error_out_cond[4:0]
+testbench.cond.idle_out_cond
+testbench.cond.active_out_cond
+@24
+testbench.cond.estado_proximo[4:0]
+testbench.cond.estado[4:0]
+testbench.cond.iaeD[2:0]
+testbench.cond.iafD[2:0]
+@200
+-Estructural
+@28
+testbench.estruct.error_out_estruct[4:0]
+testbench.estruct.idle_out_estruct
+testbench.estruct.active_out_estruct
+@22
+testbench.estruct.estado[4:0]
+@200
+-Probador
+@28
+testbench.probador.igualdad
+[pattern_trace] 1
+[pattern_trace] 0
