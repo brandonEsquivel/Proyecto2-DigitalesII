@@ -42,7 +42,7 @@ reg igualdad;
       @(posedge clk);
       init<='b1;
       @(posedge clk);
-      
+      init<='b0;
       repeat (2) begin
       @(posedge clk);
          FIFO_empties<='b00001;
@@ -70,11 +70,12 @@ reg igualdad;
       reset_L<='b1;
       
       @(posedge clk);
+      init<='b1;
+      @(posedge clk);
+      init<='b0;
       
-      repeat (2) begin
       @(posedge clk);
          FIFO_empties<='b00001;
-      end
       
       @(posedge clk);
       FIFO_errors<='b11111;

@@ -18,11 +18,11 @@ module fsm (
 reg [4:0] estado, estado_proximo;
 reg [2:0] iafMF,iaeMF,iafVC,iaeVC,iafD,iaeD;
 reg [4:0] error_ant;
-parameter RESET=1;
-parameter INIT=2;
-parameter IDLE=4;
-parameter ACTIVE=8;
-parameter ERROR=16;
+parameter RESET='b00001;
+parameter INIT='b00010;
+parameter IDLE='b00100;
+parameter ACTIVE='b01000;
+parameter ERROR='b10000;
 
 always @(posedge clk)begin
   if (!reset_L) begin
@@ -43,21 +43,20 @@ always @(*)begin
   error_out_cond='b0;
   active_out_cond='b0;
   idle_out_cond='b0;
-
-  estado_proximo=estado;
+  estado_proximo=RESET;
   case (estado)
     RESET:begin
-      if (init==0) begin
-        estado_proximo=RESET;
-      end else begin
-        estado_proximo=INIT;
-      end    
+      estado_proximo=INIT;
       error_out_cond='b0;
       active_out_cond='b0;
       idle_out_cond='b0;
     end
     INIT:begin
-      estado_proximo=IDLE;
+      if (init) begin
+        estado_proximo=INIT;
+      end else begin
+        estado_proximo=IDLE;
+      end
       error_out_cond='b0;
       active_out_cond='b0;
       idle_out_cond='b0;
@@ -70,15 +69,21 @@ always @(*)begin
     end
     IDLE:begin
       if (FIFO_errors==0) begin
-        if (FIFO_empties==0) begin
-          estado_proximo=IDLE;
+        if (init==1) begin
+          estado_proximo=INIT;
         end else begin
-          estado_proximo=ACTIVE;
+          if (FIFO_empties==0) begin
+            estado_proximo=IDLE;
+          end else begin
+            estado_proximo=ACTIVE;
+          end
         end
-        error_out_cond='b0;
-        active_out_cond='b0;
-        idle_out_cond='b1;
-      end else begin
+          error_out_cond='b0;
+          active_out_cond='b0;
+          idle_out_cond='b1;
+      end 
+      
+      else begin
         estado_proximo=ERROR;
         error_out_cond=FIFO_errors;
         active_out_cond='b0;
@@ -87,15 +92,23 @@ always @(*)begin
     end
     ACTIVE:begin
       if (FIFO_errors==0) begin
-        if (FIFO_empties==0) begin
-          estado_proximo=IDLE;
+        if (init==1) begin
+          estado_proximo=INIT;
         end else begin
-          estado_proximo=ACTIVE;
+          if (FIFO_empties==0) begin
+            estado_proximo=IDLE;
+          end 
+          else begin
+            estado_proximo=ACTIVE;
+          end
         end
-        error_out_cond='b0;
-        active_out_cond='b1;
-        idle_out_cond='b0;
-      end else begin
+          error_out_cond='b0;
+          active_out_cond='b1;
+          idle_out_cond='b0;
+
+      end
+      
+      else begin
         estado_proximo=ERROR;
         error_ant=FIFO_errors;
         error_out_cond=FIFO_errors;
@@ -104,19 +117,21 @@ always @(*)begin
       end
     end
     ERROR:begin
-      if(!reset_L)begin
-        estado_proximo=RESET;
-        error_out_cond=error_ant;
-        active_out_cond='b0;
-        idle_out_cond='b0;
-      end
-      else begin
+      // if(!reset_L)begin
+      //   estado_proximo=RESET;
+      //   error_out_cond=error_ant;
+      //   active_out_cond='b0;
+      //   idle_out_cond='b0;
+      // end
+      // else begin
         estado_proximo=ERROR;
         error_out_cond=error_ant;
         active_out_cond='b0;
         idle_out_cond='b0;
-      end
-
+      // end
+    end
+    default:begin
+      estado_proximo=RESET;
     end
   endcase
   end
