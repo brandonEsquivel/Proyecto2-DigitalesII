@@ -13,7 +13,7 @@ module fifo#(
     input                               write,
     input       [MAIN_QUEUE_SIZE-1:0]   buff_in,            //datos para hacerle push
     input       [MAIN_QUEUE_SIZE-1:0]         umb_almost_full,    //umbral almost 
-    input       [MAIN_QUEUE_SIZE-1:0]         umb_almost_emplty,
+    input       [MAIN_QUEUE_SIZE-1:0]         umb_almost_empty,
     
     //Estados del FIFO
     output reg                          almost_full,
@@ -48,6 +48,20 @@ module fifo#(
 		    .wr_ptr		(wr_ptr[DATA_SIZE-1:0]),
 		    .rd_ptr		(rd_ptr[DATA_SIZE-1:0]));
 
+
+    always@( data_count ) begin
+        if (data_count == 0)
+            fifo_empty = 1;
+
+        if(data_count == (1<<DATA_SIZE))            //Es decir 2**(DATA_SIZE-1)
+            fifo_full = 1;
+
+        if( data_count == ( (1<<DATA_SIZE) - umb_almost_full) )
+            almost_full = 1;
+
+        if(data_count == umb_almost_empty)
+            almost_empty = 1;
+    end
 
     always@( posedge clk or posedge reset_L )begin
         if ( reset_L ) begin
