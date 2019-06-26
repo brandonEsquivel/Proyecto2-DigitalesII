@@ -1,0 +1,14 @@
+read_verilog fifo.v
+hierarchy -check -top fifo
+
+proc; opt; fsm; opt; memory; opt; techmap; opt;
+
+dfflibmap -liberty ./CMOS/cmos_cells.lib
+
+abc -liberty ./CMOS/cmos_cells.lib
+
+clean
+
+show -notitle -format pdf -prefix diagrama -lib ./CMOS/cmos_cells.v fifo
+
+write_verilog -noattr fifoSynth.v

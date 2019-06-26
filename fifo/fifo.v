@@ -53,7 +53,7 @@ module fifo#(
         if (data_count == 0)
             fifo_empty = 1;
 
-        if(data_count == (1<<DATA_SIZE))            //Es decir 2**(DATA_SIZE-1)
+        if(data_count == (1<<DATA_SIZE)-1)            //Es decir 2**(DATA_SIZE-1)
             fifo_full = 1;
 
         if( data_count == ( (1<<DATA_SIZE) - umb_almost_full) )
