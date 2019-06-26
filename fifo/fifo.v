@@ -50,17 +50,43 @@ module fifo#(
 
 
     always@( data_count ) begin
-        if (data_count == 0)
+    if (!reset_L) begin
+        fifo_empty = 0;
+        fifo_full=0;
+        almost_full = 0;
+        almost_empty = 0;
+    end 
+    
+    else begin
+        if (data_count == 0)begin
             fifo_empty = 1;
+            // fifo_full=0;
+            // almost_full = 0;
+            // almost_empty = 0;
+        end
 
-        if(data_count == (1<<DATA_SIZE)-1)            //Es decir 2**(DATA_SIZE-1)
+        if(data_count == (1<<DATA_SIZE)-1)begin            //Es decir 2**(DATA_SIZE-1)
             fifo_full = 1;
+            // fifo_empty = 0;
+            // almost_full = 0;
+            // almost_empty = 0;
+        end
 
-        if( data_count == ( (1<<DATA_SIZE) - umb_almost_full) )
+        if( data_count == ( (1<<DATA_SIZE) - umb_almost_full) )begin
             almost_full = 1;
+            // almost_empty =0;
+            // fifo_full=0;
+            // fifo_empty=0;
+        end
 
-        if(data_count == umb_almost_empty)
+        if(data_count == umb_almost_empty)begin
             almost_empty = 1;
+            // almost_full =0;
+            // fifo_full=0;
+            // fifo_empty=0;
+        end
+    end
+
     end
 
     always@( posedge clk or posedge reset_L )begin
@@ -69,6 +95,11 @@ module fifo#(
             buff_out    <= 'b0;
             wr_ptr      <= 'b0;
             rd_ptr      <= 'b0;
+            // fifo_empty <='b0;
+            // fifo_full <='b0;
+            // almost_full <= 'b0;
+            // almost_empty <= 'b0;
+
         end else begin
             if( !fifo_full && write )begin
                 //wr_ptr incrementa
