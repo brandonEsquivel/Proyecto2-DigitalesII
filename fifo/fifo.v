@@ -49,12 +49,16 @@ module fifo#(
 		    .rd_ptr		(rd_ptr[DATA_SIZE-1:0]));
 
 
-    always@( data_count ) begin
-    if (!reset_L) begin
+    always@(*) begin
+    fifo_empty = 0;
+    fifo_full=0;
+    almost_full = 0;
+    almost_empty = 0;
+    if (~reset_L) begin
         fifo_empty = 0;
         fifo_full=0;
         almost_full = 0;
-        almost_empty = 0;
+        almost_empty = 1;
     end 
     
     else begin

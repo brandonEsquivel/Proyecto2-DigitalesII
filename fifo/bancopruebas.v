@@ -1,10 +1,12 @@
 `timescale 	1ns	/ 100ps		
 `include "fifo.v"
-`include "probador.v"
 `include "fifoSynth.v"
-
+`include "probador.v"
+`include "./CMOS/cmos_cells.v"
+// `include "RAM_memory.v"
 module testbench; // Testbench
-    
+    parameter MAIN_QUEUE_SIZE=4;
+	// parameter DATA_SIZE = 6 
     
     /*AUTOWIRE*/
     // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -14,10 +16,8 @@ module testbench; // Testbench
     wire [MAIN_QUEUE_SIZE-1:0] buff_out;	// From cond of fifo.v, ..., Couldn't Merge
     wire		clk;			// From probador of probador.v
     wire [MAIN_QUEUE_SIZE-1:0] data_count;	// From cond of fifo.v, ..., Couldn't Merge
-    wire		fifoSynth_empty;	// From estruct of fifoSynth.v
-    wire		fifoSynth_full;		// From estruct of fifoSynth.v
-    wire		fifo_empty;		// From cond of fifo.v
-    wire		fifo_full;		// From cond of fifo.v
+    wire		fifo_empty;		// From cond of fifo.v, ...
+    wire		fifo_full;		// From cond of fifo.v, ...
     wire		read;			// From probador of probador.v
     wire		reset_L;		// From probador of probador.v
     wire [MAIN_QUEUE_SIZE-1:0] umb_almost_empty;// From probador of probador.v
@@ -25,7 +25,21 @@ module testbench; // Testbench
     wire		write;			// From probador of probador.v
     // End of automatics
 	    
-	/*AUTOREG*/
+	/*AUTOREGINPUT*/
+	// Beginning of automatic reg inputs (for undeclared instantiated-module inputs)
+	reg		almost_empty_cond;	// To probador of probador.v
+	reg		almost_empty_estruct;	// To probador of probador.v
+	reg		almost_full_cond;	// To probador of probador.v
+	reg		almost_full_estruct;	// To probador of probador.v
+	reg [MAIN_QUEUE_SIZE-1:0] buff_out_cond;// To probador of probador.v
+	reg [MAIN_QUEUE_SIZE-1:0] buff_out_estruct;// To probador of probador.v
+	reg [MAIN_QUEUE_SIZE-1:0] data_count_cond;// To probador of probador.v
+	reg [MAIN_QUEUE_SIZE-1:0] data_count_estruct;// To probador of probador.v
+	reg		fifo_empty_cond;	// To probador of probador.v
+	reg		fifo_empty_estruct;	// To probador of probador.v
+	reg		fifo_full_cond;		// To probador of probador.v
+	reg		fifo_full_estruct;	// To probador of probador.v
+	// End of automatics
 	fifo cond(/*AUTOINST*/
 		  // Outputs
 		  .almost_full		(almost_full),
@@ -48,8 +62,8 @@ module testbench; // Testbench
 			  .almost_full		(almost_full),
 			  .buff_out		(buff_out[3:0]),
 			  .data_count		(data_count[3:0]),
-			  .fifoSynth_empty	(fifoSynth_empty),
-			  .fifoSynth_full	(fifoSynth_full),
+			  .fifo_empty		(fifo_empty),
+			  .fifo_full		(fifo_full),
 			  // Inputs
 			  .buff_in		(buff_in[3:0]),
 			  .clk			(clk),

@@ -44,7 +44,8 @@ module probador #(
     @(posedge clk)
     write <= 1;     
     buff_in <= 'h3;
-    
+    @(posedge clk)
+    reset_L <= 	'b1;                    //a relojes se resetean            
     repeat(10)begin
         @(posedge clk)
         write <= 1;     

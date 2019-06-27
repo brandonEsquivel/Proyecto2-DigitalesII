@@ -24,9 +24,12 @@ all: sintetizar compilar visualizar limpiar
 
 sintetizar:
 	$(YOSYS) $(YOSFILE)
-	sed -i 's/$(ORIG)/$(FINAL)/g' $(SYNTH)
-	sed -i '2i\`include "./CMOS/cmos_cells.v"\' $(SYNTH)
+	sed -i 's/module fifo\b/module fifoSynth/g' $(SYNTH)
+	#sed -i '2i\`include "./CMOS/cmos_cells.v"\' $(SYNTH)
 	sed -i 's/cond/estruct/g' $(SYNTH)
+	sed -i 's/RAM_memory\b/RAM_memorySynth/g' $(SYNTH)
+	#sed -i 's/module fifo/module fifoSynth/g' $(SYNTH)
+	#sed -i '`include "./CMOS/cmos_cells.v"' $(SYNTH)
 compilar:
 	$(VC) $(BANCO) $(FLAGSVC)
 	$(VR) $(EJEC)
