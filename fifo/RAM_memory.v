@@ -3,7 +3,7 @@
 module RAM_memory #(
     //Parametros
     parameter MAIN_QUEUE_SIZE=4,        //Cantiad de filas del main fifo    
-    parameter DATA_SIZE = 6             //cantidad de bits de entrada 
+    parameter DATA_SIZE = 3             //cantidad de bits de entrada 
 )(
     //Entradas
     input                             clk,
@@ -17,6 +17,7 @@ module RAM_memory #(
 );
     //memoria a la cual se le accesa con una direccion
     reg[MAIN_QUEUE_SIZE-1:0] ram_mem[2**DATA_SIZE-1:0];
+
 
     always@( posedge clk ) begin
         if ( !reset_L )begin

@@ -16,6 +16,8 @@ module testbench; // Testbench
     wire [MAIN_QUEUE_SIZE-1:0] buff_out;	// From cond of fifo.v, ..., Couldn't Merge
     wire		clk;			// From probador of probador.v
     wire [MAIN_QUEUE_SIZE-1:0] data_count;	// From cond of fifo.v, ..., Couldn't Merge
+    wire		error_cond;		// From cond of fifo.v
+    wire		error_estruct;		// From estruct of fifoSynth.v
     wire		fifo_empty;		// From cond of fifo.v, ...
     wire		fifo_full;		// From cond of fifo.v, ...
     wire		read;			// From probador of probador.v
@@ -48,6 +50,7 @@ module testbench; // Testbench
 		  .fifo_empty		(fifo_empty),
 		  .data_count		(data_count[MAIN_QUEUE_SIZE-1:0]),
 		  .buff_out		(buff_out[MAIN_QUEUE_SIZE-1:0]),
+		  .error_cond		(error_cond),
 		  // Inputs
 		  .clk			(clk),
 		  .reset_L		(reset_L),
@@ -62,6 +65,7 @@ module testbench; // Testbench
 			  .almost_full		(almost_full),
 			  .buff_out		(buff_out[3:0]),
 			  .data_count		(data_count[3:0]),
+			  .error_estruct	(error_estruct),
 			  .fifo_empty		(fifo_empty),
 			  .fifo_full		(fifo_full),
 			  // Inputs
@@ -93,6 +97,8 @@ module testbench; // Testbench
 			   .fifo_full_estruct	(fifo_full_estruct),
 			   .fifo_empty_estruct	(fifo_empty_estruct),
 			   .data_count_estruct	(data_count_estruct[MAIN_QUEUE_SIZE-1:0]),
-			   .buff_out_estruct	(buff_out_estruct[MAIN_QUEUE_SIZE-1:0]));
+			   .buff_out_estruct	(buff_out_estruct[MAIN_QUEUE_SIZE-1:0]),
+			   .error_cond		(error_cond),
+			   .error_estruct	(error_estruct));
 
 endmodule

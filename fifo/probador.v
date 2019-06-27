@@ -15,6 +15,8 @@ module probador #(
     input                          fifo_empty_estruct, 
     input  [MAIN_QUEUE_SIZE-1:0]   data_count_estruct,         //numero de datos
     input  [MAIN_QUEUE_SIZE-1:0]   buff_out_estruct,            //datos para hacerle pop
+    input error_cond,
+    input error_estruct,
     
     output reg                               clk,
     output reg                               reset_L,
@@ -41,12 +43,19 @@ module probador #(
     write   <=  'b0;
 
     //prueba de escritura
+    #4;
+    @(posedge clk)
+    reset_L <= 	'b1;
+    buff_in <= 'h3;
+    
+    repeat(8)begin
+        @(posedge clk)
+        buff_in<=buff_in+1;
+    end
+
     @(posedge clk)
     write <= 1;     
-    buff_in <= 'h3;
-    @(posedge clk)
-    reset_L <= 	'b1;                    //a relojes se resetean            
-    repeat(10)begin
+    repeat(8)begin
         @(posedge clk)
         write <= 1;     
         buff_in <= buff_in + 1;
@@ -56,14 +65,23 @@ module probador #(
     @(posedge clk)
         write<=0;
         read <= 1;
+        
 
-    repeat(30)begin
+    repeat(8)begin
         @(posedge clk)
         //mandar direcciones random a wr_ptr
         read<=1;
     end
         
+    @(posedge clk)
+        write<=0;
+        read <= 0;
 
+    repeat(8)begin
+        @(posedge clk)
+        read<=1;
+        //mandar direcciones random a wr_ptr
+    end
     @(posedge clk)
     read<='b1;
     write <= 0;
