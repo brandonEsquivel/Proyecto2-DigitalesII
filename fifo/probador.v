@@ -8,13 +8,13 @@ module probador #(
     input                          fifo_full_cond,
     input                          fifo_empty_cond, 
     input  [MAIN_QUEUE_SIZE-1:0]   data_count_cond,         //numero de datos
-    input  [MAIN_QUEUE_SIZE-1:0]   buff_out_cond,            //datos para hacerle pop
+    input  [MAIN_QUEUE_SIZE-1:0]   buffer_out_cond,            //datos para hacerle pop
     input                          almost_full_estruct,
     input                          almost_empty_estruct,
     input                          fifo_full_estruct,
     input                          fifo_empty_estruct, 
     input  [MAIN_QUEUE_SIZE-1:0]   data_count_estruct,         //numero de datos
-    input  [MAIN_QUEUE_SIZE-1:0]   buff_out_estruct,            //datos para hacerle pop
+    input  [MAIN_QUEUE_SIZE-1:0]   buffer_out_estruct,            //datos para hacerle pop
     input error_cond,
     input error_estruct,
     
@@ -54,6 +54,7 @@ module probador #(
     end
 
     @(posedge clk)
+    buff_in<=buff_in+1;
     write <= 1;     
     repeat(8)begin
         @(posedge clk)

@@ -1,16 +1,16 @@
 digraph "fifo" {
 rankdir="LR";
 remincross=true;
-n130 [ shape=octagon, label="almost_empty", color="black", fontcolor="black" ];
-n131 [ shape=octagon, label="almost_full", color="black", fontcolor="black" ];
+n130 [ shape=octagon, label="almost_empty_cond", color="black", fontcolor="black" ];
+n131 [ shape=octagon, label="almost_full_cond", color="black", fontcolor="black" ];
 n132 [ shape=octagon, label="buff_in", color="black", fontcolor="black" ];
-n133 [ shape=octagon, label="buff_out", color="black", fontcolor="black" ];
+n133 [ shape=octagon, label="buffer_out_cond", color="black", fontcolor="black" ];
 n134 [ shape=octagon, label="clk", color="black", fontcolor="black" ];
-n135 [ shape=octagon, label="data_count", color="black", fontcolor="black" ];
+n135 [ shape=octagon, label="data_count_cond", color="black", fontcolor="black" ];
 n136 [ shape=diamond, label="data_out", color="black", fontcolor="black" ];
 n137 [ shape=octagon, label="error_cond", color="black", fontcolor="black" ];
-n138 [ shape=octagon, label="fifo_empty", color="black", fontcolor="black" ];
-n139 [ shape=octagon, label="fifo_full", color="black", fontcolor="black" ];
+n138 [ shape=octagon, label="fifo_empty_cond", color="black", fontcolor="black" ];
+n139 [ shape=octagon, label="fifo_full_cond", color="black", fontcolor="black" ];
 n140 [ shape=diamond, label="rd_ptr", color="black", fontcolor="black" ];
 n141 [ shape=octagon, label="read", color="black", fontcolor="black" ];
 n142 [ shape=octagon, label="reset_L", color="black", fontcolor="black" ];

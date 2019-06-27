@@ -16,13 +16,13 @@ module fifo#(
     input       [MAIN_QUEUE_SIZE-1:0]         umb_almost_empty,
     
     //Estados del FIFO
-    output reg                          almost_full,
-    output reg                          almost_empty,
-    output reg                          fifo_full,
-    output reg                          fifo_empty, 
+    output reg                          almost_full_cond,
+    output reg                          almost_empty_cond,
+    output reg                          fifo_full_cond,
+    output reg                          fifo_empty_cond, 
     
-    output reg  [MAIN_QUEUE_SIZE-1:0]   data_count,         //numero de datos
-    output reg  [MAIN_QUEUE_SIZE-1:0]   buff_out,            //datos para hacerle pop
+    output reg  [MAIN_QUEUE_SIZE-1:0]   data_count_cond,         //numero de datos
+    output reg  [MAIN_QUEUE_SIZE-1:0]   buffer_out_cond,            //datos para hacerle pop
     output reg error_cond);
   /*AUTOWIRE*/
   // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -52,43 +52,43 @@ module fifo#(
 
 
     always@(*) begin
-    fifo_empty = 0;
-    fifo_full=0;
-    almost_full = 0;
-    almost_empty = 0;
+    fifo_empty_cond = 0;
+    fifo_full_cond=0;
+    almost_full_cond = 0;
+    almost_empty_cond = 0;
     datamod=0;
     error_cond=0;
     if (~reset_L) begin
-        fifo_empty = 1;
-        fifo_full=0;
-        almost_full = 0;
-        almost_empty = 0;
+        fifo_empty_cond = 1;
+        fifo_full_cond=0;
+        almost_full_cond = 0;
+        almost_empty_cond = 0;
     end 
     
     else begin
         
 
-        if (data_count == 0)begin
-            fifo_empty = 1;
+        if (data_count_cond == 0)begin
+            fifo_empty_cond = 1;
         end
 
-        if(data_count ==((2**MAIN_QUEUE_SIZE)-1)  )begin            //Es decir 2**(DATA_SIZE-1)
-            fifo_full = 1;
+        if(data_count_cond ==((2**MAIN_QUEUE_SIZE)-1)  )begin            //Es decir 2**(DATA_SIZE-1)
+            fifo_full_cond = 1;
         end
 
-        if( data_count >= umb_almost_full )begin
-            almost_full = 1;
+        if( data_count_cond >= umb_almost_full )begin
+            almost_full_cond = 1;
         end
 
-        if((data_count <= umb_almost_empty)&&(data_count!=0) )begin
-            almost_empty = 1;
+        if((data_count_cond <= umb_almost_empty)&&(data_count_cond!=0) )begin
+            almost_empty_cond = 1;
         end
         
-        if(write_i && fifo_full)begin
+        if(write_i && fifo_full_cond)begin
             error_cond=1;
         end
 
-        if(read && fifo_empty)begin
+        if(read && fifo_empty_cond)begin
             error_cond=1;
         end
     end
@@ -97,8 +97,8 @@ module fifo#(
 
     always@( posedge clk)begin
         if ( !reset_L ) begin
-            data_count  <= 'b0;
-            buff_out    <= 'b0;
+            data_count_cond  <= 'b0;
+            buffer_out_cond    <= 'b0;
             wr_ptr      <= 'b0;
             rd_ptr      <= 'b0;
             datamod <='b0;
@@ -106,34 +106,34 @@ module fifo#(
             
         end else begin
         write_i<=write;
-            if( !fifo_full && write_i )begin
+            if( !fifo_full_cond && write_i )begin
                 //wr_ptr incrementa
                 wr_ptr <= wr_ptr + 1;
                 
-                if ( !fifo_empty && read )begin
+                if ( !fifo_empty_cond && read )begin
                     rd_ptr <= rd_ptr + 1;               //rd_ptr incrementa
-                    data_count <= data_count;
+                    data_count_cond <= data_count_cond;
                 end else begin
                     rd_ptr <= rd_ptr;
-                    data_count <= data_count + 1;
+                    data_count_cond <= data_count_cond + 1;
                 end
-            end else if( !fifo_empty && read ) begin
+            end else if( !fifo_empty_cond && read ) begin
                 rd_ptr <= rd_ptr + 1;                   //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
-                data_count  <= data_count - 1;
-                buff_out    <= data_out; 
+                data_count_cond  <= data_count_cond - 1;
+                buffer_out_cond    <= data_out; 
             end else begin
                 rd_ptr <= rd_ptr;               //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
                 
-                data_count  <= data_count;
-                // buff_out    <= buff_out;
+                data_count_cond  <= data_count_cond;
+                // buffer_out_cond    <= buffer_out_cond;
             end
         end
     end
 
     // always@(posedge clk)begin
-    //     if( write_i && (buff_out==0) ) begin
+    //     if( write_i && (buffer_out_cond==0) ) begin
     //         data_in<= buff_in;
     //     end else begin
     //         data_in <= data_in;

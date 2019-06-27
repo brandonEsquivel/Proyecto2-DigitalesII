@@ -1673,7 +1673,7 @@ module RAM_memorySynth(clk, read, write, reset_L, data_in, wr_ptr, rd_ptr, data_
   );
 endmodule
 
-module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost_empty, almost_full, almost_empty, fifo_full, fifo_empty, data_count, buff_out, error_estruct);
+module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost_empty, almost_full_estruct, almost_empty_estruct, fifo_full_estruct, fifo_empty_estruct, data_count_estruct, buffer_out_estruct, error_estruct);
   wire [3:0] _000_;
   wire [3:0] _001_;
   wire [2:0] _002_;
@@ -1803,16 +1803,16 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   wire _126_;
   wire _127_;
   wire _128_;
-  output almost_empty;
-  output almost_full;
+  output almost_empty_estruct;
+  output almost_full_estruct;
   input [3:0] buff_in;
-  output [3:0] buff_out;
+  output [3:0] buffer_out_estruct;
   input clk;
-  output [3:0] data_count;
+  output [3:0] data_count_estruct;
   wire [3:0] data_out;
   output error_estruct;
-  output fifo_empty;
-  output fifo_full;
+  output fifo_empty_estruct;
+  output fifo_full_estruct;
   wire [2:0] rd_ptr;
   input read;
   input reset_L;
@@ -1822,19 +1822,19 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   input write;
   wire write_i;
   NOT _129_ (
-    .A(data_count[0]),
+    .A(data_count_estruct[0]),
     .Y(_085_)
   );
   NOT _130_ (
-    .A(data_count[1]),
+    .A(data_count_estruct[1]),
     .Y(_086_)
   );
   NOT _131_ (
-    .A(data_count[2]),
+    .A(data_count_estruct[2]),
     .Y(_087_)
   );
   NOT _132_ (
-    .A(data_count[3]),
+    .A(data_count_estruct[3]),
     .Y(_088_)
   );
   NOT _133_ (
@@ -1895,8 +1895,8 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_102_)
   );
   NAND _147_ (
-    .A(data_count[0]),
-    .B(data_count[1]),
+    .A(data_count_estruct[0]),
+    .B(data_count_estruct[1]),
     .Y(_103_)
   );
   NOR _148_ (
@@ -1905,7 +1905,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_104_)
   );
   NAND _149_ (
-    .A(data_count[3]),
+    .A(data_count_estruct[3]),
     .B(reset_L),
     .Y(_105_)
   );
@@ -1920,11 +1920,11 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   );
   NOT _152_ (
     .A(_107_),
-    .Y(fifo_full)
+    .Y(fifo_full_estruct)
   );
   NOR _153_ (
-    .A(data_count[0]),
-    .B(data_count[1]),
+    .A(data_count_estruct[0]),
+    .B(data_count_estruct[1]),
     .Y(_108_)
   );
   NAND _154_ (
@@ -1933,7 +1933,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_109_)
   );
   NOR _155_ (
-    .A(data_count[3]),
+    .A(data_count_estruct[3]),
     .B(_109_),
     .Y(_110_)
   );
@@ -1944,7 +1944,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   );
   NOT _157_ (
     .A(_111_),
-    .Y(fifo_empty)
+    .Y(fifo_empty_estruct)
   );
   NAND _158_ (
     .A(write),
@@ -1976,7 +1976,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   );
   NOR _164_ (
     .A(_089_),
-    .B(fifo_full),
+    .B(fifo_full_estruct),
     .Y(_117_)
   );
   NAND _165_ (
@@ -1995,7 +1995,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_120_)
   );
   NOR _168_ (
-    .A(buff_out[0]),
+    .A(buffer_out_estruct[0]),
     .B(_119_),
     .Y(_121_)
   );
@@ -2015,7 +2015,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_000_[0])
   );
   NOR _172_ (
-    .A(buff_out[1]),
+    .A(buffer_out_estruct[1]),
     .B(_119_),
     .Y(_124_)
   );
@@ -2035,7 +2035,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_000_[1])
   );
   NOR _176_ (
-    .A(buff_out[2]),
+    .A(buffer_out_estruct[2]),
     .B(_119_),
     .Y(_127_)
   );
@@ -2055,7 +2055,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_000_[2])
   );
   NOR _180_ (
-    .A(buff_out[3]),
+    .A(buffer_out_estruct[3]),
     .B(_119_),
     .Y(_006_)
   );
@@ -2105,7 +2105,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_001_[0])
   );
   NAND _190_ (
-    .A(data_count[1]),
+    .A(data_count_estruct[1]),
     .B(_010_),
     .Y(_014_)
   );
@@ -2163,12 +2163,12 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_024_)
   );
   NAND _202_ (
-    .A(data_count[2]),
+    .A(data_count_estruct[2]),
     .B(_024_),
     .Y(_025_)
   );
   NOR _203_ (
-    .A(data_count[2]),
+    .A(data_count_estruct[2]),
     .B(_024_),
     .Y(_026_)
   );
@@ -2193,7 +2193,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_029_)
   );
   NAND _208_ (
-    .A(data_count[3]),
+    .A(data_count_estruct[3]),
     .B(_029_),
     .Y(_030_)
   );
@@ -2392,7 +2392,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_063_)
   );
   NOR _249_ (
-    .A(data_count[3]),
+    .A(data_count_estruct[3]),
     .B(_101_),
     .Y(_064_)
   );
@@ -2412,7 +2412,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_067_)
   );
   NAND _253_ (
-    .A(data_count[3]),
+    .A(data_count_estruct[3]),
     .B(_101_),
     .Y(_068_)
   );
@@ -2424,7 +2424,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   NOR _255_ (
     .A(_067_),
     .B(_069_),
-    .Y(almost_empty)
+    .Y(almost_empty_estruct)
   );
   NOR _256_ (
     .A(_088_),
@@ -2432,7 +2432,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_070_)
   );
   NOR _257_ (
-    .A(data_count[2]),
+    .A(data_count_estruct[2]),
     .B(_100_),
     .Y(_071_)
   );
@@ -2442,7 +2442,7 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
     .Y(_072_)
   );
   NOR _259_ (
-    .A(data_count[1]),
+    .A(data_count_estruct[1]),
     .B(_099_),
     .Y(_073_)
   );
@@ -2494,11 +2494,11 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   NOR _269_ (
     .A(_080_),
     .B(_082_),
-    .Y(almost_full)
+    .Y(almost_full_estruct)
   );
   NAND _270_ (
     .A(write_i),
-    .B(fifo_full),
+    .B(fifo_full_estruct),
     .Y(_083_)
   );
   NAND _271_ (
@@ -2544,42 +2544,42 @@ module fifoSynth(clk, reset_L, read, write, buff_in, umb_almost_full, umb_almost
   DFF _279_ (
     .C(clk),
     .D(_001_[0]),
-    .Q(data_count[0])
+    .Q(data_count_estruct[0])
   );
   DFF _280_ (
     .C(clk),
     .D(_001_[1]),
-    .Q(data_count[1])
+    .Q(data_count_estruct[1])
   );
   DFF _281_ (
     .C(clk),
     .D(_001_[2]),
-    .Q(data_count[2])
+    .Q(data_count_estruct[2])
   );
   DFF _282_ (
     .C(clk),
     .D(_001_[3]),
-    .Q(data_count[3])
+    .Q(data_count_estruct[3])
   );
   DFF _283_ (
     .C(clk),
     .D(_000_[0]),
-    .Q(buff_out[0])
+    .Q(buffer_out_estruct[0])
   );
   DFF _284_ (
     .C(clk),
     .D(_000_[1]),
-    .Q(buff_out[1])
+    .Q(buffer_out_estruct[1])
   );
   DFF _285_ (
     .C(clk),
     .D(_000_[2]),
-    .Q(buff_out[2])
+    .Q(buffer_out_estruct[2])
   );
   DFF _286_ (
     .C(clk),
     .D(_000_[3]),
-    .Q(buff_out[3])
+    .Q(buffer_out_estruct[3])
   );
   DFF _287_ (
     .C(clk),
