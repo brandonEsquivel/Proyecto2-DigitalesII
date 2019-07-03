@@ -97,7 +97,10 @@ module fifo#(
     end
 
     always@ (negedge clk)begin
-        write_i <= write;
+        if (!reset_L)
+            write_i <= 'b0;
+        else
+            write_i <= write;
     end
 
     always@( posedge clk)begin
@@ -107,7 +110,6 @@ module fifo#(
             wr_ptr          <= 'b0;
             rd_ptr          <= 'b0;
             datamod         <= 'b0;
-            write_i         <= 'b0;
             
         end else begin
             if( !fifo_full_cond && write_i )begin
