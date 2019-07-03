@@ -1,30 +1,30 @@
 module probador #(
     //Parametros
-    parameter MAIN_QUEUE_SIZE=4,        //Cantiad de filas del main fifo    
-    parameter DATA_SIZE = 6             //cantidad de bits de entrada 
+    parameter DATA_SIZE = 4             //cantidad de bits de entrada 
+  //  parameter MAIN_QUEUE_SIZE=4,        //Cantiad de filas del main fifo    
 )(
-    input                          almost_full_cond,
-    input                          almost_empty_cond,
-    input                          fifo_full_cond,
-    input                          fifo_empty_cond, 
-    input  [MAIN_QUEUE_SIZE-1:0]   data_count_cond,         //numero de datos
-    input  [MAIN_QUEUE_SIZE-1:0]   buffer_out_cond,            //datos para hacerle pop
-    input                          almost_full_estruct,
-    input                          almost_empty_estruct,
-    input                          fifo_full_estruct,
-    input                          fifo_empty_estruct, 
-    input  [MAIN_QUEUE_SIZE-1:0]   data_count_estruct,         //numero de datos
-    input  [MAIN_QUEUE_SIZE-1:0]   buffer_out_estruct,            //datos para hacerle pop
+    input                           almost_full_cond,
+    input                           almost_empty_cond,
+    input                           fifo_full_cond,
+    input                           fifo_empty_cond, 
+    input  [DATA_SIZE-1:0]         data_count_cond,         //numero de datos
+    input  [DATA_SIZE-1:0]         buffer_out_cond,            //datos para hacerle pop
+    input                           almost_full_estruct,
+    input                           almost_empty_estruct,
+    input                           fifo_full_estruct,
+    input                           fifo_empty_estruct, 
+    input  [DATA_SIZE-1:0]         data_count_estruct,         //numero de datos
+    input  [DATA_SIZE-1:0]         buffer_out_estruct,            //datos para hacerle pop
     input error_cond,
     input error_estruct,
     
-    output reg                               clk,
-    output reg                               reset_L,
-    output reg                               read,
-    output reg                               write,
-    output reg       [MAIN_QUEUE_SIZE-1:0]   buff_in,            //datos para hacerle push
-    output reg       [MAIN_QUEUE_SIZE-1:0]         umb_almost_full,    //umbral almost 
-    output reg       [MAIN_QUEUE_SIZE-1:0]         umb_almost_empty
+    output reg                              clk,
+    output reg                              reset_L,
+    output reg                              read,
+    output reg                              write,
+    output reg       [DATA_SIZE-1:0]       buff_in,            //datos para hacerle push
+    output reg       [DATA_SIZE-1:0]       umb_almost_full,    //umbral almost 
+    output reg       [DATA_SIZE-1:0]       umb_almost_empty
 );
  
 
