@@ -18,18 +18,14 @@ module RAM_memory #(
     //memoria a la cual se le accesa con una direccion
     reg[MAIN_QUEUE_SIZE-1:0] ram_mem[2**DATA_SIZE-1:0];
 
+    //flags
+   // reg wr;
+
+   // always@(write)
+
 
     always@( posedge clk ) begin
-        if ( !reset_L )begin
-            data_out <= 'b0;
-        end
-        else begin
-            if( write ) begin                    //Read, and write conditions
-                ram_mem[wr_ptr] <= data_in;
-            end
-            if ( read ) begin
-                data_out <= ram_mem[rd_ptr];
-            end
-        end
+        data_out <= read ?  ram_mem[rd_ptr] : 'b0 ;      
+        ram_mem[wr_ptr] <=  write ? data_in : 'b0 ; 
     end
 endmodule
