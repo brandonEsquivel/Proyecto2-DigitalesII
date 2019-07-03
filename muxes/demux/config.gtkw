@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Wed Jul  3 19:19:06 2019
+[*]
+[dumpfile] "/home/moi/Documents/digitales_II/Proyecto/2/muxes/demux/demux.vcd"
+[dumpfile_mtime] "Wed Jul  3 19:16:12 2019"
+[dumpfile_size] 5866
+[savefile] "/home/moi/Documents/digitales_II/Proyecto/2/muxes/demux/config.gtkw"
+[timestart] 0
+[size] 1853 1025
+[pos] -29 -29
+*-16.043842 91200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[sst_width] 223
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 301
+@200
+-Input
+@28
+testbench.clk
+@22
+testbench.data_in[3:0]
+@29
+testbench.en_pop
+@200
+-Output
+@22
+testbench.data_out0_c[3:0]
+testbench.data_out0_e[3:0]
+testbench.data_out1_c[3:0]
+testbench.data_out1_e[3:0]
+@28
+testbench.reset_L
+@200
+-Checker
+@28
+testbench.test0.demux_checks_out
+[pattern_trace] 1
+[pattern_trace] 0

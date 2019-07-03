@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Wed Jul  3 20:56:52 2019
+[*]
+[dumpfile] "/home/moi/Documents/digitales_II/Proyecto/2/muxes/mux/mux.vcd"
+[dumpfile_mtime] "Wed Jul  3 20:56:11 2019"
+[dumpfile_size] 6437
+[savefile] "/home/moi/Documents/digitales_II/Proyecto/2/muxes/mux/config.gtkw"
+[timestart] 0
+[size] 1853 1025
+[pos] -1 -1
+*-15.982443 17500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[sst_width] 223
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 301
+@200
+-Input
+@28
+testbench.clk
+testbench.mux_con.selector
+@22
+testbench.mux_con.data_VC0[3:0]
+testbench.mux_con.data_VC1[3:0]
+@200
+-Output
+@22
+testbench.data_out0_c[3:0]
+testbench.data_out0_e[3:0]
+@28
+testbench.reset_L
+@200
+-Checker
+@29
+testbench.test0.mux_checks_out
+[pattern_trace] 1
+[pattern_trace] 0

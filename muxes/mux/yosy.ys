@@ -1,0 +1,15 @@
+read_verilog mux.v
+
+hierarchy -check -top mux
+
+proc; opt; fsm; opt; memory; opt; techmap; opt;
+
+dfflibmap -liberty ./CMOS/cmos_cells.lib
+
+abc -liberty ./CMOS/cmos_cells.lib
+
+clean
+
+show -notitle -format ps -prefix modulo_diagramCMOS -lib ./CMOS/cmos_cells.v
+
+write_verilog -noattr  mux_Synth.v
