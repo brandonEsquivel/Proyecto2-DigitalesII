@@ -36,8 +36,8 @@ reg [4:0]		salida_mux_e;		// To c0 of checker_mux.v
 		   // Inputs
 		   .clk			(clk),
 		   .reset_L		(reset_L),
-		   .salida_mux_c	(salida_mux_c[4:0]),
-		   .salida_mux_e	(salida_mux_e[4:0]));
+		   .salida_mux_c	(data_out0_c[4:0]),
+		   .salida_mux_e	(data_out0_e[4:0]));
 
 	initial begin
 		$dumpfile("mux.vcd");		// archivo "dump"
@@ -46,8 +46,9 @@ reg [4:0]		salida_mux_e;		// To c0 of checker_mux.v
 		//$display ("\tclk\tdata_VC0\tcheck_out0 check_out1");
 		//$monitor($time,"\t%b\t%b\t%x %b\t%x %b\t%b %b", clk,  data_VC0, check_out0,check_out1);
 		// Pruebas
-		data_VC0 <= 'b0; 					
-		data_VC1 <= 'b0; 					
+        pop_delay_VC0 <= 'b0;
+		data_VC0    <= 'b0; 					
+		data_VC1    <= 'b0; 					
 		@(posedge clk);
 		// Sincroniza
 		@(posedge clk);
