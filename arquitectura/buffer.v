@@ -16,7 +16,7 @@ always @(posedge clk)begin
         atraso_dd<='b0;
     end
     else begin
-        contador<=contdor+1;
+        contador<=contador+1;
         atraso_d<=selector;
         atraso_dd<=atraso_d;
         if(contador==2)begin
