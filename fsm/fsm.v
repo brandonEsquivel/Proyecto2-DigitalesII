@@ -4,19 +4,25 @@ module fsm (
         input init,
         input [4:0] FIFO_errors,
         input [4:0]FIFO_empties,
-        input [2:0] afMFs,
-        input [2:0] aeMFs,
-        input [3:0] afVCs,
-        input [3:0] aeVCs,
-        input [2:0] afDs,
-        input [2:0] aeDs,
+        input [1:0] afMF_i,
+        input [1:0] aeMF_i,
+        input [3:0] afVCs_i,
+        input [3:0] aeVCs_i,
+        input [1:0] afDs_i,
+        input [1:0] aeDs_i,
         output reg [4:0]error_out_cond,
         output reg active_out_cond,
-        output reg idle_out_cond);
+        output reg idle_out_cond,
+        output reg [1:0] afMF_o,
+        output reg [1:0] aeMF_o,
+        output reg [1:0] iafD_o,
+        output reg [1:0] iaeD_o,
+        output reg [3:0] iafVC_o,
+        output reg [3:0] iaeVC_o);
 
     //FF
     reg [4:0] estado, estado_proximo;
-    reg [2:0] iafMF,iaeMF,iafVC,iaeVC,iafD,iaeD;
+    // reg [2:0] afMF_o,aeMF_o,iafVC_o,iaeVC_o,iafD_o,iaeD_o;
     reg [4:0] error_ant;
 
     //Estados
@@ -30,12 +36,12 @@ module fsm (
     always @(posedge clk)begin
       if (!reset_L) begin
         estado<=RESET;
-        iafMF<='b0;
-        iaeMF<='b0;
-        iafVC<='b0;
-        iaeVC<='b0;
-        iafD<='b0;
-        iaeD<='b0;
+        afMF_o<='b0;
+        aeMF_o<='b0;
+        iafVC_o<='b0;
+        iaeVC_o<='b0;
+        iafD_o<='b0;
+        iaeD_o<='b0;
         error_ant<='b0;
       end else begin
         estado<=estado_proximo;
@@ -68,12 +74,12 @@ module fsm (
             error_out_cond='b0;
             active_out_cond='b0;
             idle_out_cond='b0;
-            iafMF=afMFs;
-            iaeMF=aeMFs;
-            iafVC=afVCs;
-            iaeVC=aeVCs;
-            iafD=afDs;
-            iaeD=aeDs;
+            afMF_o=afMF_i;
+            aeMF_o=aeMF_i;
+            iafVC_o=afVCs_i;
+            iaeVC_o=aeVCs_i;
+            iafD_o=afDs_i;
+            iaeD_o=aeDs_i;
         end
 
         IDLE:begin
