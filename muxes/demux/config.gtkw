@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Wed Jul  3 19:19:06 2019
+[*] Thu Jul  4 01:03:24 2019
 [*]
 [dumpfile] "/home/moi/Documents/digitales_II/Proyecto/2/muxes/demux/demux.vcd"
-[dumpfile_mtime] "Wed Jul  3 19:16:12 2019"
-[dumpfile_size] 5866
+[dumpfile_mtime] "Thu Jul  4 01:01:54 2019"
+[dumpfile_size] 6552
 [savefile] "/home/moi/Documents/digitales_II/Proyecto/2/muxes/demux/config.gtkw"
 [timestart] 0
 [size] 1853 1025
-[pos] -29 -29
+[pos] -1 -1
 *-16.043842 91200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [sst_width] 223
@@ -18,20 +18,28 @@
 @200
 -Input
 @28
+testbench.reset_L
 testbench.clk
 @22
 testbench.data_in[3:0]
-@29
+@28
 testbench.en_pop
+@29
+testbench.demux_con.selector
 @200
 -Output
 @22
-testbench.data_out0_c[3:0]
-testbench.data_out0_e[3:0]
-testbench.data_out1_c[3:0]
-testbench.data_out1_e[3:0]
+testbench.test0.data_out0_e[3:0]
+testbench.test0.data_out0_c[3:0]
 @28
-testbench.reset_L
+testbench.test0.push0_c
+testbench.test0.push0_e
+@22
+testbench.test0.data_out1_c[3:0]
+testbench.test0.data_out1_e[3:0]
+@28
+testbench.test0.push1_c
+testbench.test0.push1_e
 @200
 -Checker
 @28
