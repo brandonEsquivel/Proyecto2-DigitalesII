@@ -1,28 +1,27 @@
 module output_flow(
-    input reset_L,
-    input clk,
-    input vc0_empty,
-    input vc1_empty,
-    input d0_pause,
-    input d1_pause,
-    output reg pop_to_vc0,
-    output reg pop_to_vc1,
-    output reg pop_to_b0,
-    output reg pop_to_b1);
+    // input reset_L,
+    input fifo_empty_vc0,
+    input fifo_empty_vc1,
+    input fifo_pause_d0,
+    input fifo_pause_d1,
+    output reg pop_vc0_cond,
+    output reg pop_vc1_cond,
+    output reg pop_b0_cond,
+    output reg pop_b1_cond);
 // cambios
     always @(*)begin
-        if(~reset_L)begin
-            pop_to_b0='b0;
-            pop_to_b1='b0;
-            pop_to_vc0='b0;
-            pop_to_vc1='b0;
-        end
-        else begin 
-            pop_to_b0= (!(d0_pause|d1_pause))&&(!vc0_empty);
-            pop_to_vc0= (!(d0_pause|d1_pause))&&(!vc0_empty);
-            pop_to_b1= (!(d0_pause|d1_pause))&&(!vc1_empty)&&vc0_empty;
-            pop_to_vc1= (!(d0_pause|d1_pause))&&(!vc1_empty)&&vc1_empty; 
-        end
+        // // if(~reset_L)begin
+        //     pop_b0_cond='b0;
+        //     pop_b1_cond='b0;
+        //     pop_vc0_cond='b0;
+        //     pop_vc1_cond='b0;
+        // // end
+        
+            pop_b0_cond= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc0);
+            pop_vc0_cond= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc0);
+            pop_b1_cond= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc1)&&fifo_empty_vc0;
+            pop_vc1_cond= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc1)&&fifo_empty_vc1; 
+        // end
     end
 
 
