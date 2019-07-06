@@ -29,15 +29,15 @@ $ make all        # ejecuta todos los procesos en el orden correcto
 # Plan de trabajo propuesto
 | Etapa | Actividad | Encargado | Tiempo  estimado (min) | Tiempo  dedicado (min)| Avance (%) | Fecha  de entrega | Comentarios |
 |-------|-----------------------------|-----------|------------------------|------------------------|-------------------|-------------|-------------|
-| 1 | Plan de pruebas | Esteban | 300 | 330| 100 | 19/6/19 | Finalizado |
-| 1 | Memoria | Moisés | 300 | 330| 100 | 19/6/19 | Finalizado |
-| 1 | FSM | Esteban | 300 | 330| 100 | 19/6/19 | En proceso |
-| 2 | FIFO | Todos | 300 | 330| 100 | 26/6/19 | - |
-| 3 | Interconexión completa | Todos | 300 | 330| 100 | 3/7/19 | - |
-| 4 | Bitácora | Todos | 30 | 40 | 100 | 6/7/19 | - |
-| 4 | Reporte | Todos | 120 |300 |100 | 6/7/19 | - |
-| 5 | Presentación | Todos |180 |180 |100  | 10/7/19 | - |
-
+| 1 | Plan de pruebas | Todos | 300 | 400| 100 | 19/6/19 | Finalizado |
+| 1-4 | Bitácora | Esteban | 90 | 120| 100 | 19/6/19 | Finalizado |
+| 1 | Investigación | Giancarlo | 120 | 100| 100 | 19/6/19 | Finalizado |
+| 1 | Memoria | Moisés | 120 | 100| 100 | 19/6/19 | Finalizado |
+| 1 | FSM | Esteban | 180 | 200| 100 | 19/6/19 | Finalizado |
+| 2 | FIFO | Todos | 300 | 400| 100 | 26/6/19 | Fianlizado |
+| 3 | Interconexión completa | Todos | 400 | 500| 70 | 3/7/19 | En progreso |
+| 4 | Reporte | Todos | 200 | 250 | 100 | 6/7/19 | Finalizado |
+| 4 | Presentación | Todos | 180 | 180 | - | 10/7/19 | En progeso |
 
 
 # Bitácora de trabajo
