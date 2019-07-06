@@ -3,7 +3,7 @@
 *Proyecto #2 - IE-0523 - modulo probador.v
 *@author Moises Campos Zepeda, Esteban Valverde, Giancarlo Marin
 *@date   02/07/2019
-*@brief Modulo sumador, con un identificador que se debera retrasar la misma
+*@brief Modulo principal, que junta los modulos anteriores y agrega logica miscelanea.
 *cantidad de ciclos que tarda la suma
 */
 
@@ -39,36 +39,114 @@ module arqui#(
     output reg  [OUTPUT_SIZE-1:0]       data_out1
 );
 
-    fsm fsm0(/*AUTOINST*/);
+    fsm fsm0(/*AUTOINST*/
+	     // Outputs
+	     .error_out_cond		(error_out_cond[4:0]),
+	     .active_out_cond		(active_out_cond),
+	     .idle_out_cond		(idle_out_cond),
+	     // Inputs
+	     .clk			(clk),
+	     .reset_L			(reset_L),
+	     .init			(init),
+	     .FIFO_errors		(FIFO_errors[4:0]),
+	     .FIFO_empties		(FIFO_empties[4:0]),
+	     .afMFs			(afMFs[2:0]),
+	     .aeMFs			(aeMFs[2:0]),
+	     .afVCs			(afVCs[2:0]),
+	     .aeVCs			(aeVCs[2:0]),
+	     .afDs			(afDs[2:0]),
+	     .aeDs			(aeDs[2:0]));
 
-    fifo Main_FIFO#(
-        DATA_SIZE = 4,
-        MAIN_QUEUE_SIZE = 6
-    )(/*AUTOINST*/);
+    fifo# (.DATA_SIZE(4), .MAIN_QUEUE_SIZE(6))
+    Main_FIFO (
+        /*AUTOINST*/
+	       // Outputs
+	       .fifo_full_		(fifo_full_),
+	       .fifo_empty_		(fifo_empty_),
+	       .data_out_		(data_out_[DATA_SIZE-1:0]),
+	       .fifo_error_		(fifo_error_),
+	       .fifo_pause_		(fifo_pause_),
+	       // Inputs
+	       .clk			(clk),
+	       .reset_L			(reset_L),
+	       .read			(read),
+	       .push_			(push_),
+	       .data_in			(data_in[DATA_SIZE-1:0]),
+	       .af			(af[DATA_SIZE-1:0]),
+	       .ae			(ae[DATA_SIZE-1:0]));
 
 
-    fifo vc0 #(
-        DATA_SIZE = 16,
-        MAIN_QUEUE_SIZE = 6
-    )(/*AUTOINST*/);
+    fifo #(.DATA_SIZE(16),.MAIN_QUEUE_SIZE(6))
+        vc0 (
+        /*AUTOINST*/
+	     // Outputs
+	     .fifo_full_		(fifo_full_),
+	     .fifo_empty_		(fifo_empty_),
+	     .data_out_			(data_out_[DATA_SIZE-1:0]),
+	     .fifo_error_		(fifo_error_),
+	     .fifo_pause_		(fifo_pause_),
+	     // Inputs
+	     .clk			(clk),
+	     .reset_L			(reset_L),
+	     .read			(read),
+	     .push_			(push_),
+	     .data_in			(data_in[DATA_SIZE-1:0]),
+	     .af			(af[DATA_SIZE-1:0]),
+	     .ae			(ae[DATA_SIZE-1:0]));
 
 
-    fifo vc1 #(
-        DATA_SIZE = 16
-        MAIN_QUEUE_SIZE = 6
-    )(/*AUTOINST*/);
+    fifo #(.DATA_SIZE(16), .MAIN_QUEUE_SIZE(6) )
+        vc1 (/*AUTOINST*/
+	     // Outputs
+	     .fifo_full_		(fifo_full_),
+	     .fifo_empty_		(fifo_empty_),
+	     .data_out_			(data_out_[DATA_SIZE-1:0]),
+	     .fifo_error_		(fifo_error_),
+	     .fifo_pause_		(fifo_pause_),
+	     // Inputs
+	     .clk			(clk),
+	     .reset_L			(reset_L),
+	     .read			(read),
+	     .push_			(push_),
+	     .data_in			(data_in[DATA_SIZE-1:0]),
+	     .af			(af[DATA_SIZE-1:0]),
+	     .ae			(ae[DATA_SIZE-1:0]));
 
 
-    fifo d0 #(
-        DATA_SIZE = 4,
-        MAIN_QUEUE_SIZE = 6
-    )(/*AUTOINST*/);
+    fifo #(.DATA_SIZE(4), .MAIN_QUEUE_SIZE(6) )
+        d0 (/*AUTOINST*/
+	    // Outputs
+	    .fifo_full_			(fifo_full_),
+	    .fifo_empty_		(fifo_empty_),
+	    .data_out_			(data_out_[DATA_SIZE-1:0]),
+	    .fifo_error_		(fifo_error_),
+	    .fifo_pause_		(fifo_pause_),
+	    // Inputs
+	    .clk			(clk),
+	    .reset_L			(reset_L),
+	    .read			(read),
+	    .push_			(push_),
+	    .data_in			(data_in[DATA_SIZE-1:0]),
+	    .af				(af[DATA_SIZE-1:0]),
+	    .ae				(ae[DATA_SIZE-1:0]));
 
 
-    fifo d1 #(
-        DATA_SIZE = 4,
-        MAIN_QUEUE_SIZE = 6
-    )(/*AUTOINST*/);
+    fifo #(.DATA_SIZE(4), .MAIN_QUEUE_SIZE(6) )
+        d1(/*AUTOINST*/
+	   // Outputs
+	   .fifo_full_			(fifo_full_),
+	   .fifo_empty_			(fifo_empty_),
+	   .data_out_			(data_out_[DATA_SIZE-1:0]),
+	   .fifo_error_			(fifo_error_),
+	   .fifo_pause_			(fifo_pause_),
+	   // Inputs
+	   .clk				(clk),
+	   .reset_L			(reset_L),
+	   .read			(read),
+	   .push_			(push_),
+	   .data_in			(data_in[DATA_SIZE-1:0]),
+	   .af				(af[DATA_SIZE-1:0]),
+	   .ae				(ae[DATA_SIZE-1:0]));
 
 
 
