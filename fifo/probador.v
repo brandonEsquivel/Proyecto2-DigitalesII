@@ -1,23 +1,25 @@
 module probador #(
     //Parametros
-    parameter DATA_SIZE = 4             //cantidad de bits de entrada 
+    parameter DATA_SIZE = 6             //cantidad de bits de entrada 
   //  parameter MAIN_QUEUE_SIZE=4,        //Cantiad de filas del main fifo    
 )(
-    input                           almost_full_cond,
-    input                           almost_empty_cond,
+    // input                           almost_full_cond,
+    // input                           almost_empty_cond,
     input                           fifo_full_cond,
     input                           fifo_empty_cond, 
-    input  [DATA_SIZE-1:0]         data_count_cond,         //numero de datos
+    // input  [DATA_SIZE-1:0]         data_count_cond,         //numero de datos
     input  [DATA_SIZE-1:0]         buffer_out_cond,            //datos para hacerle pop
-    input                           almost_full_estruct,
-    input                           almost_empty_estruct,
+    // input                           almost_full_estruct,
+    // input                           almost_empty_estruct,
     input                           fifo_full_estruct,
     input                           fifo_empty_estruct, 
-    input  [DATA_SIZE-1:0]         data_count_estruct,         //numero de datos
+    // input  [DATA_SIZE-1:0]         data_count_estruct,         //numero de datos
     input  [DATA_SIZE-1:0]         buffer_out_estruct,            //datos para hacerle pop
-    input error_cond,
-    input error_estruct,
     
+    input fifo_error_cond,
+    input fifo_pause_cond,
+    input fifo_error_estruct,
+    input fifo_pause_estruct,
     output reg                              clk,
     output reg                              reset_L,
     output reg                              read,
@@ -48,18 +50,18 @@ module probador #(
     reset_L <= 	'b1;
     buff_in <= 'h3;
     
-    repeat(8)begin
+    repeat(6)begin
         @(posedge clk)
         buff_in<=buff_in+1;
     end
 
-    @(posedge clk)
-    write <= 1;     
-    buff_in<=buff_in+1;
+    // @(posedge clk)
+    // write <= 1;     
+    // buff_in<=buff_in+1;
 
     @(posedge clk)
     buff_in<=buff_in+1;
-    repeat(6)begin
+    repeat(8)begin
         @(posedge clk)
         write <= 1;     
         buff_in <= buff_in + 1;
@@ -68,28 +70,37 @@ module probador #(
     
     @(posedge clk)
         write<=0;
-        read <= 1;
+        // read <= 1;
         
 
-    repeat(8)begin
+    repeat(2)begin
         @(posedge clk)
         //mandar direcciones random a wr_ptr
         read<=1;
     end
         
-    @(posedge clk)
-        write<=0;
-        read <= 0;
-
-    repeat(8)begin
+    repeat(2)begin
         @(posedge clk)
-        read<=1;
-        //mandar direcciones random a wr_ptr
+            write<=0;
+            read <= 0;
     end
-    @(posedge clk)
-    read<='b1;
-    write <= 0;
-    buff_in<='h4;
+
+    repeat(4)begin
+        @(posedge clk)
+            //mandar direcciones random a wr_ptr
+            read<=0; 
+    end
+
+    // @(posedge clk)
+    //     //mandar direcciones random a wr_ptr
+    //     read<=1;
+
+    repeat(4)begin
+        @(posedge clk)
+        read<=0;
+        write <= 0;
+        // buff_in<='h4;
+    end
 
     $finish;
 end
