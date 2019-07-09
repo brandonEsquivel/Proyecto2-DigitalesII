@@ -1,54 +1,67 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Wed Jun 19 23:01:20 2019
+[*] Tue Jul  9 04:08:14 2019
 [*]
 [dumpfile] "/home/evalverde95/Proyecto2-DigitalesII/fsm/bancopruebas.vcd"
-[dumpfile_mtime] "Wed Jun 19 23:00:01 2019"
-[dumpfile_size] 10106
+[dumpfile_mtime] "Tue Jul  9 04:07:52 2019"
+[dumpfile_size] 26593
 [savefile] "/home/evalverde95/Proyecto2-DigitalesII/fsm/config.gtkw"
 [timestart] 0
 [size] 1366 713
 [pos] -1 -1
-*-13.638336 10000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-13.409655 44690 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
-[sst_width] 223
-[signals_width] 245
-[sst_expanded] 1
+[sst_width] 43
+[signals_width] 206
+[sst_expanded] 0
 [sst_vpaned_height] 192
 @200
--Input
+-Entradas
 @28
-testbench.cond.clk
-testbench.cond.init
-testbench.cond.reset_L
-@22
-testbench.cond.FIFO_empties[4:0]
-testbench.cond.FIFO_errors[4:0]
+testbench.clk
+testbench.reset_L
+testbench.init
+testbench.FIFO_empties[4:0]
+@23
+testbench.FIFO_errors[4:0]
+@200
+-
 @24
-testbench.probador.aeDs[2:0]
-testbench.probador.afDs[2:0]
+testbench.probador.aeMF_i[1:0]
+testbench.probador.afMF_i[1:0]
+@22
+testbench.probador.aeVCs_i[3:0]
+testbench.probador.afVCs_i[3:0]
 @200
 -Conductual
-@28
-testbench.cond.error_out_cond[4:0]
-testbench.cond.idle_out_cond
-testbench.cond.active_out_cond
 @24
-testbench.cond.estado_proximo[4:0]
 testbench.cond.estado[4:0]
-testbench.cond.iaeD[2:0]
-testbench.cond.iafD[2:0]
+testbench.cond.estado_proximo[4:0]
+@28
+testbench.cond.active_out_cond
+testbench.cond.idle_out_cond
+@22
+testbench.cond.error_out_cond[4:0]
+@200
+-
+@24
+testbench.cond.aeMF_o_cond[1:0]
+testbench.cond.afMF_o_cond[1:0]
+@22
+testbench.cond.aeVC_o_cond[3:0]
+testbench.cond.afVC_o_cond[3:0]
 @200
 -Estructural
 @28
-testbench.estruct.error_out_estruct[4:0]
-testbench.estruct.idle_out_estruct
 testbench.estruct.active_out_estruct
+testbench.estruct.idle_out_estruct
 @22
-testbench.estruct.estado[4:0]
-@200
--Probador
-@28
-testbench.probador.igualdad
+testbench.estruct.error_out_estruct[4:0]
+@24
+testbench.estruct.aeMF_o_estruct[1:0]
+testbench.estruct.afMF_o_estruct[1:0]
+@22
+testbench.estruct.aeVC_o_estruct[3:0]
+testbench.estruct.afVC_o_estruct[3:0]
 [pattern_trace] 1
 [pattern_trace] 0
