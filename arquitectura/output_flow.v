@@ -19,8 +19,8 @@ module output_flow(
         
             pop_delay_vc0= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc0);
             pop_delay_vc1= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc1)&&fifo_empty_vc0;
-            pop_vc0= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc0);
-            pop_vc1= (!(fifo_pause_d0|fifo_pause_d1))&&(!fifo_empty_vc1)&&fifo_empty_vc1; 
+            pop_vc0= pop_delay_vc0;
+            pop_vc1= pop_delay_vc1; 
         // end
     end
 

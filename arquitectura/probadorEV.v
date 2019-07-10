@@ -105,10 +105,10 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 			push_main<='b0;
 
 		@(posedge clk);
-      		data_in<='b000010;
+      		data_in<='b010010;
 			push_main<='b0;
 
-		repeat (16) begin
+		repeat (3) begin
 		@(posedge clk);
 			
 				reset_L<='b1;
@@ -132,6 +132,84 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 					pop_d1<='b0;
 				end				
 			
+		end
+
+		@(posedge clk);
+      		data_in<='b110010;
+			push_main<='b0;
+
+		repeat (3) begin
+		@(posedge clk);
+			
+				reset_L<='b1;
+				if (!fifo_pause_main_cond) begin
+					data_in<=data_in+1;
+					push_main<='b1;
+				end
+				else begin
+					push_main<='b0;
+				end
+
+				if(!fifo_empty_d0_cond)begin
+					pop_d0<='b1;
+				end else begin
+					pop_d0<='b0;
+				end
+
+				if (!fifo_empty_d1_cond) begin
+					pop_d1<='b1;
+				end else begin
+					pop_d1<='b0;
+				end				
+			
+		end
+
+		@(posedge clk);
+      		data_in<='b000010;
+			push_main<='b0;
+
+		repeat (3) begin
+		@(posedge clk);
+			
+				reset_L<='b1;
+				if (!fifo_pause_main_cond) begin
+					data_in<=data_in+1;
+					push_main<='b1;
+				end
+				else begin
+					push_main<='b0;
+				end
+
+				if(!fifo_empty_d0_cond)begin
+					pop_d0<='b1;
+				end else begin
+					pop_d0<='b0;
+				end
+
+				if (!fifo_empty_d1_cond) begin
+					pop_d1<='b1;
+				end else begin
+					pop_d1<='b0;
+				end				
+			
+		end
+
+		repeat (8)begin
+			@(posedge clk);
+			data_in<='b000000;
+			push_main<='b0;
+			if(!fifo_empty_d0_cond)begin
+					pop_d0<='b1;
+				end else begin
+					pop_d0<='b0;
+				end
+
+				if (!fifo_empty_d1_cond) begin
+					pop_d1<='b1;
+				end else begin
+					pop_d1<='b0;
+				end	
+
 		end
 		$finish;	
 	end

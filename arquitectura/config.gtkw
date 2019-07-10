@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Wed Jul 10 22:30:10 2019
+[*] Wed Jul 10 23:42:48 2019
 [*]
 [dumpfile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/arqui.vcd"
-[dumpfile_mtime] "Wed Jul 10 22:27:43 2019"
-[dumpfile_size] 504311
+[dumpfile_mtime] "Wed Jul 10 23:39:32 2019"
+[dumpfile_size] 518135
 [savefile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/config.gtkw"
 [timestart] 0
 [size] 1366 713
 [pos] -1 -1
-*-14.199225 22000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-14.365873 22000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] bancoEV.
 [treeopen] bancoEV.cond.
 [treeopen] bancoEV.estruct.
@@ -127,10 +127,13 @@ bancoEV.cond.of.pop_delay_vc0
 bancoEV.cond.of.pop_delay_vc1
 bancoEV.cond.of.pop_vc0
 bancoEV.cond.of.pop_vc1
-@200
+@201
 -Mux
 @22
 bancoEV.cond.mux0.data_demux_d[5:0]
+@28
+bancoEV.cond.mux0.valid_demux_d
+@22
 bancoEV.cond.mux0.data_mux_0[5:0]
 bancoEV.cond.mux0.data_mux_1[5:0]
 @28
@@ -139,8 +142,6 @@ bancoEV.cond.mux0.pop_delay_vc1
 @22
 bancoEV.cond.mux0.reg_VC0[5:0]
 bancoEV.cond.mux0.reg_VC1[5:0]
-@28
-bancoEV.cond.mux0.valid_demux_d
 @200
 -Demux_D
 -D0
@@ -186,7 +187,6 @@ bancoEV.idle_out_cond
 bancoEV.data_out_0_cond[5:0]
 bancoEV.data_out_1_cond[5:0]
 bancoEV.probador.data_out_0_estruct[5:0]
-@23
 bancoEV.probador.data_out_1_estruct[5:0]
 [pattern_trace] 1
 [pattern_trace] 0
