@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Wed Jul 10 02:39:40 2019
+[*] Wed Jul 10 04:43:48 2019
 [*]
 [dumpfile] "/home/evalverde95/Proyecto2-DigitalesII/fifo/bancopruebas.vcd"
-[dumpfile_mtime] "Wed Jul 10 02:37:35 2019"
-[dumpfile_size] 97845
+[dumpfile_mtime] "Wed Jul 10 04:40:49 2019"
+[dumpfile_size] 100793
 [savefile] "/home/evalverde95/Proyecto2-DigitalesII/fifo/config.gtkw"
 [timestart] 0
 [size] 1366 713
-[pos] -1 -1
-*-14.712274 82000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 26
+*-14.825844 71500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [treeopen] testbench.estruct.
 [sst_width] 43
-[signals_width] 214
+[signals_width] 239
 [sst_expanded] 0
 [sst_vpaned_height] 192
 @200
@@ -33,22 +33,21 @@ testbench.buff_in[5:0]
 -Conductual
 @28
 testbench.fifo_empty_cond
-testbench.fifo_full_cond
+testbench.cond.fifo_full_cond
 @22
 testbench.buffer_out_cond[5:0]
-@28
+@29
 testbench.fifo_error_cond
+@28
 testbench.fifo_pause_cond
 @24
 testbench.cond.rd_ptr[2:0]
 testbench.cond.wr_ptr[2:0]
-@25
 testbench.cond.data_count[5:0]
 @200
 -Estructural
 @28
 testbench.fifo_empty_estruct
-testbench.fifo_full_estruct
 @22
 testbench.buffer_out_estruct[5:0]
 @28

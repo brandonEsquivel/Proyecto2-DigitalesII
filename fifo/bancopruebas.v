@@ -18,8 +18,6 @@ module testbench; // Testbench
     wire		fifo_empty_estruct;	// From estruct of fifoSynth.v
     wire		fifo_error_cond;	// From cond of fifo.v
     wire		fifo_error_estruct;	// From estruct of fifoSynth.v
-    wire		fifo_full_cond;		// From cond of fifo.v
-    wire		fifo_full_estruct;	// From estruct of fifoSynth.v
     wire		fifo_pause_cond;	// From cond of fifo.v
     wire		fifo_pause_estruct;	// From estruct of fifoSynth.v
     wire		read;			// From probador of probador.v
@@ -30,10 +28,13 @@ module testbench; // Testbench
     // End of automatics
     
     /*AUTOREGINPUT*/
+    // Beginning of automatic reg inputs (for undeclared instantiated-module inputs)
+    reg			fifo_full_cond;		// To probador of probador.v
+    reg			fifo_full_estruct;	// To probador of probador.v
+    // End of automatics
 	
 	fifo cond(/*AUTOINST*/
 		  // Outputs
-		  .fifo_full_cond	(fifo_full_cond),
 		  .fifo_empty_cond	(fifo_empty_cond),
 		  .buffer_out_cond	(buffer_out_cond[DATA_SIZE-1:0]),
 		  .fifo_error_cond	(fifo_error_cond),
@@ -51,7 +52,6 @@ module testbench; // Testbench
 			  .buffer_out_estruct	(buffer_out_estruct[5:0]),
 			  .fifo_empty_estruct	(fifo_empty_estruct),
 			  .fifo_error_estruct	(fifo_error_estruct),
-			  .fifo_full_estruct	(fifo_full_estruct),
 			  .fifo_pause_estruct	(fifo_pause_estruct),
 			  // Inputs
 			  .buff_in		(buff_in[5:0]),

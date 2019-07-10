@@ -14,14 +14,7 @@ module fifo#(
     input       [DATA_SIZE-1:0]         buff_in,            //datos para hacerle push
     input       [DATA_SIZE-1:0]         umb_almost_full,    //umbral almost 
     input       [DATA_SIZE-1:0]         umb_almost_empty,
-    
-    //Estados del FIFO
-//  output reg                          almost_full,
-//  output reg                          almost_empty,
-    output reg                          fifo_full_cond,
     output reg                          fifo_empty_cond, 
-    
-//  output reg  [DATA_SIZE-1:0]         data_count,           //numero de datos
     output reg [DATA_SIZE-1:0]         buffer_out_cond,            //datos para hacerle pop
     output reg                          fifo_error_cond,
     output reg                          fifo_pause_cond
@@ -30,7 +23,7 @@ module fifo#(
   // Beginning of automatic wires (for undeclared instantiated-module outputs)
   wire [DATA_SIZE-1:0] data_out;		// From mem0 of RAM_memory.v
   // End of automatics
-  
+    reg fifo_full_cond;
     reg almost_full, almost_empty;
     reg [DATA_SIZE-1:0]data_count;  
   
