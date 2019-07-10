@@ -11,8 +11,8 @@
 //archivo header
 //`include "includes.vh"
 `include "buffer.v"
-`include "demux.v"
-`include "demux_MF.v"
+`include "demux_vc.v"
+`include "demux_d.v"
 `include "fifo_main.v"
 `include "fifo_vc0.v"
 `include "fifo_vc1.v"
@@ -22,10 +22,10 @@
 `include "input_flow.v"
 `include "output_flow.v"
 `include "mux.v"
+`include "RAM_memory.v"
 
 
 module arqui(
-)(
     input                               clk,
     input                               reset_L,
     input [5:0]           		 		data_in,            //datos 
@@ -39,9 +39,9 @@ module arqui(
     input [3:0]							aeVC_i,				// almost empty VC FIFO
     input [1:0]							afDF_i,				// almost full D FIFO
     input [1:0]							aeDF_i,				// almost empty D FIFO
-    output ref 							pause,				// pause del FIFO main
-    output ref 							empty_out_0,		// empty D0
-    output ref 							empty_out_1,		// empty D1
+    output reg 							pause,				// pause del FIFO main
+    output reg 							empty_out_0,		// empty D0
+    output reg 							empty_out_1,		// empty D1
     output reg [4:0]					error_out_cond,			
     output reg 							active_out_cond,			
     output reg 							idle_out_cond,			
@@ -50,15 +50,14 @@ module arqui(
 );
 	
 	/*AUTOREGS*/
-	ref [4:0]	FIFO_errors;
-	ref [4:0]	FIFO_empties;
+	reg [4:0]	FIFO_errors;
+	reg [4:0]	FIFO_empties;
 	/*AUTOWIRE*/
 	// Beginning of automatic wires (for undeclared instantiated-module outputs)
 	wire [1:0]	aeD;			// From fsm0 of fsm.v
 	wire [1:0]	afMF;			// From fsm0 of fsm.v
 	wire [3:0]	aeVC;			// From fsm0 of fsm.v
 	wire [1:0]	afD;			// From fsm0 of fsm.v
-	wire [1:0]	afMF;			// From fsm0 of fsm.v
 	wire [3:0]	afVC;			// From fsm0 of fsm.v
 	wire [5:0] data_d0;		// From demux_d of demux_d.v
 	wire [5:0] data_d1;		// From demux_d of demux_d.v

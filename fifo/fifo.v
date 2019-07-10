@@ -40,7 +40,7 @@ module fifo#(
 
     reg [DATA_SIZE-1:0] data_to_mem;
    
-    RAM_memory mem0(/*AUTOINST*/
+    RAM_memory #(DATA_SIZE,MAIN_QUEUE_SIZE) mem0(/*AUTOINST*/
 		    // Outputs
 		    .data_out		(data_out[DATA_SIZE-1:0]),
 		    // Inputs
