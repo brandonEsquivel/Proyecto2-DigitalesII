@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Wed Jul 10 19:09:57 2019
+[*] Wed Jul 10 19:49:37 2019
 [*]
 [dumpfile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/arqui.vcd"
-[dumpfile_mtime] "Wed Jul 10 19:07:57 2019"
-[dumpfile_size] 17271
+[dumpfile_mtime] "Wed Jul 10 19:43:29 2019"
+[dumpfile_size] 17291
 [savefile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/config.gtkw"
 [timestart] 0
 [size] 1366 713
 [pos] -1 -1
-*-14.888290 74000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-14.199225 46000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] bancoEV.
 [treeopen] bancoEV.cond.
 [sst_width] 43
@@ -52,7 +52,7 @@ bancoEV.cond.main.almost_empty
 bancoEV.cond.main.almost_full
 @24
 bancoEV.cond.main.data_count[5:0]
-@23
+@22
 bancoEV.cond.main.data_demux_vc[5:0]
 @28
 bancoEV.cond.main.fifo_empty_main
@@ -69,19 +69,58 @@ bancoEV.cond.in_flow.fifo_pause_vc1
 bancoEV.cond.in_flow.pop_b
 bancoEV.cond.in_flow.pop_main
 @200
+-Demux_main
+@22
+bancoEV.cond.demux_main.data_demux_vc[5:0]
+bancoEV.cond.demux_main.data_vc0[5:0]
+@28
+bancoEV.cond.demux_main.push_vc0
+@22
+bancoEV.cond.demux_main.data_vc1[5:0]
+@28
+bancoEV.cond.demux_main.push_vc1
+bancoEV.cond.demux_main.selector
+bancoEV.cond.demux_main.valid_out_main
+@200
 -VC0
-@24
-bancoEV.cond.vc0.aeVC_o[3:0]
-bancoEV.cond.vc0.afVC_o[3:0]
+@28
+bancoEV.cond.vc0.pop_vc0
+bancoEV.cond.vc0.push_vc0
+@22
+bancoEV.cond.vc0.data_vc0[5:0]
+@28
+bancoEV.cond.vc0.almost_empty
+bancoEV.cond.vc0.fifo_full
+bancoEV.cond.vc0.almost_full
+@22
+bancoEV.cond.vc0.data_count[5:0]
+bancoEV.cond.vc0.data_mux_0[5:0]
+@28
+bancoEV.cond.vc0.fifo_empty_vc0
+bancoEV.cond.vc0.fifo_error_vc0
+bancoEV.cond.vc0.fifo_pause_vc0
 @200
 -VC1
-@24
-bancoEV.cond.vc1.aeVC_o[3:0]
-bancoEV.cond.vc1.afVC_o[3:0]
+@28
+bancoEV.cond.vc1.pop_vc1
+bancoEV.cond.vc1.push_vc1
+@22
+bancoEV.cond.vc1.data_vc1[5:0]
+@28
+bancoEV.cond.vc1.fifo_full
+bancoEV.cond.vc1.almost_full
+@22
+bancoEV.cond.vc1.data_count[5:0]
+bancoEV.cond.vc1.data_mux_1[5:0]
+@28
+bancoEV.cond.vc1.fifo_empty_vc1
+bancoEV.cond.vc1.fifo_error_vc1
+bancoEV.cond.vc1.fifo_pause_vc1
 @200
 -D0
-@24
+@25
 bancoEV.cond.d0.aeD_o[1:0]
+@24
 bancoEV.cond.d0.afD_o[1:0]
 @200
 -D1

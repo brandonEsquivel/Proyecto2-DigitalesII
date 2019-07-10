@@ -67,14 +67,13 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 			@(posedge clk);//esperar a tener los valores de umbral
 		end
 
-		repeat (18) begin
+		repeat (4) begin
 		@(posedge clk);
 				reset_L<='b1;
 				if (!fifo_pause_main) begin
 					data_in<=data_in+1;
 					push_main<='b1;
-				end
-				else begin
+				end else begin
 					push_main<='b0;
 				end
 
@@ -94,8 +93,13 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 
 		@(posedge clk);
       		data_in<='b001100;
+			push_main<='b0;
 
-		repeat (18) begin
+		@(posedge clk);
+      		data_in<='b000010;
+			push_main<='b0;
+
+		repeat (16) begin
 		@(posedge clk);
 			
 				reset_L<='b1;

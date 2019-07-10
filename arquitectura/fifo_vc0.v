@@ -20,7 +20,7 @@ module fifo_vc0#(
     output reg                          fifo_empty_vc0, 
     
 //  output reg  [DATA_SIZE-1:0]         data_count,           //numero de datos
-    output reg [DATA_SIZE-1:0]          data_mux_0,            //datos para hacerle pop
+    output [DATA_SIZE-1:0]          data_mux_0,            //datos para hacerle pop
     output reg                          fifo_error_vc0,
     output reg                          fifo_pause_vc0
 );
@@ -47,7 +47,7 @@ module fifo_vc0#(
    
     RAM_memory #(DATA_SIZE,MAIN_QUEUE_SIZE) mem_vc0(/*AUTOINST*/
 		    // Outputs
-		    .data_out		(data_out[DATA_SIZE-1:0]),
+		    .data_out		(data_mux_0[DATA_SIZE-1:0]),
 		    // Inputs
 		    .clk		(clk),
 		    .read		(pop_vc0),
@@ -114,7 +114,7 @@ module fifo_vc0#(
     always@( posedge clk)begin
         if ( !reset_L ) begin
             data_count <= 'b0;
-            data_mux_0 <= 'b0;
+            // data_mux_0 <= 'b0;
             wr_ptr          <= 'b0;
             rd_ptr          <= 'b0;
             datamod         <= 'b0;
@@ -136,7 +136,7 @@ module fifo_vc0#(
                 rd_ptr <= rd_ptr + 1;                   //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
                 data_count  <= data_count - 1;
-                data_mux_0    <= data_out; 
+                // data_mux_0    <= data_out; 
             end else begin
                 rd_ptr <= rd_ptr;                       //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
