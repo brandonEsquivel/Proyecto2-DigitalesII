@@ -1,0 +1,81 @@
+[*]
+[*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
+[*] Wed Jul 10 18:10:22 2019
+[*]
+[dumpfile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/arqui.vcd"
+[dumpfile_mtime] "Wed Jul 10 18:01:16 2019"
+[dumpfile_size] 14999
+[savefile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/config.gtkw"
+[timestart] 0
+[size] 1366 713
+[pos] -51 -51
+*-14.888290 14000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] bancoEV.
+[treeopen] bancoEV.cond.
+[sst_width] 43
+[signals_width] 230
+[sst_expanded] 0
+[sst_vpaned_height] 192
+@200
+-Entradas
+@28
+bancoEV.clk
+bancoEV.reset_L
+bancoEV.init
+@22
+bancoEV.data_in[5:0]
+@28
+bancoEV.push_main
+bancoEV.pop_d0
+bancoEV.pop_d1
+@200
+-Umbrales
+@24
+bancoEV.aeDF_i[1:0]
+bancoEV.aeMF_i[1:0]
+bancoEV.aeVC_i[3:0]
+bancoEV.afDF_i[1:0]
+bancoEV.afMF_i[1:0]
+bancoEV.afVC_i[3:0]
+@200
+-MAIN_FIFO
+@24
+bancoEV.cond.main.aeMF_o[1:0]
+bancoEV.cond.main.afMF_o[1:0]
+@200
+-VC0
+@24
+bancoEV.cond.vc0.aeVC_o[3:0]
+bancoEV.cond.vc0.afVC_o[3:0]
+@200
+-VC1
+@24
+bancoEV.cond.vc1.aeVC_o[3:0]
+bancoEV.cond.vc1.afVC_o[3:0]
+@200
+-D0
+@24
+bancoEV.cond.d0.aeD_o[1:0]
+bancoEV.cond.d0.afD_o[1:0]
+@200
+-D1
+@25
+bancoEV.cond.d1.aeD_o[1:0]
+bancoEV.cond.d1.afD_o[1:0]
+@200
+-Estados
+@28
+bancoEV.error_out_cond[4:0]
+bancoEV.active_out_cond
+bancoEV.idle_out_cond
+@200
+-Salidas
+@22
+bancoEV.data_out_0_cond[5:0]
+bancoEV.data_out_1_cond[5:0]
+@28
+bancoEV.fifo_empty_d1
+bancoEV.fifo_empty_d0
+bancoEV.fifo_pause_main
+[pattern_trace] 1
+[pattern_trace] 0

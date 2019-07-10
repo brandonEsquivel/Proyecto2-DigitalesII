@@ -7,15 +7,15 @@
 */
 
 // `include "checker_arqui.v"
-    module probador(
-	input 							pause,				// pause del FIFO main
-    input 							empty_out_0,		// empty D0
-    input 							empty_out_1,		// empty D1
+    module probadorEV(
+	input 							fifo_pause_main,				// fifo_pause_main del FIFO main
+    input 							fifo_empty_d0,		// empty D0
+    input 							fifo_empty_d1,		// empty D1
     input [4:0]					error_out_cond,			
     input 							active_out_cond,			
     input 							idle_out_cond,			
-    input  [5:0]       			data_out0_cond,
-    input  [5:0]		       		data_out1_cond,
+    input  [5:0]       			data_out_0_cond,
+    input  [5:0]		       		data_out_1_cond,
 	// input pause_main_estruct,
 
     output reg           clk,
@@ -45,12 +45,13 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 		$dumpfile("arqui.vcd");		// archivo "dump"
 		$dumpvars;					// dumping de variables
 		
-		afMF_i<='b11;
 		aeMF_i<='b01;
-		aeVC_i<='b0011;
-		aeDF_i<='b0011;
+		aeDF_i<='b01;
+		aeVC_i<='b0010;
+		
+		afMF_i<='b11;
+		afDF_i<='b11;
 		afVC_i<='b1110;
-		afDF_i<='b1110;
 
 		reset_L<='b0;
 		init<='b0;
@@ -72,7 +73,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 				reset_L<='b1;	
 			end else begin
 				reset_L<='b1;
-				if (!pause) begin
+				if (!fifo_pause_main) begin
 					data_in<=data_in+1;
 					push_main<='b1;
 				end
@@ -105,7 +106,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 			end 
 			else begin
 				reset_L<='b1;
-				if (!pause) begin
+				if (!fifo_pause_main) begin
 					data_in<=data_in+1;
 					push_main<='b1;
 				end

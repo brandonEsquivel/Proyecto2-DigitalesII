@@ -10,7 +10,7 @@
 
 //archivo header
 //`include "includes.vh"
-`include "buffer.v"
+// `include "buffer.v"
 `include "demux_vc.v"
 `include "demux_d.v"
 `include "fifo_main.v"
@@ -40,9 +40,9 @@ module  arqui #(parameter DATA_SIZE=6)(
     input [1:0]							afDF_i,				// almost full D FIFO
     input [1:0]							aeDF_i,
 					// almost empty D FIFO
-    output reg 							pause,				// pause del FIFO main
-    output reg 							empty_out_0,		// empty D0
-    output reg 							empty_out_1,		// empty D1
+    output 							fifo_pause_main,				// pause del FIFO main
+    output 							fifo_empty_d0,		// empty D0
+    output 							fifo_empty_d1,		// empty D1
 	// estado del fifo
     output  [4:0]					error_out_cond,			
     output  							active_out_cond,			
@@ -71,8 +71,6 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire [DATA_SIZE-1:0] data_mux_1;	// From vc1 of fifo_vc1.v
 	wire [DATA_SIZE-1:0] data_vc0;		// From demux_main of demux_vc.v
 	wire [DATA_SIZE-1:0] data_vc1;		// From demux_main of demux_vc.v
-	wire		fifo_empty_d0;		// From d0 of fifo_d0.v
-	wire		fifo_empty_d1;		// From d1 of fifo_d1.v
 	wire		fifo_empty_main;	// From main of fifo_main.v
 	wire		fifo_empty_vc0;		// From vc0 of fifo_vc0.v
 	wire		fifo_empty_vc1;		// From vc1 of fifo_vc1.v
@@ -83,7 +81,6 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire		fifo_error_vc1;		// From vc1 of fifo_vc1.v
 	wire		fifo_pause_d0;		// From d0 of fifo_d0.v
 	wire		fifo_pause_d1;		// From d1 of fifo_d1.v
-	wire		fifo_pause_main;	// From main of fifo_main.v
 	wire		fifo_pause_vc0;		// From vc0 of fifo_vc0.v
 	wire		fifo_pause_vc1;		// From vc1 of fifo_vc1.v
 	wire		pop_b;			// From in_flow of input_flow.v
@@ -272,16 +269,16 @@ module  arqui #(parameter DATA_SIZE=6)(
     end
     
     // salidas necesarias para el bloque externo
-    always @(posedge clk) begin
-    	if(~reset_L) begin
-    		pause <= 0;
-    		empty_out_0 <=0;
-    		empty_out_1 <=0;
-    	end else begin
-    		pause <= fifo_pause_main;
-    		empty_out_0 <= FIFO_empties[3];
-    		empty_out_1 <= FIFO_empties[4];
-    	end
-    end
+    // always @(posedge clk) begin
+    // 	if(~reset_L) begin
+    // 		pause <= 0;
+    // 		empty_out_0 <=0;
+    // 		empty_out_1 <=0;
+    // 	end else begin
+    // 		pause <= fifo_pause_main;
+    // 		empty_out_0 <= FIFO_empties[3];
+    // 		empty_out_1 <= FIFO_empties[4];
+    // 	end
+    // end
 
 endmodule
