@@ -12,8 +12,8 @@ module fifo_d0#(
     input                               pop_d0,
     input                               push_d0,
     input       [DATA_SIZE-1:0]         data_d0,            //datos para hacerle push
-    input       [DATA_SIZE-1:0]         afd,               //umbral almost full d0 buffer
-    input       [DATA_SIZE-1:0]         aed,               // umbral almost empty d0 buffer
+    input       [DATA_SIZE-1:0]         afD_o,               //umbral almost full d0 buffer
+    input       [DATA_SIZE-1:0]         aeD_o,               // umbral almost empty d0 buffer
     
     //Estados del FIFO
     //output reg                          fifo_full,
@@ -89,12 +89,12 @@ module fifo_d0#(
                 // fifo_pause_d0=1;
             end
 
-            if( data_count >= afd )begin
+            if( data_count >= afD_o )begin
                 almost_full = 1;
                 fifo_pause_d0=1;
             end
 
-            if( (data_count <= aed)&&(data_count!=0) )begin
+            if( (data_count <= aeD_o)&&(data_count!=0) )begin
                 almost_empty = 1;
                 fifo_pause_d0=0;
             end

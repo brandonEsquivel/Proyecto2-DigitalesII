@@ -25,7 +25,7 @@
 `include "RAM_memory.v"
 
 
-module arqui(
+module  arqui #(parameter DATA_SIZE=6)(
     input                               clk,
     input                               reset_L,
     input [5:0]           		 		data_in,            //datos 
@@ -50,25 +50,28 @@ module arqui(
 );
 	
 	/*AUTOREGS*/
-	reg [4:0]	FIFO_errors;
-	reg [4:0]	FIFO_empties;
+	reg [4:0] FIFO_errors;
+	reg [4:0] FIFO_empties;
 	/*AUTOWIRE*/
 	// Beginning of automatic wires (for undeclared instantiated-module outputs)
-	wire [1:0]	aeD;			// From fsm0 of fsm.v
-	wire [1:0]	afMF;			// From fsm0 of fsm.v
-	wire [3:0]	aeVC;			// From fsm0 of fsm.v
-	wire [1:0]	afD;			// From fsm0 of fsm.v
-	wire [3:0]	afVC;			// From fsm0 of fsm.v
-	wire [5:0] data_d0;		// From demux_d of demux_d.v
-	wire [5:0] data_d1;		// From demux_d of demux_d.v
-	wire [5:0] data_demux_;	// From mux0 of mux.v
-	wire [5:0] data_demux_vc;	// From main of fifo_main.v
-	wire [5:0] data_mux_0;	// From vc0 of fifo_vc0.v
-	wire [5:0] data_mux_1;	// From vc1 of fifo_vc1.v
-	wire [5:0] data_out_0;	// From d0 of fifo_d0.v
-	wire [5:0] data_out_1;	// From d1 of fifo_d1.v
-	wire [5:0] data_vc0;		// From demux_main of demux_vc.v
-	wire [5:0] data_vc1;		// From demux_main of demux_vc.v
+	wire		active_out;		// From fsm0 of fsm.v
+	wire [1:0]	aeD_o;			// From fsm0 of fsm.v
+	wire [1:0]	aeMF_o;			// From fsm0 of fsm.v
+	wire [3:0]	aeVC_o;			// From fsm0 of fsm.v
+	wire [1:0]	afD_o;			// From fsm0 of fsm.v
+	wire [1:0]	afMF_o;			// From fsm0 of fsm.v
+	wire [3:0]	afVC_o;			// From fsm0 of fsm.v
+	wire [DATA_SIZE-1:0] data_d0;		// From demux_d of demux_d.v
+	wire [DATA_SIZE-1:0] data_d1;		// From demux_d of demux_d.v
+	wire [DATA_SIZE-1:0] data_demux_d;	// From mux0 of mux.v
+	wire [DATA_SIZE-1:0] data_demux_vc;	// From main of fifo_main.v
+	wire [DATA_SIZE-1:0] data_mux_0;	// From vc0 of fifo_vc0.v
+	wire [DATA_SIZE-1:0] data_mux_1;	// From vc1 of fifo_vc1.v
+	wire [DATA_SIZE-1:0] data_out_0;	// From d0 of fifo_d0.v
+	wire [DATA_SIZE-1:0] data_out_1;	// From d1 of fifo_d1.v
+	wire [DATA_SIZE-1:0] data_vc0;		// From demux_main of demux_vc.v
+	wire [DATA_SIZE-1:0] data_vc1;		// From demux_main of demux_vc.v
+	wire [4:0]	error_out;		// From fsm0 of fsm.v
 	wire		fifo_empty_d0;		// From d0 of fifo_d0.v
 	wire		fifo_empty_d1;		// From d1 of fifo_d1.v
 	wire		fifo_empty_main;	// From main of fifo_main.v
@@ -84,6 +87,7 @@ module arqui(
 	wire		fifo_pause_main;	// From main of fifo_main.v
 	wire		fifo_pause_vc0;		// From vc0 of fifo_vc0.v
 	wire		fifo_pause_vc1;		// From vc1 of fifo_vc1.v
+	wire		idle_out;		// From fsm0 of fsm.v
 	wire		pop_b;			// From in_flow of input_flow.v
 	wire		pop_b0;			// From of of output_flow.v
 	wire		pop_b1;			// From of of output_flow.v
@@ -95,19 +99,18 @@ module arqui(
 	wire		push_vc0;		// From demux_main of demux_vc.v
 	wire		push_vc1;		// From demux_main of demux_vc.v
 	// End of automatics
-    
     //Instanciacion
     fsm fsm0(/*autoinst*/
 	     // Outputs
-	     .error_out			(error_out_cond[4:0]),
-	     .active_out		(active_out_cond),
-	     .idle_out			(idle_out_cond),
-	     .afMF_o			(afMF[1:0]),
-	     .aeMF_o			(afMF[1:0]),
-	     .afD_o			(afD[1:0]),
-	     .aeD_o			(aeD[1:0]),
-	     .afVC_o			(afVC[3:0]),
-	     .aeVC_o			(aeVC[3:0]),
+	     .error_out			(error_out[4:0]),
+	     .active_out		(active_out),
+	     .idle_out			(idle_out),
+	     .afMF_o			(afMF_o[1:0]),
+	     .aeMF_o			(aeMF_o[1:0]),
+	     .afD_o			(afD_o[1:0]),
+	     .aeD_o			(aeD_o[1:0]),
+	     .afVC_o			(afVC_o[3:0]),
+	     .aeVC_o			(aeVC_o[3:0]),
 	     // Inputs
 	     .clk			(clk),
 	     .reset_L			(reset_L),
@@ -116,15 +119,15 @@ module arqui(
 	     .FIFO_empties		(FIFO_empties[4:0]),
 	     .afMF_i			(afMF_i[1:0]),
 	     .aeMF_i			(aeMF_i[1:0]),
-	     .afVCs_i			(afVCs_i[3:0]),
-	     .aeVCs_i			(aeVCs_i[3:0]),
-	     .afDs_i			(afDs_i[1:0]),
-	     .aeDs_i			(aeDs_i[1:0]));
+	     .afVC_i			(afVC_i[3:0]),
+	     .aeVC_i			(aeVC_i[3:0]),
+	     .afDF_i			(afDF_i[1:0]),
+	     .aeDF_i			(aeDF_i[1:0]));
 
     fifo_main main(/*autoinst*/
 		   // Outputs
 		   .fifo_empty_main	(fifo_empty_main),
-		   .data_demux_vc	(data_demux_vc[5:0]),
+		   .data_demux_vc	(data_demux_vc[DATA_SIZE-1:0]),
 		   .fifo_error_main	(fifo_error_main),
 		   .fifo_pause_main	(fifo_pause_main),
 		   // Inputs
@@ -132,9 +135,9 @@ module arqui(
 		   .reset_L		(reset_L),
 		   .pop_main		(pop_main),
 		   .push_main		(push_main),
-		   .data_in		(data_in[5:0]),
-		   .afMf		(afMf[5:0]),
-		   .aeMf		(aeMf[5:0]));
+		   .data_in		(data_in[DATA_SIZE-1:0]),
+		   .afMF_o		(afMF_o[DATA_SIZE-1:0]),
+		   .aeMF_o		(aeMF_o[DATA_SIZE-1:0]));
 
     input_flow in_flow (/*autoinst*/
 			// Outputs
@@ -150,17 +153,17 @@ module arqui(
 			// Outputs
 			.push_vc0	(push_vc0),
 			.push_vc1	(push_vc1),
-			.data_vc0	(data_vc0[5:0]),
-			.data_vc1	(data_vc1[5:0]),
+			.data_vc0	(data_vc0[DATA_SIZE-1:0]),
+			.data_vc1	(data_vc1[DATA_SIZE-1:0]),
 			// Inputs
 			.valid_out_main	(valid_out_main),
 			.clk		(clk),
-			.data_demux_vc	(data_demux_vc[5:0]));
+			.data_demux_vc	(data_demux_vc[DATA_SIZE-1:0]));
 
     fifo_vc0 vc0(/*autoinst*/
 		 // Outputs
 		 .fifo_empty_vc0	(fifo_empty_vc0),
-		 .data_mux_0		(data_mux_0[5:0]),
+		 .data_mux_0		(data_mux_0[DATA_SIZE-1:0]),
 		 .fifo_error_vc0	(fifo_error_vc0),
 		 .fifo_pause_vc0	(fifo_pause_vc0),
 		 // Inputs
@@ -168,14 +171,14 @@ module arqui(
 		 .reset_L		(reset_L),
 		 .pop_vc0		(pop_vc0),
 		 .push_vc0		(push_vc0),
-		 .data_vc0		(data_vc0[5:0]),
-		 .afvf			(afvf[5:0]),
-		 .aevf			(aevf[5:0]));
+		 .data_vc0		(data_vc0[DATA_SIZE-1:0]),
+		 .afVC_o		(afVC_o[DATA_SIZE-1:0]),
+		 .aeVC_o		(aeVC_o[DATA_SIZE-1:0]));
 
     fifo_vc1 vc1(/*autoinst*/
 		 // Outputs
 		 .fifo_empty_vc1	(fifo_empty_vc1),
-		 .data_mux_1		(data_mux_1[5:0]),
+		 .data_mux_1		(data_mux_1[DATA_SIZE-1:0]),
 		 .fifo_error_vc1	(fifo_error_vc1),
 		 .fifo_pause_vc1	(fifo_pause_vc1),
 		 // Inputs
@@ -183,9 +186,9 @@ module arqui(
 		 .reset_L		(reset_L),
 		 .pop_vc1		(pop_vc1),
 		 .push_vc1		(push_vc1),
-		 .data_vc1		(data_vc1[5:0]),
-		 .afvf			(afvf[5:0]),
-		 .aevf			(aevf[5:0]));
+		 .data_vc1		(data_vc1[DATA_SIZE-1:0]),
+		 .afVC_o		(afVC_o[DATA_SIZE-1:0]),
+		 .aeVC_o		(aeVC_o[DATA_SIZE-1:0]));
 
     output_flow of(/*autoinst*/
 		   // Outputs
@@ -201,29 +204,28 @@ module arqui(
 
     mux mux0(/*autoinst*/
 	     // Outputs
-	     .data_demux_d		(data_demux_d[5:0]),
+	     .data_demux_d		(data_demux_d[DATA_SIZE-1:0]),
 	     // Inputs
 	     .clk			(clk),
 	     .pop_delay_vc0		(pop_delay_vc0),
 	     .pop_delay_vc1		(pop_delay_vc1),
-	     .data_mux_0		(data_mux_0[5:0]),
-	     .data_mux_1		(data_mux_1[5:0]));
+	     .data_mux_0		(data_mux_0[DATA_SIZE-1:0]),
+	     .data_mux_1		(data_mux_1[DATA_SIZE-1:0]));
 
     demux_d demux_d(/*autoinst*/
 		    // Outputs
 		    .push_d0		(push_d0),
 		    .push_d1		(push_d1),
-		    .data_d0		(data_d0[5:0]),
-		    .data_d1		(data_d1[5:0]),
+		    .data_d0		(data_d0[DATA_SIZE-1:0]),
+		    .data_d1		(data_d1[DATA_SIZE-1:0]),
 		    // Inputs
-	//	    .valid_out_main	(valid_out_main),
 		    .clk		(clk),
-		    .data_demux_d	(data_demux_d[5:0]));
+		    .data_demux_d	(data_demux_d[DATA_SIZE-1:0]));
 
     fifo_d0 d0(/*autoinst*/
 	       // Outputs
 	       .fifo_empty_d0		(fifo_empty_d0),
-	       .data_out_0		(data_out_0[5:0]),
+	       .data_out_0		(data_out_0[DATA_SIZE-1:0]),
 	       .fifo_error_d0		(fifo_error_d0),
 	       .fifo_pause_d0		(fifo_pause_d0),
 	       // Inputs
@@ -231,14 +233,14 @@ module arqui(
 	       .reset_L			(reset_L),
 	       .pop_d0			(pop_d0),
 	       .push_d0			(push_d0),
-	       .data_d0			(data_d0[5:0]),
-	       .afd			(afd[5:0]),
-	       .aed			(aed[5:0]));
+	       .data_d0			(data_d0[DATA_SIZE-1:0]),
+	       .afD_o			(afD_o[DATA_SIZE-1:0]),
+	       .aeD_o			(aeD_o[DATA_SIZE-1:0]));
 
     fifo_d1 d1(/*autoinst*/
 	       // Outputs
 	       .fifo_empty_d1		(fifo_empty_d1),
-	       .data_out_1		(data_out_1[5:0]),
+	       .data_out_1		(data_out_1[DATA_SIZE-1:0]),
 	       .fifo_error_d1		(fifo_error_d1),
 	       .fifo_pause_d1		(fifo_pause_d1),
 	       // Inputs
@@ -246,12 +248,13 @@ module arqui(
 	       .reset_L			(reset_L),
 	       .pop_d1			(pop_d1),
 	       .push_d1			(push_d1),
-	       .data_d1			(data_d1[5:0]),
-	       .afd			(afd[5:0]),
-	       .aed			(aed[5:0]));
+	       .data_d1			(data_d1[DATA_SIZE-1:0]),
+	       .afD_o			(afD_o[DATA_SIZE-1:0]),
+	       .aeD_o			(aeD_o[DATA_SIZE-1:0]));
 
     // asignacion de buses intermedios
-    always @(*) begin
+    
+	always @(*) begin
     	FIFO_empties=0;
     	FIFO_errors=0;
     	if(~reset_L) begin

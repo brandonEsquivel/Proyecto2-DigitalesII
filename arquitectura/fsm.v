@@ -6,10 +6,10 @@ module fsm (
         input [4:0]FIFO_empties,
         input [1:0] afMF_i,
         input [1:0] aeMF_i,
-        input [3:0] afVCs_i,
-        input [3:0] aeVCs_i,
-        input [1:0] afDs_i,
-        input [1:0] aeDs_i,
+        input [3:0] afVC_i,
+        input [3:0] aeVC_i,
+        input [1:0] afDF_i,
+        input [1:0] aeDF_i,
         output reg [4:0]error_out,
         output reg active_out,
         output reg idle_out,
@@ -47,10 +47,10 @@ module fsm (
         if(estado==INIT)begin    
             afMF_o<=afMF_i;
             aeMF_o<=aeMF_i;
-            afVC_o<=afVCs_i;
-            aeVC_o<=aeVCs_i;
-            afD_o<=afDs_i;
-            aeD_o<=aeDs_i;
+            afVC_o<=afVC_i;
+            aeVC_o<=aeVC_i;
+            afD_o<=afDF_i;
+            aeD_o<=aeDF_i;
         end
       end
     end
@@ -83,10 +83,10 @@ module fsm (
 
             // afMF_o=afMF_i;
             // aeMF_o=aeMF_i;
-            // afVC_o=afVCs_i;
-            // aeVC_o=aeVCs_i;
-            // afD_o=afDs_i;
-            // aeD_o=aeDs_i;
+            // afVC_o=afVC_i;
+            // aeVC_o=aeVC_i;
+            // afD_o=afDF_i;
+            // aeD_o=aeDF_i;
         end
 
         IDLE:begin

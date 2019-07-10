@@ -12,8 +12,8 @@ module fifo_main#(
     input                               pop_main,
     input                               push_main,
     input       [DATA_SIZE-1:0]         data_in,            //datos para hacerle push
-    input       [DATA_SIZE-1:0]         afmf,               //umbral almost full main buffer
-    input       [DATA_SIZE-1:0]         aemf,               // umbral almost empty main buffer
+    input       [DATA_SIZE-1:0]         afMF_o,               //umbral almost full main buffer
+    input       [DATA_SIZE-1:0]         aeMF_o,               // umbral almost empty main buffer
     
     //Estados del FIFO
     //output reg                          fifo_full,
@@ -84,17 +84,17 @@ module fifo_main#(
                 fifo_pause_main=0;
             end
 
-            if( data_count ==( (2**main_QUEUE_SIZE)) )begin            //Es decir 2**(DATA_SIZE-1)
+            if( data_count ==( (2**MAIN_QUEUE_SIZE)) )begin            //Es decir 2**(DATA_SIZE-1)
                 fifo_full = 1;
                 // fifo_pause_main=1;
             end
 
-            if( data_count >= afmf )begin
+            if( data_count >= afMF_o )begin
                 almost_full = 1;
                 fifo_pause_main=1;
             end
 
-            if( (data_count <= aemf)&&(data_count!=0) )begin
+            if( (data_count <= aeMF_o)&&(data_count!=0) )begin
                 almost_empty = 1;
                 fifo_pause_main=0;
             end

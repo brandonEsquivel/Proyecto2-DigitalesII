@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module mux #(
-    parameter DATA_SIZE = 4 
+    parameter DATA_SIZE = 6 
     )(
     //input                       selector,
     input                       clk,
@@ -13,14 +13,27 @@ module mux #(
 );
     reg         [DATA_SIZE-1:0] reg_VC0, reg_VC1;
 
-    always@( * ) begin
-        
-        //Seleccion interna de valids
-        reg_VC0 = pop_delay_VC0 ? data_mux0 : 'b0;  
-        reg_VC1 = pop_delay_VC1 ? data_mux1 : 'b0; 
+    always @(*)begin
+    reg_VC0=0;
+    reg_VC1=1;
+        if (pop_delay_vc0) begin
+            reg_VC0=data_mux_0;
+        end else begin
+            reg_VC0=0;
+        end
+
+        if (pop_delay_vc1) begin
+            reg_VC1=data_mux_1;
+        end else begin
+            reg_VC1=0;
+        end    
     end
+
+    // assign    reg_VC0 = pop_delay_vc0 ? data_mux_0 : 'b0;   
+    // assign    reg_VC1 = pop_delay_vc1 ? data_mux_1 : 'b0; 
+    
     
     always@( posedge clk)begin
-        data_demux <=  pop_delay_VC0 ? reg_VC0 : reg_VC1;
+        data_demux_d <=  pop_delay_vc0 ? reg_VC0 : reg_VC1;
     end
 endmodule

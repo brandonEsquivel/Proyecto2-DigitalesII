@@ -12,8 +12,8 @@ module fifo_vc1#(
     input                               pop_vc1,
     input                               push_vc1,
     input       [DATA_SIZE-1:0]         data_vc1,            //datos para hacerle push
-    input       [DATA_SIZE-1:0]         afvf,               //umbral almost full vc1 buffer
-    input       [DATA_SIZE-1:0]         aevf,               // umbral almost empty vc1 buffer
+    input       [DATA_SIZE-1:0]         afVC_o,               //umbral almost full vc1 buffer
+    input       [DATA_SIZE-1:0]         aeVC_o,               // umbral almost empty vc1 buffer
     
     //Estados del FIFO
     //output reg                          fifo_full,
@@ -89,12 +89,12 @@ module fifo_vc1#(
                 // fifo_pause_vc1=1;
             end
 
-            if( data_count >= afmf )begin
+            if( data_count >= afVC_o )begin
                 almost_full = 1;
                 fifo_pause_vc1=1;
             end
 
-            if( (data_count <= aemf)&&(data_count!=0) )begin
+            if( (data_count <= aeVC_o)&&(data_count!=0) )begin
                 almost_empty = 1;
                 fifo_pause_vc1=0;
             end
