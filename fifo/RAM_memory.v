@@ -20,26 +20,13 @@ module RAM_memory #(
 
     //Se utiliza una expresion condicional para evitar latches
     //valor <= condicion ? if:else
-    always@( posedge clk ) begin
-    if(!reset_L)begin
-        data_out<='b0;
-    end else begin
-            if(write && read)begin
-                data_out <= ram_mem[rd_ptr];
-                ram_mem[wr_ptr] <= data_in ;            
-            end
-            else begin
-                if(read)begin
-                    data_out <= ram_mem[rd_ptr];
-                end 
-                else begin
-                    if (write) begin
-                        ram_mem[wr_ptr] <= data_in ;  
-                    end         
-                end 
-            end
-    end   
+    always@ (*) begin
+        data_out = ~reset_L && read ? 'b0 : ram_mem[rd_ptr];    
+    end
 
+    always@( posedge clk ) begin
+        if (write) 
+            ram_mem[wr_ptr] <= data_in;          
     end
 
     

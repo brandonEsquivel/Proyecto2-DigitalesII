@@ -147,7 +147,6 @@ module fifo#(
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
                 
                 data_count  <= data_count;
-                // buffer_out_cond    <= buffer_out_cond;
             end
         end
     end

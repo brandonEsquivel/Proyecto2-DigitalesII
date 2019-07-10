@@ -67,6 +67,7 @@ module probador #(
         buff_in <= buff_in + 1;
         
     end
+
     
     @(posedge clk)
         write<=0;
@@ -76,7 +77,7 @@ module probador #(
     repeat(2)begin
         @(posedge clk)
         //mandar direcciones random a wr_ptr
-        read<=1;
+        read <= 1;
     end
         
     repeat(2)begin
@@ -90,6 +91,12 @@ module probador #(
             //mandar direcciones random a wr_ptr
             read<=0; 
     end
+
+
+    @(posedge clk)
+        read <= 1;
+    @(posedge clk)
+        read <= 0;
 
     // @(posedge clk)
     //     //mandar direcciones random a wr_ptr
