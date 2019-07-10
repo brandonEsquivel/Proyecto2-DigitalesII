@@ -84,8 +84,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire		fifo_pause_vc0;		// From vc0 of fifo_vc0.v
 	wire		fifo_pause_vc1;		// From vc1 of fifo_vc1.v
 	wire		pop_b;			// From in_flow of input_flow.v
-	wire		pop_b0;			// From of of output_flow.v
-	wire		pop_b1;			// From of of output_flow.v
+	wire		pop_delay_vc0;		// From of of output_flow.v
+	wire		pop_delay_vc1;		// From of of output_flow.v
 	wire		pop_main;		// From in_flow of input_flow.v
 	wire		pop_vc0;		// From of of output_flow.v
 	wire		pop_vc1;		// From of of output_flow.v
@@ -93,6 +93,7 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire		push_d1;		// From demux_d of demux_d.v
 	wire		push_vc0;		// From demux_main of demux_vc.v
 	wire		push_vc1;		// From demux_main of demux_vc.v
+	wire		valid_demux_d;		// From mux0 of mux.v
 	wire		valid_out_main;		// From in_flow of input_flow.v
 	// End of automatics
     //Instanciacion
@@ -192,8 +193,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 		   // Outputs
 		   .pop_vc0		(pop_vc0),
 		   .pop_vc1		(pop_vc1),
-		   .pop_b0		(pop_b0),
-		   .pop_b1		(pop_b1),
+		   .pop_delay_vc0	(pop_delay_vc0),
+		   .pop_delay_vc1	(pop_delay_vc1),
 		   // Inputs
 		   .fifo_empty_vc0	(fifo_empty_vc0),
 		   .fifo_empty_vc1	(fifo_empty_vc1),
@@ -203,6 +204,7 @@ module  arqui #(parameter DATA_SIZE=6)(
     mux mux0(/*autoinst*/
 	     // Outputs
 	     .data_demux_d		(data_demux_d[DATA_SIZE-1:0]),
+	     .valid_demux_d		(valid_demux_d),
 	     // Inputs
 	     .clk			(clk),
 	     .pop_delay_vc0		(pop_delay_vc0),
@@ -218,7 +220,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 		    .data_d1		(data_d1[DATA_SIZE-1:0]),
 		    // Inputs
 		    .clk		(clk),
-		    .data_demux_d	(data_demux_d[DATA_SIZE-1:0]));
+		    .data_demux_d	(data_demux_d[DATA_SIZE-1:0]),
+		    .valid_demux_d	(valid_demux_d));
 
     fifo_d0 d0(/*autoinst*/
 	       // Outputs

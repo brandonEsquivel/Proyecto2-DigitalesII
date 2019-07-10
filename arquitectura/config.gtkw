@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Wed Jul 10 19:49:37 2019
+[*] Wed Jul 10 20:31:32 2019
 [*]
 [dumpfile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/arqui.vcd"
-[dumpfile_mtime] "Wed Jul 10 19:43:29 2019"
-[dumpfile_size] 17291
+[dumpfile_mtime] "Wed Jul 10 20:30:06 2019"
+[dumpfile_size] 17137
 [savefile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/config.gtkw"
 [timestart] 0
 [size] 1366 713
 [pos] -1 -1
-*-14.199225 46000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-14.199225 22000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] bancoEV.
 [treeopen] bancoEV.cond.
 [sst_width] 43
@@ -117,16 +117,65 @@ bancoEV.cond.vc1.fifo_empty_vc1
 bancoEV.cond.vc1.fifo_error_vc1
 bancoEV.cond.vc1.fifo_pause_vc1
 @200
+-Output_flow
+@28
+bancoEV.cond.of.fifo_empty_vc0
+bancoEV.cond.of.fifo_empty_vc1
+bancoEV.cond.of.fifo_pause_d0
+bancoEV.cond.of.fifo_pause_d1
+bancoEV.cond.of.pop_delay_vc0
+bancoEV.cond.of.pop_delay_vc1
+bancoEV.cond.of.pop_vc0
+bancoEV.cond.of.pop_vc1
+@200
+-Mux
+@22
+bancoEV.cond.mux0.data_demux_d[5:0]
+bancoEV.cond.mux0.data_mux_0[5:0]
+bancoEV.cond.mux0.data_mux_1[5:0]
+@28
+bancoEV.cond.mux0.pop_delay_vc0
+bancoEV.cond.mux0.pop_delay_vc1
+@22
+bancoEV.cond.mux0.reg_VC0[5:0]
+bancoEV.cond.mux0.reg_VC1[5:0]
+@28
+bancoEV.cond.mux0.valid_demux_d
+@200
+-Demux_D
 -D0
-@25
-bancoEV.cond.d0.aeD_o[1:0]
-@24
-bancoEV.cond.d0.afD_o[1:0]
+@28
+bancoEV.cond.d0.pop_d0
+bancoEV.cond.d0.push_d0
+@22
+bancoEV.cond.d0.data_d0[5:0]
+@28
+bancoEV.cond.d0.almost_empty
+bancoEV.cond.d0.fifo_full
+bancoEV.cond.d0.almost_full
+@23
+bancoEV.cond.d0.data_count[5:0]
+@28
+bancoEV.cond.d0.fifo_empty_d0
+bancoEV.cond.d0.fifo_error_d0
+bancoEV.cond.d0.fifo_pause_d0
 @200
 -D1
-@24
-bancoEV.cond.d1.aeD_o[1:0]
-bancoEV.cond.d1.afD_o[1:0]
+@28
+bancoEV.cond.d1.pop_d1
+bancoEV.cond.d1.push_d1
+@22
+bancoEV.cond.d1.data_d1[5:0]
+@28
+bancoEV.cond.d1.almost_empty
+bancoEV.cond.d1.fifo_full
+bancoEV.cond.d1.almost_full
+@22
+bancoEV.cond.d1.data_count[5:0]
+@28
+bancoEV.cond.d1.fifo_empty_d1
+bancoEV.cond.d1.fifo_error_d1
+bancoEV.cond.d1.fifo_pause_d1
 @200
 -Estados
 @28

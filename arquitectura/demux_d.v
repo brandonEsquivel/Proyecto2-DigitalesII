@@ -6,6 +6,7 @@ module demux_d #(
     //input                       valid_out_main,
     input                       clk,
     input       [DATA_SIZE-1:0] data_demux_d,
+    input valid_demux_d,
     output reg                  push_d0,
     output reg                  push_d1,
     output reg  [DATA_SIZE-1:0] data_d0,
@@ -22,14 +23,14 @@ module demux_d #(
         selector = data_demux_d[DATA_SIZE - BIT_SELECT];
         //Logica para arqui.v:
         
-       // if ( valid_out_main ) begin
+       if ( valid_demux_d ) begin
            //seleccion de logicas
             data_d0 = ~selector ? data_demux_d : 'b0;
             push_d0 = ~selector ? 1 : 'b0;
             
             data_d1 = selector ? data_demux_d : 'b0;
             push_d1 = selector ? 1 : 'b0;
-       // end 
+       end 
     end
 
 endmodule
