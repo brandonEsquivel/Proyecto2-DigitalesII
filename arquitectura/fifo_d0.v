@@ -20,7 +20,7 @@ module fifo_d0#(
     output reg                          fifo_empty_d0, 
     
 //  output reg  [DATA_SIZE-1:0]         data_count,           //numero de datos
-    output reg [DATA_SIZE-1:0]          data_out_0,            //datos para hacerle pop
+    output reg [DATA_SIZE-1:0]          data_out_0_cond,            //datos para hacerle pop
     output reg                          fifo_error_d0,
     output reg                          fifo_pause_d0
 );
@@ -114,7 +114,7 @@ module fifo_d0#(
     always@( posedge clk)begin
         if ( !reset_L ) begin
             data_count <= 'b0;
-            data_out_0 <= 'b0;
+            data_out_0_cond <= 'b0;
             wr_ptr          <= 'b0;
             rd_ptr          <= 'b0;
             datamod         <= 'b0;
@@ -136,7 +136,7 @@ module fifo_d0#(
                 rd_ptr <= rd_ptr + 1;                   //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
                 data_count  <= data_count - 1;
-                data_out_0    <= data_out; 
+                data_out_0_cond    <= data_out; 
             end else begin
                 rd_ptr <= rd_ptr;                       //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo

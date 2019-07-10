@@ -38,15 +38,18 @@ module  arqui #(parameter DATA_SIZE=6)(
     input [3:0]							afVC_i,				// almost full VC FIFO
     input [3:0]							aeVC_i,				// almost empty VC FIFO
     input [1:0]							afDF_i,				// almost full D FIFO
-    input [1:0]							aeDF_i,				// almost empty D FIFO
+    input [1:0]							aeDF_i,
+					// almost empty D FIFO
     output reg 							pause,				// pause del FIFO main
     output reg 							empty_out_0,		// empty D0
     output reg 							empty_out_1,		// empty D1
+	// estado del fifo
     output reg [4:0]					error_out_cond,			
     output reg 							active_out_cond,			
-    output reg 							idle_out_cond,			
-    output reg  [5:0]       			data_out0_cond,
-    output reg  [5:0]		       		data_out1_cond
+    output reg 							idle_out_cond,	
+	//salidas 
+    output reg  [5:0]       			data_out_0_cond,
+    output reg  [5:0]		       		data_out_1_cond
 );
 	
 	/*AUTOREGS*/
@@ -54,7 +57,6 @@ module  arqui #(parameter DATA_SIZE=6)(
 	reg [4:0] FIFO_empties;
 	/*AUTOWIRE*/
 	// Beginning of automatic wires (for undeclared instantiated-module outputs)
-	wire		active_out;		// From fsm0 of fsm.v
 	wire [1:0]	aeD_o;			// From fsm0 of fsm.v
 	wire [1:0]	aeMF_o;			// From fsm0 of fsm.v
 	wire [3:0]	aeVC_o;			// From fsm0 of fsm.v
@@ -67,11 +69,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire [DATA_SIZE-1:0] data_demux_vc;	// From main of fifo_main.v
 	wire [DATA_SIZE-1:0] data_mux_0;	// From vc0 of fifo_vc0.v
 	wire [DATA_SIZE-1:0] data_mux_1;	// From vc1 of fifo_vc1.v
-	wire [DATA_SIZE-1:0] data_out_0;	// From d0 of fifo_d0.v
-	wire [DATA_SIZE-1:0] data_out_1;	// From d1 of fifo_d1.v
 	wire [DATA_SIZE-1:0] data_vc0;		// From demux_main of demux_vc.v
 	wire [DATA_SIZE-1:0] data_vc1;		// From demux_main of demux_vc.v
-	wire [4:0]	error_out;		// From fsm0 of fsm.v
 	wire		fifo_empty_d0;		// From d0 of fifo_d0.v
 	wire		fifo_empty_d1;		// From d1 of fifo_d1.v
 	wire		fifo_empty_main;	// From main of fifo_main.v
@@ -87,7 +86,6 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire		fifo_pause_main;	// From main of fifo_main.v
 	wire		fifo_pause_vc0;		// From vc0 of fifo_vc0.v
 	wire		fifo_pause_vc1;		// From vc1 of fifo_vc1.v
-	wire		idle_out;		// From fsm0 of fsm.v
 	wire		pop_b;			// From in_flow of input_flow.v
 	wire		pop_b0;			// From of of output_flow.v
 	wire		pop_b1;			// From of of output_flow.v
@@ -102,9 +100,9 @@ module  arqui #(parameter DATA_SIZE=6)(
     //Instanciacion
     fsm fsm0(/*autoinst*/
 	     // Outputs
-	     .error_out			(error_out[4:0]),
-	     .active_out		(active_out),
-	     .idle_out			(idle_out),
+	     .error_out_cond		(error_out_cond[4:0]),
+	     .active_out_cond		(active_out_cond),
+	     .idle_out_cond		(idle_out_cond),
 	     .afMF_o			(afMF_o[1:0]),
 	     .aeMF_o			(aeMF_o[1:0]),
 	     .afD_o			(afD_o[1:0]),
@@ -225,7 +223,7 @@ module  arqui #(parameter DATA_SIZE=6)(
     fifo_d0 d0(/*autoinst*/
 	       // Outputs
 	       .fifo_empty_d0		(fifo_empty_d0),
-	       .data_out_0		(data_out_0[DATA_SIZE-1:0]),
+	       .data_out_0_cond		(data_out_0_cond[DATA_SIZE-1:0]),
 	       .fifo_error_d0		(fifo_error_d0),
 	       .fifo_pause_d0		(fifo_pause_d0),
 	       // Inputs
@@ -240,7 +238,7 @@ module  arqui #(parameter DATA_SIZE=6)(
     fifo_d1 d1(/*autoinst*/
 	       // Outputs
 	       .fifo_empty_d1		(fifo_empty_d1),
-	       .data_out_1		(data_out_1[DATA_SIZE-1:0]),
+	       .data_out_1_cond		(data_out_1_cond[DATA_SIZE-1:0]),
 	       .fifo_error_d1		(fifo_error_d1),
 	       .fifo_pause_d1		(fifo_pause_d1),
 	       // Inputs

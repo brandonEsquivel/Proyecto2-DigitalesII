@@ -6,26 +6,17 @@
  *@brief  Modulo que genera las señales y monitoriza las salidas del modulo arqui conductual y estructural sintetizado
 */
 
-`include "checker_arqui.v"
+// `include "checker_arqui.v"
     module probador(
-	input 		error_out_cond,			
-    input 		active_out_cond,			
-    input 		idle_out_cond,			
-    input  [5:0]       data_out0_cond,
-    input  [5:0]       data_out1_cond,
-
-	input 		error_out_estruct,			
-    input 		active_out_estruct,			
-    input 		idle_out_estruct,			
-    input  [5:0]       data_out0_estruct,
-    input  [5:0]       data_out1_estruct,
-
-	input empty_D0_cond,
-	input empty_D1_cond,
-	input empty_D0_estruct,
-	input empty_D1_estruct,
-	input pause_main_cond,
-	input pause_main_estruct,
+	input 							pause,				// pause del FIFO main
+    input 							empty_out_0,		// empty D0
+    input 							empty_out_1,		// empty D1
+    input [4:0]					error_out_cond,			
+    input 							active_out_cond,			
+    input 							idle_out_cond,			
+    input  [5:0]       			data_out0_cond,
+    input  [5:0]		       		data_out1_cond,
+	// input pause_main_estruct,
 
     output reg           clk,
     output reg           reset_L,
@@ -46,19 +37,9 @@
 wire			arqui_checks_out;	// From ch0 of checker_arqui.v
 
 /*AUTOREGINPUT*/
-reg			clk;			// To ch0 of checker_arqui.v
-reg			reset_L;		// To ch0 of checker_arqui.v
 reg [4:0]		salida_arqui_c;		// To ch0 of checker_arqui.v
 reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 
-    checker_arqui ch0(/*autoinst*/
-		      // Outputs
-		      .arqui_checks_out	(arqui_checks_out),
-		      // Inputs
-		      .clk		(clk),
-		      .reset_L		(reset_L),
-		      .salida_arqui_c	(salida_arqui_c[4:0]),
-		      .salida_arqui_e	(salida_arqui_e[4:0]));
 
 	initial begin
 		$dumpfile("arqui.vcd");		// archivo "dump"
@@ -91,7 +72,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 				reset_L<='b1;	
 			end else begin
 				reset_L<='b1;
-				if (!pause_main_cond) begin
+				if (!pause) begin
 					data_in<=data_in+1;
 					push_main<='b1;
 				end
@@ -99,26 +80,55 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 					push_main<='b0;
 				end
 
-				if(!empty_D0_cond)begin
-					pop_d0<='b1;
-				end else begin
-					pop_d0<='b0;
-				end
+				// if(!empty_D0_cond)begin
+				// 	pop_d0<='b1;
+				// end else begin
+				// 	pop_d0<='b0;
+				// end
 
-				if (!empty_D1_cond) begin
-					pop_d1<='b1;
-				end else begin
-					pop_d1<='b0;
-				end				
+				// if (!empty_D1_cond) begin
+				// 	pop_d1<='b1;
+				// end else begin
+				// 	pop_d1<='b0;
+				// end				
 			end
 
 		end
 
 		@(posedge clk);
       		data_in<='b001100;
+
+		repeat (18) begin
+		@(posedge clk);
+			if (error_out_cond) begin
+				reset_L<='b1;	
+			end 
+			else begin
+				reset_L<='b1;
+				if (!pause) begin
+					data_in<=data_in+1;
+					push_main<='b1;
+				end
+				else begin
+					push_main<='b0;
+				end
+
+				// if(!empty_D0_cond)begin
+				// 	pop_d0<='b1;
+				// end else begin
+				// 	pop_d0<='b0;
+				// end
+
+				// if (!empty_D1_cond) begin
+				// 	pop_d1<='b1;
+				// end else begin
+				// 	pop_d1<='b0;
+				// end				
+			end
+		end
 		$finish;	
 	end
 	// Generador del clk
 	initial	clk <= 0;				// Valor inicial del clk
-	always #10 clk <= ~clk;			// toggle cada 10ns
+	always #2 clk <= ~clk;			// toggle cada 10ns
 endmodule

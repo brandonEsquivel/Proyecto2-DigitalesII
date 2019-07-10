@@ -10,9 +10,9 @@ module fsm (
         input [3:0] aeVC_i,
         input [1:0] afDF_i,
         input [1:0] aeDF_i,
-        output reg [4:0]error_out,
-        output reg active_out,
-        output reg idle_out,
+        output reg [4:0]error_out_cond,
+        output reg active_out_cond,
+        output reg idle_out_cond,
         output reg [1:0] afMF_o,
         output reg [1:0] aeMF_o,
         output reg [1:0] afD_o,
@@ -58,17 +58,17 @@ module fsm (
 
 
     always @(*)begin
-        error_out=0;
-        active_out=0;
-        idle_out='b0;
+        error_out_cond=0;
+        active_out_cond=0;
+        idle_out_cond='b0;
         estado_proximo=RESET;
         //Seleccion de proximos estados
         case (estado)
         RESET: begin
             estado_proximo=INIT;
-            error_out='b0;
-            active_out='b0;
-            idle_out='b0;
+            error_out_cond='b0;
+            active_out_cond='b0;
+            idle_out_cond='b0;
         end
 
         INIT:begin
@@ -77,9 +77,9 @@ module fsm (
             end else begin
                 estado_proximo=IDLE;
             end
-            error_out='b0;
-            active_out='b0;
-            idle_out='b0;
+            error_out_cond='b0;
+            active_out_cond='b0;
+            idle_out_cond='b0;
 
             // afMF_o=afMF_i;
             // aeMF_o=aeMF_i;
@@ -100,16 +100,16 @@ module fsm (
                         estado_proximo=ACTIVE;
                     end
                 end
-                    error_out='b0;
-                    active_out='b0;
-                    idle_out='b1;
+                    error_out_cond='b0;
+                    active_out_cond='b0;
+                    idle_out_cond='b1;
             end 
           
             else begin
                 estado_proximo=ERROR;
-                error_out=FIFO_errors;
-                active_out='b0;
-                idle_out='b1;
+                error_out_cond=FIFO_errors;
+                active_out_cond='b0;
+                idle_out_cond='b1;
             end
         end
 
@@ -124,25 +124,25 @@ module fsm (
                         estado_proximo=ACTIVE;
                     end
                 end
-                error_out='b0;
-                active_out='b1;
-                idle_out='b0;
+                error_out_cond='b0;
+                active_out_cond='b1;
+                idle_out_cond='b0;
             end
           
           else begin
             estado_proximo=ERROR;
             error_ant=FIFO_errors;
-            error_out=FIFO_errors;
-            active_out='b0;
-            idle_out='b0;
+            error_out_cond=FIFO_errors;
+            active_out_cond='b0;
+            idle_out_cond='b0;
           end
         end
 
         ERROR:begin
             estado_proximo=ERROR;
-            error_out=error_ant;
-            active_out='b0;
-            idle_out='b0;
+            error_out_cond=error_ant;
+            active_out_cond='b0;
+            idle_out_cond='b0;
         end
         default:begin
             estado_proximo=RESET;

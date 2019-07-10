@@ -10,6 +10,6 @@ abc -liberty ./CMOS/cmos_cells.lib
 
 clean
 
-show -notitle -format ps -prefix modulo_diagramCMOS -lib ./CMOS/cmos_cells.v
+show -notitle -format pdf -prefix modulo_diagramCMOS -lib ./CMOS/cmos_cells.v arqui
 
 write_verilog -noattr  arqui_Synth.v
