@@ -16,8 +16,8 @@ module fifo#(
     input       [DATA_SIZE-1:0]         umb_almost_empty,
     
     //Estados del FIFO
-//  output reg                          almost_full_,
-//  output reg                          almost_empty_,
+//  output reg                          almost_full,
+//  output reg                          almost_empty,
     output reg                          fifo_full_cond,
     output reg                          fifo_empty_cond, 
     
@@ -31,7 +31,7 @@ module fifo#(
   wire [DATA_SIZE-1:0] data_out;		// From mem0 of RAM_memory.v
   // End of automatics
   
-    reg almost_full_, almost_empty_;
+    reg almost_full, almost_empty;
     reg [DATA_SIZE-1:0]data_count;  
   
   /*AUTOREGINPUT*/  
@@ -63,15 +63,18 @@ module fifo#(
     always@(*) begin
         fifo_empty_cond = 0;
         fifo_full_cond = 0;
-        almost_full_ = 0;
-        almost_empty_ = 0;
+        almost_full = 0;
+        almost_empty = 0;
         datamod = 0;
         fifo_error_cond = 0;
+        fifo_pause_cond=0;
         if ( ~reset_L ) begin
             fifo_empty_cond = 1;
             fifo_full_cond = 0;
-            almost_full_ = 0;
-            almost_empty_ = 0;
+            almost_full = 0;
+            almost_empty = 0;
+            fifo_pause_cond=0;
+            fifo_error_cond=0;
         end 
         
         //control de estados del fifo
@@ -80,18 +83,22 @@ module fifo#(
         else begin
             if ( data_count == 0 )begin
                 fifo_empty_cond = 1;
+                fifo_pause_cond=0;
             end
 
-            if( data_count ==( (2**DATA_SIZE)-1) )begin            //Es decir 2**(DATA_SIZE-1)
+            if( data_count ==( (2**MAIN_QUEUE_SIZE)) )begin            //Es decir 2**(DATA_SIZE-1)
                 fifo_full_cond = 1;
+                // fifo_pause_cond=1;
             end
 
             if( data_count >= umb_almost_full )begin
-                almost_full_ = 1;
+                almost_full = 1;
+                fifo_pause_cond=1;
             end
 
             if( (data_count <= umb_almost_empty)&&(data_count!=0) )begin
-                almost_empty_ = 1;
+                almost_empty = 1;
+                fifo_pause_cond=0;
             end
             
             if( write && fifo_full_cond )begin
@@ -105,13 +112,7 @@ module fifo#(
 
     end
 
-    // always@ (negedge clk)begin
-    //     if (!reset_L)
-    //         i_write <= 'b0;
-    //     else
-    //         i_write <= write;
-    // end
-
+    
     always@( posedge clk)begin
         if ( !reset_L ) begin
             data_count <= 'b0;
@@ -119,13 +120,9 @@ module fifo#(
             wr_ptr          <= 'b0;
             rd_ptr          <= 'b0;
             datamod         <= 'b0;
-            fifo_pause_cond     <= 'b0;
+            // fifo_pause_cond     <= 'b0;
         end else begin
-            if(almost_full_ && !almost_empty_)
-                fifo_pause_cond <= 1;
-            else if (!almost_full_ && almost_empty_)
-                fifo_pause_cond <= 'b0;
-
+            
 
             if( !fifo_full_cond && write )begin
                 wr_ptr <= wr_ptr + 1;                   //wr_ptr incrementa

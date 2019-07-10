@@ -55,10 +55,7 @@ module probador #(
         buff_in<=buff_in+1;
     end
 
-    // @(posedge clk)
-    // write <= 1;     
-    // buff_in<=buff_in+1;
-
+    
     @(posedge clk)
     buff_in<=buff_in+1;
     repeat(8)begin
@@ -92,9 +89,10 @@ module probador #(
             read<=0; 
     end
 
-
-    @(posedge clk)
-        read <= 1;
+    repeat(7)begin
+        @(posedge clk)
+            read <= 1;
+    end
     @(posedge clk)
         read <= 0;
 

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Tue Jul  9 20:56:00 2019
+[*] Wed Jul 10 02:39:40 2019
 [*]
 [dumpfile] "/home/evalverde95/Proyecto2-DigitalesII/fifo/bancopruebas.vcd"
-[dumpfile_mtime] "Tue Jul  9 20:50:52 2019"
-[dumpfile_size] 95384
+[dumpfile_mtime] "Wed Jul 10 02:37:35 2019"
+[dumpfile_size] 97845
 [savefile] "/home/evalverde95/Proyecto2-DigitalesII/fifo/config.gtkw"
 [timestart] 0
 [size] 1366 713
 [pos] -1 -1
-*-14.177241 74000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-14.712274 82000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [treeopen] testbench.estruct.
 [sst_width] 43
@@ -43,7 +43,7 @@ testbench.fifo_pause_cond
 testbench.cond.rd_ptr[2:0]
 testbench.cond.wr_ptr[2:0]
 @25
-testbench.cond.data_count_[5:0]
+testbench.cond.data_count[5:0]
 @200
 -Estructural
 @28
