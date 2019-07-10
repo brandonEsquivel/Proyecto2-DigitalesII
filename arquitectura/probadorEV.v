@@ -77,17 +77,17 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 					push_main<='b0;
 				end
 
-				// if(!empty_D0_cond)begin
-				// 	pop_d0<='b1;
-				// end else begin
-				// 	pop_d0<='b0;
-				// end
+				if(!fifo_empty_d0)begin
+					pop_d0<='b1;
+				end else begin
+					pop_d0<='b0;
+				end
 
-				// if (!empty_D1_cond) begin
-				// 	pop_d1<='b1;
-				// end else begin
-				// 	pop_d1<='b0;
-				// end				
+				if (!fifo_empty_d1) begin
+					pop_d1<='b1;
+				end else begin
+					pop_d1<='b0;
+				end				
 			
 		end
 
@@ -111,17 +111,17 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 					push_main<='b0;
 				end
 
-				// if(!empty_D0_cond)begin
-				// 	pop_d0<='b1;
-				// end else begin
-				// 	pop_d0<='b0;
-				// end
+				if(!fifo_empty_d0)begin
+					pop_d0<='b1;
+				end else begin
+					pop_d0<='b0;
+				end
 
-				// if (!empty_D1_cond) begin
-				// 	pop_d1<='b1;
-				// end else begin
-				// 	pop_d1<='b0;
-				// end				
+				if (!fifo_empty_d1) begin
+					pop_d1<='b1;
+				end else begin
+					pop_d1<='b0;
+				end				
 			
 		end
 		$finish;	
