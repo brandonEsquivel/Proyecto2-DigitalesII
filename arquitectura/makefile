@@ -1,64 +1,67 @@
-# @Date 01/07/2019
-# @Brief makefile para la Tarea #8 en la que se desarrolla una descripción conductual con 5 bits en la entrada y la salida
+NOMBRE=bancoEv
+BANCO=$(NOMBRE).v
+SYNTH=arqui_Synth.v
+VCD=$(NOMBRE).vcd
+VC=iverilog
 
-# Tags de Variables de Programa
-CC := iverilog
-CC_SYNTH := yosys
-CC_RUN := vvp
-VISUAL := gtkwave
-YS = yosy.ys
+EJEC=bancoEV
+VR=vvp
+FLAGSVC= -o $(EJEC)
 
-# Tags de Variables de modulo con valores por defecto 
-TOP_NAME = arqui.v
-TARGET_TOP := testbench.v
-TARGET_VIS := arqui.vcd
-GTK_CONFIG := config.gtkw
-OUTPUT_SIM := RAM.out
-export LIB := CMOS/cmos_cells.lib
-export VLOG_FILE_NAME := arqui.v
-NEW_VLOG_FILE_NAME = arqui_Synth.v
-export TOP_MODULE := arqui 
-NEW_TOP_MODULE = $(TOP_NAME)_Synth
-export OUTPUT_SYNTH = $(TOP_NAME)_Synth.v
+FLAGSLIMP=rm *.vcd $(EJEC) *.dot *.pdf $(SYNTH)
 
-.PHONY: clean
+YOSYS=yosys
+YOSFILE=yosy.ys
+GTKCONFIG=config.gtkw
+GTK=gtkwave
 
-all: compile synth rename assign assign_testbench
-	$(MAKE) testbench
-	@echo 'All Done'
+ORIG=arqui
+FINAL=arqui_Synth
+ 
 
-autoinst_verilog: 
-	emacs-tealeg --batch --no-site-file -l verilog-mode.el arqui.v -f verilog-auto -f save-buffer
-
-assign_testbench:
-	$(eval TARGET_TOP = testbench.v)
-
-compile:
-	@echo 'Compiling Design $(TARGET_TOP)'
-	$(CC) $(TARGET_TOP) -o $(OUTPUT_SIM)
-
-run: 
-	@echo 'Running Design $(TARGET_TOP)'
-	$(CC_RUN) $(OUTPUT_SIM)
-
-sim: 
-	@echo 'Show simulation on GTKWave $(TARGET_VIS)'
-	$(VISUAL) $(TARGET_VIS) $(GTK_CONFIG)
-
-synth:
-	@echo 'Synthetizing module $(TOP_MODULE) with $(LIB)'
-	$(CC_SYNTH) $(YS)
-rename:
-	@echo 'Renaming module $(NEW_TOP_MODULE)'
-	sed -i -E "s,arqui\b,arqui_Synth," $(NEW_VLOG_FILE_NAME)
+all: sintetizar compilar visualizar limpiar
 	
-testbench: compile run sim clean
-	@echo 'Testbench has been tested'
 
-clean: 
-	rm *.out	
-	@echo 'Clean directory succesful...'
+sintetizar:
+	$(YOSYS) $(YOSFILE)
+	sed -i 's/module fifo\b/module fifoSynth/g' $(SYNTH)
+	sed -i '2i\`include "./CMOS/cmos_cells.v"\' $(SYNTH)
+	sed -i 's/cond/estruct/g' $(SYNTH)
+	sed -i 's/module RAM_memory/module RAM_memorySynth/g' $(SYNTH)
+	
+	#module namechange	
+	sed -i 's/module arqui/module arqui_Synth/g' $(SYNTH)
+	sed -i 's/module demux_d/module demux_d_Synth/g' $(SYNTH)
+	sed -i 's/module demux_vc/module demux_vc_Synth/g' $(SYNTH)
+	sed -i 's/module fifo_d0/module fifo_d0_Synth/g' $(SYNTH)
+	sed -i 's/module fifo_d1/module fifo_d1_Synth/g' $(SYNTH)
+	sed -i 's/module fifo_main/module fifo_main_Synth/g' $(SYNTH)
+	sed -i 's/module fifo_vc0/module fifo_vc0_Synth/g' $(SYNTH)
+	sed -i 's/module fifo_vc1/module fifo_vc1_Synth/g' $(SYNTH)
+	sed -i 's/module fsm/module fsm_Synth/g' $(SYNTH)
+	sed -i 's/module mux/module mux_Synth/g' $(SYNTH)
+	sed -i 's/module output_flow/module output_flow_Synth/g' $(SYNTH)
+	sed -i 's/module input_flow/module input_flow_Synth/g' $(SYNTH)
+	#partnamechange
+	sed -i 's/RAM_memory/RAM_memory_Synth/g' $(SYNTH)
+	sed -i 's/fifo_d0\b/fifo_d0_Synth/g' $(SYNTH)
+	sed -i 's/fifo_d1\b/fifo_d1_Synth/g' $(SYNTH)
+	sed -i 's/demux_d\b/demux_d_Synth/g' $(SYNTH)
+	sed -i 's/demux_vc\b/demux_vc_Synth/g' $(SYNTH)
+	sed -i 's/fsm\b/fsm_Synth/g' $(SYNTH)
+	sed -i 's/fifo_main\b/fifo_main_Synth/g' $(SYNTH)
+	sed -i 's/fifo_vc0\b/fifo_vc0_Synth/g' $(SYNTH)
+	sed -i 's/fifo_vc1\b/fifo_vc1_Synth/g' $(SYNTH)
+	sed -i 's/mux\b/mux_Synth/g' $(SYNTH)
+	sed -i 's/output_flow\b/output_flow_Synth/g' $(SYNTH)
+	sed -i 's/input_flow\b/input_flow_Synth/g' $(SYNTH)
+	#sed -i '`include "./CMOS/cmos_cells.v"' $(SYNTH)
+compilar:
+	$(VC) $(BANCO) $(FLAGSVC)
+	$(VR) $(EJEC)
+visualizar:
+	$(GTK) $(GTKCONFIG) 
 
-$(V).SILENT:
+limpiar: 
+	$(FLAGSLIMP)
 
-# end

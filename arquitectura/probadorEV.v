@@ -8,7 +8,7 @@
 
 // `include "checker_arqui.v"
     module probadorEV(
-	input 							fifo_pause_main,				// fifo_pause_main del FIFO main
+	input 							fifo_pause_main_cond,				// fifo_pause_main_cond del FIFO main
     input 							fifo_empty_d0,		// empty D0
     input 							fifo_empty_d1,		// empty D1
     input [4:0]					error_out_cond,			
@@ -70,7 +70,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 		repeat (4) begin
 		@(posedge clk);
 				reset_L<='b1;
-				if (!fifo_pause_main) begin
+				if (!fifo_pause_main_cond) begin
 					data_in<=data_in+1;
 					push_main<='b1;
 				end else begin
@@ -103,7 +103,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 		@(posedge clk);
 			
 				reset_L<='b1;
-				if (!fifo_pause_main) begin
+				if (!fifo_pause_main_cond) begin
 					data_in<=data_in+1;
 					push_main<='b1;
 				end

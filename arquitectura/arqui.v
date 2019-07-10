@@ -40,7 +40,7 @@ module  arqui #(parameter DATA_SIZE=6)(
     input [1:0]							afDF_i,				// almost full D FIFO
     input [1:0]							aeDF_i,
 					// almost empty D FIFO
-    output 							fifo_pause_main,				// pause del FIFO main
+    output 							fifo_pause_main_cond,				// pause del FIFO main
     output 							fifo_empty_d0,		// empty D0
     output 							fifo_empty_d1,		// empty D1
 	// estado del fifo
@@ -126,7 +126,7 @@ module  arqui #(parameter DATA_SIZE=6)(
 		   .fifo_empty_main	(fifo_empty_main),
 		   .data_demux_vc	(data_demux_vc[DATA_SIZE-1:0]),
 		   .fifo_error_main	(fifo_error_main),
-		   .fifo_pause_main	(fifo_pause_main),
+		   .fifo_pause_main_cond(fifo_pause_main_cond),
 		   // Inputs
 		   .clk			(clk),
 		   .reset_L		(reset_L),

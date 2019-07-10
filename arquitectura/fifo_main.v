@@ -22,7 +22,7 @@ module fifo_main#(
 //  output reg  [DATA_SIZE-1:0]         data_count,           //numero de datos
     output [DATA_SIZE-1:0]          data_demux_vc,            //datos para hacerle pop
     output reg                          fifo_error_main,
-    output reg                          fifo_pause_main
+    output reg                          fifo_pause_main_cond
 );
   /*AUTOWIRE*/
   // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -65,13 +65,13 @@ module fifo_main#(
         almost_empty = 0;
         datamod = 0;
         fifo_error_main = 0;
-        fifo_pause_main=0;
+        fifo_pause_main_cond=0;
         if ( ~reset_L ) begin
             fifo_empty_main = 1;
             fifo_full = 0;
             almost_full = 0;
             almost_empty = 0;
-            fifo_pause_main=0;
+            fifo_pause_main_cond=0;
             fifo_error_main=0;
         end 
         
@@ -81,22 +81,22 @@ module fifo_main#(
         else begin
             if ( data_count == 0 )begin
                 fifo_empty_main = 1;
-                fifo_pause_main=0;
+                fifo_pause_main_cond=0;
             end
 
             if( data_count ==( (2**MAIN_QUEUE_SIZE)) )begin            //Es decir 2**(DATA_SIZE-1)
                 fifo_full = 1;
-                // fifo_pause_main=1;
+                // fifo_pause_main_cond=1;
             end
 
             if( data_count >= afMF_o )begin
                 almost_full = 1;
-                fifo_pause_main=1;
+                fifo_pause_main_cond=1;
             end
 
             if( (data_count <= aeMF_o)&&(data_count!=0) )begin
                 almost_empty = 1;
-                fifo_pause_main=0;
+                fifo_pause_main_cond=0;
             end
             
             if( push_main && fifo_full )begin
@@ -118,7 +118,7 @@ module fifo_main#(
             wr_ptr          <= 'b0;
             rd_ptr          <= 'b0;
             datamod         <= 'b0;
-            // fifo_pause_main     <= 'b0;
+            // fifo_pause_main_cond     <= 'b0;
         end else begin
             
 

@@ -19,9 +19,9 @@ module probador #(
         output reg                      pop_d1,
         output reg                      init,
         
-        output reg                      fifo_pause_main,
-        output reg                      fifo_empty_d0,
-        output reg                      fifo_empty_d1,
+        input                      fifo_pause_main_cond,
+        input                      fifo_empty_d0,
+        input                      fifo_empty_d1,
 
         output reg [1:0]                afMF_i,            // almost full Main FIFO
         output reg [1:0]                aeMF_i,            // almost empty Main FIFO
@@ -116,7 +116,7 @@ reg select;
 	always #2 clk <= ~clk;			// toggle cada 10ns
     
     always@(*) begin
-        if(!fifo_pause_main) begin
+        if(!fifo_pause_main_cond) begin
             push_main = 1;
         end else
             push_main = 0;

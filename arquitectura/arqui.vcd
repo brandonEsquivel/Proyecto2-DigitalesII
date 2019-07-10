@@ -1,5 +1,5 @@
 $date
-	Wed Jul 10 14:48:17 2019
+	Wed Jul 10 16:19:01 2019
 $end
 $version
 	Icarus Verilog
@@ -44,7 +44,7 @@ $var wire 1 5 pop_d1 $end
 $var wire 1 6 pop_d0 $end
 $var wire 1 7 init $end
 $var wire 1 8 idle_out_cond $end
-$var wire 1 9 fifo_pause_main $end
+$var wire 1 9 fifo_pause_main_cond $end
 $var wire 1 : fifo_empty_d1 $end
 $var wire 1 ; fifo_empty_d0 $end
 $var wire 5 < error_out_cond [4:0] $end
@@ -80,7 +80,7 @@ $var wire 1 7 init $end
 $var wire 1 8 idle_out_cond $end
 $var wire 1 T fifo_pause_vc1 $end
 $var wire 1 U fifo_pause_vc0 $end
-$var wire 1 9 fifo_pause_main $end
+$var wire 1 9 fifo_pause_main_cond $end
 $var wire 1 V fifo_pause_d1 $end
 $var wire 1 W fifo_pause_d0 $end
 $var wire 1 X fifo_error_vc1 $end
@@ -254,7 +254,7 @@ $var reg 1 ]" datamod $end
 $var reg 1 _ fifo_empty_main $end
 $var reg 1 Z fifo_error_main $end
 $var reg 1 ^" fifo_full $end
-$var reg 1 9 fifo_pause_main $end
+$var reg 1 9 fifo_pause_main_cond $end
 $var reg 2 _" rd_ptr [1:0] $end
 $var reg 2 `" wr_ptr [1:0] $end
 $scope module main_mem $end
@@ -357,7 +357,7 @@ $var wire 6 +# data_out_1_cond [5:0] $end
 $var wire 5 ,# error_out_cond [4:0] $end
 $var wire 1 ; fifo_empty_d0 $end
 $var wire 1 : fifo_empty_d1 $end
-$var wire 1 9 fifo_pause_main $end
+$var wire 1 9 fifo_pause_main_cond $end
 $var wire 1 8 idle_out_cond $end
 $var reg 2 -# aeDF_i [1:0] $end
 $var reg 2 .# aeMF_i [1:0] $end
