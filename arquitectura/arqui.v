@@ -93,6 +93,7 @@ module  arqui #(parameter DATA_SIZE=6)(
 	wire		push_d1;		// From demux_d of demux_d.v
 	wire		push_vc0;		// From demux_main of demux_vc.v
 	wire		push_vc1;		// From demux_main of demux_vc.v
+	wire		valid_out_main;		// From in_flow of input_flow.v
 	// End of automatics
     //Instanciacion
     fsm fsm0(/*autoinst*/
@@ -138,11 +139,13 @@ module  arqui #(parameter DATA_SIZE=6)(
 			// Outputs
 			.pop_main	(pop_main),
 			.pop_b		(pop_b),
+			.valid_out_main	(valid_out_main),
 			// Inputs
 			.reset_L	(reset_L),
 			.fifo_pause_vc0	(fifo_pause_vc0),
 			.fifo_pause_vc1	(fifo_pause_vc1),
-			.fifo_empty_main(fifo_empty_main));
+			.fifo_empty_main(fifo_empty_main),
+			.fifo_error_main(fifo_error_main));
 
     demux_vc demux_main(/*autoinst*/
 			// Outputs

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.99 (w)1999-2019 BSI
-[*] Wed Jul 10 18:10:22 2019
+[*] Wed Jul 10 19:09:57 2019
 [*]
 [dumpfile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/arqui.vcd"
-[dumpfile_mtime] "Wed Jul 10 18:01:16 2019"
-[dumpfile_size] 14999
+[dumpfile_mtime] "Wed Jul 10 19:07:57 2019"
+[dumpfile_size] 17271
 [savefile] "/home/evalverde95/Desktop/Proyecto2-DigitalesII/arquitectura/config.gtkw"
 [timestart] 0
 [size] 1366 713
-[pos] -51 -51
-*-14.888290 14000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-14.888290 74000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] bancoEV.
 [treeopen] bancoEV.cond.
 [sst_width] 43
@@ -39,9 +39,35 @@ bancoEV.afMF_i[1:0]
 bancoEV.afVC_i[3:0]
 @200
 -MAIN_FIFO
+@22
+bancoEV.cond.main.data_in[5:0]
+@28
+bancoEV.cond.main.push_main
+bancoEV.cond.main.pop_main
 @24
-bancoEV.cond.main.aeMF_o[1:0]
-bancoEV.cond.main.afMF_o[1:0]
+bancoEV.cond.main.rd_ptr[1:0]
+bancoEV.cond.main.wr_ptr[1:0]
+@28
+bancoEV.cond.main.almost_empty
+bancoEV.cond.main.almost_full
+@24
+bancoEV.cond.main.data_count[5:0]
+@23
+bancoEV.cond.main.data_demux_vc[5:0]
+@28
+bancoEV.cond.main.fifo_empty_main
+bancoEV.cond.main.fifo_error_main
+bancoEV.cond.main.fifo_full
+bancoEV.cond.main.fifo_pause_main
+@200
+-Input flow
+@28
+bancoEV.cond.in_flow.valid_out_main
+bancoEV.cond.in_flow.fifo_empty_main
+bancoEV.cond.in_flow.fifo_pause_vc0
+bancoEV.cond.in_flow.fifo_pause_vc1
+bancoEV.cond.in_flow.pop_b
+bancoEV.cond.in_flow.pop_main
 @200
 -VC0
 @24
@@ -59,7 +85,7 @@ bancoEV.cond.d0.aeD_o[1:0]
 bancoEV.cond.d0.afD_o[1:0]
 @200
 -D1
-@25
+@24
 bancoEV.cond.d1.aeD_o[1:0]
 bancoEV.cond.d1.afD_o[1:0]
 @200

@@ -69,9 +69,6 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 
 		repeat (18) begin
 		@(posedge clk);
-			if (error_out_cond) begin
-				reset_L<='b1;	
-			end else begin
 				reset_L<='b1;
 				if (!fifo_pause_main) begin
 					data_in<=data_in+1;
@@ -92,8 +89,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 				// end else begin
 				// 	pop_d1<='b0;
 				// end				
-			end
-
+			
 		end
 
 		@(posedge clk);
@@ -101,10 +97,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 
 		repeat (18) begin
 		@(posedge clk);
-			if (error_out_cond) begin
-				reset_L<='b1;	
-			end 
-			else begin
+			
 				reset_L<='b1;
 				if (!fifo_pause_main) begin
 					data_in<=data_in+1;
@@ -125,7 +118,7 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 				// end else begin
 				// 	pop_d1<='b0;
 				// end				
-			end
+			
 		end
 		$finish;	
 	end

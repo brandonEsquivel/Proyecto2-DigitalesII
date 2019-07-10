@@ -35,12 +35,12 @@ module fsm (
     always @(posedge clk)begin
       if (!reset_L) begin
         estado<=RESET;
-        afMF_o<='b0;
-        aeMF_o<='b0;
-        afVC_o<='b0;
-        aeVC_o<='b0;
-        afD_o<='b0;
-        aeD_o<='b0;
+        afMF_o<='b10;
+        aeMF_o<='b10;
+        afVC_o<='b1010;
+        aeVC_o<='b0011;
+        afD_o<='b10;
+        aeD_o<='b10;
         error_ant<='b0;
       end else begin
         estado<=estado_proximo;
