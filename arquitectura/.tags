@@ -1,0 +1,330 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	CMOS/cmos_cells.v	/^input A, B;$/;"	p
+A	CMOS/cmos_cells.v	/^input A;$/;"	p
+ACTIVE	fsm.v	/^    parameter ACTIVE='b01000;$/;"	c
+B	CMOS/cmos_cells.v	/^input A, B;$/;"	p
+BUF	CMOS/cmos_cells.v	/^module BUF(A, Y);$/;"	m
+C	CMOS/cmos_cells.v	/^input C, D, S, R;$/;"	p
+C	CMOS/cmos_cells.v	/^input C, D;$/;"	p
+CC	makefile	/^CC := iverilog$/;"	m
+CC_RUN	makefile	/^CC_RUN := vvp$/;"	m
+CC_SYNTH	makefile	/^CC_SYNTH := yosys$/;"	m
+D	CMOS/cmos_cells.v	/^input C, D, S, R;$/;"	p
+D	CMOS/cmos_cells.v	/^input C, D;$/;"	p
+DATA_SIZE	RAM_memory.v	/^    parameter DATA_SIZE = 6 ,            \/\/cantidad de bits de entrada $/;"	c
+DATA_SIZE	demux.v	/^    parameter DATA_SIZE = 4,$/;"	c
+DATA_SIZE	demux_d.v	/^    parameter DATA_SIZE = 6,$/;"	c
+DATA_SIZE	demux_vc.v	/^    parameter DATA_SIZE = 6,$/;"	c
+DATA_SIZE	fifo_d0.v	/^    parameter DATA_SIZE = 6,               \/\/cantidad de bits de entrada$/;"	c
+DATA_SIZE	fifo_d1.v	/^    parameter DATA_SIZE = 6,               \/\/cantidad de bits de entrada$/;"	c
+DATA_SIZE	fifo_main.v	/^    parameter DATA_SIZE = 6,               \/\/cantidad de bits de entrada$/;"	c
+DATA_SIZE	fifo_vc0.v	/^    parameter DATA_SIZE = 6,               \/\/cantidad de bits de entrada$/;"	c
+DATA_SIZE	fifo_vc1.v	/^    parameter DATA_SIZE = 6,               \/\/cantidad de bits de entrada$/;"	c
+DATA_SIZE	mux.v	/^    parameter DATA_SIZE = 4 $/;"	c
+DATA_SIZE	probador.v	/^        parameter DATA_SIZE = 4, $/;"	c
+DFF	CMOS/cmos_cells.v	/^module DFF(C, D, Q);$/;"	m
+DFFSR	CMOS/cmos_cells.v	/^module DFFSR(C, D, Q, S, R);$/;"	m
+ERROR	fsm.v	/^    parameter ERROR='b10000;$/;"	c
+FIFO_empties	fsm.v	/^        input [4:0]FIFO_empties,$/;"	p
+GTK_CONFIG	makefile	/^GTK_CONFIG := config.gtkw$/;"	m
+IDLE	fsm.v	/^    parameter IDLE='b00100;$/;"	c
+INIT	fsm.v	/^    parameter INIT='b00010;$/;"	c
+LIB	makefile	/^export LIB := CMOS\/cmos_cells.lib$/;"	m
+NAND	CMOS/cmos_cells.v	/^module NAND(A, B, Y);$/;"	m
+NEW_TOP_MODULE	makefile	/^NEW_TOP_MODULE = $(TOP_NAME)_Synth$/;"	m
+NEW_VLOG_FILE_NAME	makefile	/^NEW_VLOG_FILE_NAME = arqui_Synth.v$/;"	m
+NOR	CMOS/cmos_cells.v	/^module NOR(A, B, Y);$/;"	m
+NOT	CMOS/cmos_cells.v	/^module NOT(A, Y);$/;"	m
+OUTPUT_SIM	makefile	/^OUTPUT_SIM := RAM.out$/;"	m
+OUTPUT_SYNTH	makefile	/^export OUTPUT_SYNTH = $(TOP_NAME)_Synth.v$/;"	m
+R	CMOS/cmos_cells.v	/^input C, D, S, R;$/;"	p
+RAM_memory	RAM_memory.v	/^module RAM_memory #($/;"	m
+RESET	fsm.v	/^    parameter RESET='b00001;$/;"	c
+S	CMOS/cmos_cells.v	/^input C, D, S, R;$/;"	p
+TARGET_TOP	makefile	/^TARGET_TOP := testbench.v$/;"	m
+TARGET_VIS	makefile	/^TARGET_VIS := arqui.vcd$/;"	m
+TOP_MODULE	makefile	/^export TOP_MODULE := arqui $/;"	m
+TOP_NAME	makefile	/^TOP_NAME = arqui.v$/;"	m
+VISUAL	makefile	/^VISUAL := gtkwave$/;"	m
+VLOG_FILE_NAME	makefile	/^export VLOG_FILE_NAME := arqui.v$/;"	m
+Y	CMOS/cmos_cells.v	/^output Y;$/;"	p
+YS	makefile	/^YS = yosy.ys$/;"	m
+active_out	testbench.v	/^	wire		active_out;		\/\/ From arqui_cond of arqui.v$/;"	n
+advf	fifo_d0.v	/^    input       [DATA_SIZE-1:0]         advf,               \/\/ umbral almost empty d0 buffer$/;"	p
+advf	fifo_d1.v	/^    input       [DATA_SIZE-1:0]         advf,               \/\/ umbral almost empty d1 buffer$/;"	p
+aeDF_i	arqui.v	/^    input [1:0]							aeDF_i,				\/\/ almost empty D FIFO$/;"	p
+aeDF_i	testbench.v	/^	wire [1:0]	aeDF_i;			\/\/ From test0 of probador.v$/;"	n
+aeDs_i	fsm.v	/^        input [1:0] aeDs_i,$/;"	p
+aeMF_i	arqui.v	/^    input [1:0]							aeMF_i,				\/\/ almost empty Main FIFO$/;"	p
+aeMF_i	fsm.v	/^        input [1:0] aeMF_i,$/;"	p
+aeMF_i	testbench.v	/^	wire [1:0]	aeMF_i;			\/\/ From test0 of probador.v$/;"	n
+aeVC_i	arqui.v	/^    input [3:0]							aeVC_i,				\/\/ almost empty VC FIFO$/;"	p
+aeVC_i	testbench.v	/^	wire [3:0]	aeVC_i;			\/\/ From test0 of probador.v$/;"	n
+aeVCs_i	fsm.v	/^        input [3:0] aeVCs_i,$/;"	p
+aemf	fifo_main.v	/^    input       [DATA_SIZE-1:0]         aemf,               \/\/ umbral almost empty main buffer$/;"	p
+aevf	fifo_vc0.v	/^    input       [DATA_SIZE-1:0]         aevf,               \/\/ umbral almost empty vc0 buffer$/;"	p
+aevf	fifo_vc1.v	/^    input       [DATA_SIZE-1:0]         aevf,               \/\/ umbral almost empty vc1 buffer$/;"	p
+afDF_i	testbench.v	/^	wire [1:0]	afDF_i;			\/\/ From test0 of probador.v$/;"	n
+afMF_i	testbench.v	/^	wire [1:0]	afMF_i;			\/\/ From test0 of probador.v$/;"	n
+afVC_i	testbench.v	/^	wire [3:0]	afVC_i;			\/\/ From test0 of probador.v$/;"	n
+almost_empty	fifo_d0.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_empty	fifo_d1.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_empty	fifo_main.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_empty	fifo_vc0.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_empty	fifo_vc1.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_full	fifo_d0.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_full	fifo_d1.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_full	fifo_main.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_full	fifo_vc0.v	/^    reg almost_full, almost_empty;$/;"	r
+almost_full	fifo_vc1.v	/^    reg almost_full, almost_empty;$/;"	r
+arqui	arqui.v	/^module arqui($/;"	m
+arqui_checks_out	probador.v	/^wire			arqui_checks_out;	\/\/ From ch0 of checker_arqui.v$/;"	n
+atraso_d	buffer.v	/^reg atraso_d;$/;"	r
+atraso_dd	buffer.v	/^reg atraso_dd;$/;"	r
+buffer	buffer.v	/^module buffer($/;"	m
+checker_arqui	checker_arqui.v	/^module checker_arqui($/;"	m
+clk	RAM_memory.v	/^    input                             clk,$/;"	p
+clk	arqui.v	/^    input                               clk,$/;"	p
+clk	buffer.v	/^    input clk,$/;"	p
+clk	checker_arqui.v	/^    input          clk,$/;"	p
+clk	fifo_d0.v	/^    input                               clk,$/;"	p
+clk	fifo_d1.v	/^    input                               clk,$/;"	p
+clk	fifo_main.v	/^    input                               clk,$/;"	p
+clk	fifo_vc0.v	/^    input                               clk,$/;"	p
+clk	fifo_vc1.v	/^    input                               clk,$/;"	p
+clk	fsm.v	/^        input clk,$/;"	p
+clk	probador.v	/^reg			clk;			\/\/ To ch0 of checker_arqui.v$/;"	r
+contador	buffer.v	/^reg [1:0]contador;$/;"	r
+data_count	fifo_d0.v	/^    reg [DATA_SIZE-1:0]data_count;  $/;"	r
+data_count	fifo_d1.v	/^    reg [DATA_SIZE-1:0]data_count;  $/;"	r
+data_count	fifo_main.v	/^    reg [DATA_SIZE-1:0]data_count;  $/;"	r
+data_count	fifo_vc0.v	/^    reg [DATA_SIZE-1:0]data_count;  $/;"	r
+data_count	fifo_vc1.v	/^    reg [DATA_SIZE-1:0]data_count;  $/;"	r
+data_d0	fifo_d0.v	/^    input       [DATA_SIZE-1:0]         data_d0,            \/\/datos para hacerle push$/;"	p
+data_d1	fifo_d1.v	/^    input       [DATA_SIZE-1:0]         data_d1,            \/\/datos para hacerle push$/;"	p
+data_demux	demux.v	/^    input       [DATA_SIZE-1:0] data_demux,$/;"	p
+data_demux_d	demux_d.v	/^    input       [DATA_SIZE-1:0] data_demux_d,$/;"	p
+data_demux_vc	demux_vc.v	/^    input       [DATA_SIZE-1:0] data_demux_vc,$/;"	p
+data_in	RAM_memory.v	/^    input       [DATA_SIZE-1:0] data_in,$/;"	p
+data_in	arqui.v	/^    input [DATA_SIZE-1:0]  		 		data_in,            \/\/datos para hacerle push $/;"	p
+data_in	fifo_main.v	/^    input       [DATA_SIZE-1:0]         data_in,            \/\/datos para hacerle push$/;"	p
+data_in	testbench.v	/^	wire [DATA_SIZE-1:0] data_in;		\/\/ From test0 of probador.v$/;"	n
+data_mux_1	mux.v	/^    input       [DATA_SIZE-1:0] data_mux_1,$/;"	p
+data_out	fifo_d0.v	/^  wire [DATA_SIZE-1:0] data_out;		\/\/ From mem0 of RAM_memory.v$/;"	n
+data_out	fifo_d1.v	/^  wire [DATA_SIZE-1:0] data_out;		\/\/ From mem0 of RAM_memory.v$/;"	n
+data_out	fifo_main.v	/^  wire [DATA_SIZE-1:0] data_out;		\/\/ From mem0 of RAM_memory.v$/;"	n
+data_out	fifo_vc0.v	/^  wire [DATA_SIZE-1:0] data_out;		\/\/ From mem0 of RAM_memory.v$/;"	n
+data_out	fifo_vc1.v	/^  wire [DATA_SIZE-1:0] data_out;		\/\/ From mem0 of RAM_memory.v$/;"	n
+data_out0	testbench.v	/^	wire [OUTPUT_SIZE-1:0] data_out0;	\/\/ From arqui_cond of arqui.v$/;"	n
+data_out0_e	probador.v	/^	input       [OUTPUT_SIZE-1:0]	    data_out0_e	    \/\/ monitor de salida 0 de datos estr$/;"	p
+data_out1	testbench.v	/^	wire [OUTPUT_SIZE-1:0] data_out1;	\/\/ From arqui_cond of arqui.v$/;"	n
+data_out1_e	probador.v	/^	input       [OUTPUT_SIZE-1:0]	    data_out1_e	    \/\/ monitor de salida 0 de datos estr$/;"	p
+data_to_mem	fifo_d0.v	/^    reg [DATA_SIZE-1:0] data_to_mem;$/;"	r
+data_to_mem	fifo_d1.v	/^    reg [DATA_SIZE-1:0] data_to_mem;$/;"	r
+data_to_mem	fifo_main.v	/^    reg [DATA_SIZE-1:0] data_to_mem;$/;"	r
+data_to_mem	fifo_vc0.v	/^    reg [DATA_SIZE-1:0] data_to_mem;$/;"	r
+data_to_mem	fifo_vc1.v	/^    reg [DATA_SIZE-1:0] data_to_mem;$/;"	r
+data_vc0	fifo_vc0.v	/^    input       [DATA_SIZE-1:0]         data_vc0,            \/\/datos para hacerle push$/;"	p
+data_vc1	fifo_vc1.v	/^    input       [DATA_SIZE-1:0]         data_vc1,            \/\/datos para hacerle push$/;"	p
+datamod	fifo_d0.v	/^    reg datamod;$/;"	r
+datamod	fifo_d1.v	/^    reg datamod;$/;"	r
+datamod	fifo_main.v	/^    reg datamod;$/;"	r
+datamod	fifo_vc0.v	/^    reg datamod;$/;"	r
+datamod	fifo_vc1.v	/^    reg datamod;$/;"	r
+demux	demux.v	/^module demux #($/;"	m
+demux_d	demux_d.v	/^module demux_d #($/;"	m
+demux_vc	demux_vc.v	/^module demux_vc #($/;"	m
+en_pop	demux.v	/^    input                       en_pop,$/;"	p
+error_ant	fsm.v	/^    reg [4:0] error_ant;$/;"	r
+error_out	probador.v	/^        input                         error_out,$/;"	p
+error_out	testbench.v	/^	wire		error_out;		\/\/ From arqui_cond of arqui.v$/;"	n
+estado	fsm.v	/^    reg [4:0] estado, estado_proximo;$/;"	r
+estado_proximo	fsm.v	/^    reg [4:0] estado, estado_proximo;$/;"	r
+fifo_d0	fifo_d0.v	/^module fifo_d0#($/;"	m
+fifo_d1	fifo_d1.v	/^module fifo_d1#($/;"	m
+fifo_empty_vc0	output_flow.v	/^    input fifo_empty_vc0,$/;"	p
+fifo_full	fifo_d0.v	/^    reg fifo_full;  $/;"	r
+fifo_full	fifo_d1.v	/^    reg fifo_full;  $/;"	r
+fifo_full	fifo_main.v	/^    reg fifo_full;  $/;"	r
+fifo_full	fifo_vc0.v	/^    reg fifo_full;  $/;"	r
+fifo_full	fifo_vc1.v	/^    reg fifo_full;  $/;"	r
+fifo_main	fifo_main.v	/^module fifo_main#($/;"	m
+fifo_pause_d0	output_flow.v	/^    input fifo_pause_d0,$/;"	p
+fifo_pause_vc1	input_flow.v	/^    input fifo_pause_vc1,$/;"	p
+fifo_vc0	fifo_vc0.v	/^module fifo_vc0#($/;"	m
+fifo_vc1	fifo_vc1.v	/^module fifo_vc1#($/;"	m
+fsm	fsm.v	/^module fsm ($/;"	m
+idle_out	probador.v	/^        input                         idle_out,$/;"	p
+idle_out	testbench.v	/^	wire		idle_out;		\/\/ From arqui_cond of arqui.v$/;"	n
+init	arqui.v	/^    input 								init,$/;"	p
+init	fsm.v	/^        input init,$/;"	p
+input	RAM_memory.v	/^    input                             read,         \/\/enable del read$/;"	p
+input	RAM_memory.v	/^    input                             reset_L,$/;"	p
+input	RAM_memory.v	/^    input       [MAIN_QUEUE_SIZE-1:0]       wr_ptr,$/;"	p
+input	arqui.v	/^    input 								pop_d1,$/;"	p
+input	arqui.v	/^    input 								push_main,$/;"	p
+input	arqui.v	/^    input                               reset_L,$/;"	p
+input	arqui.v	/^    input [1:0]							afDF_i,				\/\/ almost full D FIFO$/;"	p
+input	arqui.v	/^    input [1:0]							afMF_i,				\/\/ almost full Main FIFO$/;"	p
+input	arqui.v	/^    input [3:0]							afVC_i,				\/\/ almost full VC FIFO$/;"	p
+input	buffer.v	/^    input reset_L,$/;"	p
+input	checker_arqui.v	/^    input          reset_L,$/;"	p
+input	checker_arqui.v	/^    input   [4:0]   salida_arqui_e$/;"	p
+input	demux.v	/^    input                       clk,$/;"	p
+input	demux_d.v	/^    input                       clk,$/;"	p
+input	demux_vc.v	/^    input                       clk,$/;"	p
+input	fifo_d0.v	/^    input                               push_d0,$/;"	p
+input	fifo_d0.v	/^    input                               reset_L,$/;"	p
+input	fifo_d0.v	/^    input       [DATA_SIZE-1:0]         advf,               \/\/umbral almost full d0 buffer$/;"	p
+input	fifo_d1.v	/^    input                               push_d1,$/;"	p
+input	fifo_d1.v	/^    input                               reset_L,$/;"	p
+input	fifo_d1.v	/^    input       [DATA_SIZE-1:0]         advf,               \/\/umbral almost full d1 buffer$/;"	p
+input	fifo_main.v	/^    input                               push_main,$/;"	p
+input	fifo_main.v	/^    input                               reset_L,$/;"	p
+input	fifo_main.v	/^    input       [DATA_SIZE-1:0]         afmf,               \/\/umbral almost full main buffer$/;"	p
+input	fifo_vc0.v	/^    input                               push_vc0,$/;"	p
+input	fifo_vc0.v	/^    input                               reset_L,$/;"	p
+input	fifo_vc0.v	/^    input       [DATA_SIZE-1:0]         afvf,               \/\/umbral almost full vc0 buffer$/;"	p
+input	fifo_vc1.v	/^    input                               push_vc1,$/;"	p
+input	fifo_vc1.v	/^    input                               reset_L,$/;"	p
+input	fifo_vc1.v	/^    input       [DATA_SIZE-1:0]         afvf,               \/\/umbral almost full vc1 buffer$/;"	p
+input	fsm.v	/^        input [1:0] afDs_i,$/;"	p
+input	fsm.v	/^        input [1:0] afMF_i,$/;"	p
+input	fsm.v	/^        input [3:0] afVCs_i,$/;"	p
+input	fsm.v	/^        input [4:0] FIFO_errors,$/;"	p
+input	fsm.v	/^        input reset_L,$/;"	p
+input	input_flow.v	/^    input fifo_empty_main,$/;"	p
+input	input_flow.v	/^    input fifo_pause_vc0,$/;"	p
+input	mux.v	/^    input                       pop_delay_vc0,      \/\/funciona como un enable$/;"	c
+input	mux.v	/^    input       [DATA_SIZE-1:0] data_mux_0,$/;"	p
+input	output_flow.v	/^    input fifo_empty_vc1,$/;"	p
+input	output_flow.v	/^    input fifo_pause_d1,$/;"	p
+input	probador.v	/^        input                         active_out,$/;"	p
+input	probador.v	/^    input       [OUTPUT_SIZE-1:0]	    data_out0_c,	\/\/ monitor de salida 0 de datos cond$/;"	p
+input_flow	input_flow.v	/^module input_flow($/;"	m
+mux	mux.v	/^module mux #($/;"	m
+onflag	checker_arqui.v	/^    reg     onflag, resetflag;                         \/\/checks if message has been sent   $/;"	r
+out_c	checker_arqui.v	/^    reg     out_c, out_e;                   \/\/flip-flops$/;"	r
+out_e	checker_arqui.v	/^    reg     out_c, out_e;                   \/\/flip-flops$/;"	r
+output	RAM_memory.v	/^    output  reg [DATA_SIZE-1:0] data_out$/;"	p
+output	arqui.v	/^    output reg 							error_out,			$/;"	p
+output	buffer.v	/^    output reg pop_delay_vc$/;"	p
+output	demux.v	/^    output reg                  push0,$/;"	p
+output	demux_d.v	/^    output reg                  push_d0,$/;"	p
+output	demux_vc.v	/^    output reg                  push_vc0,$/;"	p
+output	fifo_d0.v	/^    output reg                          fifo_empty_d0, $/;"	p
+output	fifo_d1.v	/^    output reg                          fifo_empty_d1, $/;"	p
+output	fifo_main.v	/^    output reg                          fifo_empty_main, $/;"	p
+output	fifo_vc0.v	/^    output reg                          fifo_empty_vc0, $/;"	p
+output	fifo_vc1.v	/^    output reg                          fifo_empty_vc1, $/;"	p
+output	fsm.v	/^        output reg [4:0]error_out,$/;"	p
+output	mux.v	/^    output reg  [DATA_SIZE-1:0] data_demux_$/;"	p
+output_flow	output_flow.v	/^module output_flow($/;"	m
+parameter	RAM_memory.v	/^    parameter MAIN_QUEUE_SIZE = 3        \/\/Cantiad de filas del main fifo    $/;"	c
+parameter	demux.v	/^    parameter BIT_SELECT = 1  )(       \/\/parametro para elegir entre vc_id(1) y dest(2) $/;"	c
+parameter	demux_d.v	/^    parameter BIT_SELECT = 2  )(       \/\/parametro para elegir entre vc_id(1) y dest(2) $/;"	c
+parameter	demux_vc.v	/^    parameter BIT_SELECT = 1  )(       \/\/parametro para elegir entre vc_id(1) y dest(2) $/;"	c
+parameter	fifo_d0.v	/^    parameter MAIN_QUEUE_SIZE = 4        \/\/Cantidad de filas del d0 fifo    $/;"	c
+parameter	fifo_d1.v	/^    parameter MAIN_QUEUE_SIZE = 4        \/\/Cantidad de filas del d1 fifo    $/;"	c
+parameter	fifo_main.v	/^    parameter MAIN_QUEUE_SIZE = 3        \/\/Cantiad de filas del main fifo    $/;"	c
+parameter	fifo_vc0.v	/^    parameter MAIN_QUEUE_SIZE = 4        \/\/Cantidad de filas del vc0 fifo    $/;"	c
+parameter	fifo_vc1.v	/^    parameter MAIN_QUEUE_SIZE = 4        \/\/Cantidad de filas del vc1 fifo    $/;"	c
+parameter	probador.v	/^        parameter OUTPUT_SIZE = 4$/;"	c
+pop_b	buffer.v	/^    input pop_b,$/;"	p
+pop_d0	arqui.v	/^    input 								pop_d0,$/;"	p
+pop_d0	fifo_d0.v	/^    input                               pop_d0,$/;"	p
+pop_d0	testbench.v	/^	wire		pop_d0;			\/\/ From test0 of probador.v$/;"	n
+pop_d1	fifo_d1.v	/^    input                               pop_d1,$/;"	p
+pop_d1	testbench.v	/^	wire		pop_d1;			\/\/ From test0 of probador.v$/;"	n
+pop_delay_vc1	mux.v	/^    input                       pop_delay_vc1,      \/\/funciona como un enable$/;"	p
+pop_main	fifo_main.v	/^    input                               pop_main,$/;"	p
+pop_vc0	fifo_vc0.v	/^    input                               pop_vc0,$/;"	p
+pop_vc1	fifo_vc1.v	/^    input                               pop_vc1,$/;"	p
+probador	probador.v	/^    module probador #(   $/;"	m
+push_M	testbench.v	/^	wire		push_M;			\/\/ From test0 of probador.v$/;"	n
+ram_mem	RAM_memory.v	/^    reg[DATA_SIZE-1:0] ram_mem[2**MAIN_QUEUE_SIZE-1:0];$/;"	r
+rd_ptr	RAM_memory.v	/^    input       [MAIN_QUEUE_SIZE-1:0]       rd_ptr,$/;"	p
+rd_ptr	fifo_d0.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	rd_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+rd_ptr	fifo_d1.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	rd_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+rd_ptr	fifo_main.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	rd_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+rd_ptr	fifo_vc0.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	rd_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+rd_ptr	fifo_vc1.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	rd_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+reg	CMOS/cmos_cells.v	/^output reg Q;$/;"	p
+reg	arqui.v	/^    output reg 							active_out,			$/;"	p
+reg	arqui.v	/^    output reg 							idle_out,			$/;"	p
+reg	arqui.v	/^    output reg  [OUTPUT_SIZE-1:0]       data_out0,$/;"	p
+reg	arqui.v	/^    output reg  [OUTPUT_SIZE-1:0]       data_out1$/;"	p
+reg	checker_arqui.v	/^    output reg      arqui_checks_out,        \/\/salida que indica que ambos datos de la salida son iguales$/;"	p
+reg	demux.v	/^    output reg                  push1,$/;"	p
+reg	demux.v	/^    output reg  [DATA_SIZE-1:0] data0,$/;"	p
+reg	demux.v	/^    output reg  [DATA_SIZE-1:0] data1     $/;"	p
+reg	demux_d.v	/^    output reg                  push_d1,$/;"	p
+reg	demux_d.v	/^    output reg  [DATA_SIZE-1:0] data_d0,$/;"	p
+reg	demux_d.v	/^    output reg  [DATA_SIZE-1:0] data_d1     $/;"	p
+reg	demux_vc.v	/^    output reg                  push_vc1,$/;"	p
+reg	demux_vc.v	/^    output reg  [DATA_SIZE-1:0] data_vc0,$/;"	p
+reg	demux_vc.v	/^    output reg  [DATA_SIZE-1:0] data_vc1     $/;"	p
+reg	fifo_d0.v	/^    output reg                          fifo_error_d0,$/;"	p
+reg	fifo_d0.v	/^    output reg                          fifo_pause_d0$/;"	p
+reg	fifo_d0.v	/^    output reg [DATA_SIZE-1:0]          data_out_0,            \/\/datos para hacerle pop$/;"	p
+reg	fifo_d1.v	/^    output reg                          fifo_error_d1,$/;"	p
+reg	fifo_d1.v	/^    output reg                          fifo_pause_d1$/;"	p
+reg	fifo_d1.v	/^    output reg [DATA_SIZE-1:0]          data_out_1,            \/\/datos para hacerle pop$/;"	p
+reg	fifo_main.v	/^    output reg                          fifo_error_main,$/;"	p
+reg	fifo_main.v	/^    output reg                          fifo_pause_main$/;"	p
+reg	fifo_main.v	/^    output reg [DATA_SIZE-1:0]          data_demux_vc,            \/\/datos para hacerle pop$/;"	p
+reg	fifo_vc0.v	/^    output reg                          fifo_error_vc0,$/;"	p
+reg	fifo_vc0.v	/^    output reg                          fifo_pause_vc0$/;"	p
+reg	fifo_vc0.v	/^    output reg [DATA_SIZE-1:0]          data_mux_0,            \/\/datos para hacerle pop$/;"	p
+reg	fifo_vc1.v	/^    output reg                          fifo_error_vc1,$/;"	p
+reg	fifo_vc1.v	/^    output reg                          fifo_pause_vc1$/;"	p
+reg	fifo_vc1.v	/^    output reg [DATA_SIZE-1:0]          data_mux_1,            \/\/datos para hacerle pop$/;"	p
+reg	fsm.v	/^        output reg [1:0] aeD_o,$/;"	p
+reg	fsm.v	/^        output reg [1:0] aeMF_o,$/;"	p
+reg	fsm.v	/^        output reg [1:0] afD_o,$/;"	p
+reg	fsm.v	/^        output reg [1:0] afMF_o,$/;"	p
+reg	fsm.v	/^        output reg [3:0] aeVC_o);$/;"	p
+reg	fsm.v	/^        output reg [3:0] afVC_o,$/;"	p
+reg	fsm.v	/^        output reg active_out,$/;"	p
+reg	fsm.v	/^        output reg idle_out,$/;"	p
+reg	input_flow.v	/^    output reg pop_b$/;"	p
+reg	input_flow.v	/^    output reg pop_main,$/;"	p
+reg	output_flow.v	/^    output reg pop_b0,$/;"	p
+reg	output_flow.v	/^    output reg pop_b1);$/;"	p
+reg	output_flow.v	/^    output reg pop_vc0,$/;"	p
+reg	output_flow.v	/^    output reg pop_vc1,$/;"	p
+reg	probador.v	/^        output reg                    pop_d0,$/;"	p
+reg	probador.v	/^        output reg                    pop_d1,$/;"	p
+reg	probador.v	/^        output reg                    push_M,$/;"	p
+reg	probador.v	/^        output reg [1:0]              aeDF_i,            \/\/ almost empty D FIFO$/;"	p
+reg	probador.v	/^        output reg [1:0]              aeMF_i,            \/\/ almost empty Main FIFO$/;"	p
+reg	probador.v	/^        output reg [1:0]              afDF_i,            \/\/ almost full D FIFO$/;"	p
+reg	probador.v	/^        output reg [1:0]              afMF_i,            \/\/ almost full Main FIFO$/;"	p
+reg	probador.v	/^        output reg [3:0]              aeVC_i,            \/\/ almost empty VC FIFO$/;"	p
+reg	probador.v	/^        output reg [3:0]              afVC_i,                 \/\/ almost full VC FIFO$/;"	p
+reg	probador.v	/^        output reg [DATA_SIZE-1:0]    data_in,            \/\/datos para hacerle push $/;"	p
+reg_VC0	mux.v	/^    reg         [DATA_SIZE-1:0] reg_VC0, reg_VC1;$/;"	r
+reg_VC1	mux.v	/^    reg         [DATA_SIZE-1:0] reg_VC0, reg_VC1;$/;"	r
+reset_L	input_flow.v	/^    input reset_L,$/;"	p
+reset_L	probador.v	/^reg			reset_L;		\/\/ To ch0 of checker_arqui.v$/;"	r
+resetflag	checker_arqui.v	/^    reg     onflag, resetflag;                         \/\/checks if message has been sent   $/;"	r
+salida_arqui_c	checker_arqui.v	/^    input   [4:0]  salida_arqui_c,$/;"	p
+salida_arqui_c	probador.v	/^reg [4:0]		salida_arqui_c;		\/\/ To ch0 of checker_arqui.v$/;"	r
+salida_arqui_e	probador.v	/^reg [4:0]		salida_arqui_e;		\/\/ To ch0 of checker_arqui.v$/;"	r
+selector	demux.v	/^   reg selector;$/;"	r
+selector	demux_d.v	/^   reg selector;$/;"	r
+selector	demux_vc.v	/^   reg selector;$/;"	r
+testbench	testbench.v	/^module testbench; \/\/ Testbench$/;"	m
+valid_out_main	demux_d.v	/^    input                       valid_out_main,$/;"	p
+valid_out_main	demux_vc.v	/^    input                       valid_out_main,$/;"	p
+wr_ptr	fifo_d0.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	wr_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+wr_ptr	fifo_d1.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	wr_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+wr_ptr	fifo_main.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	wr_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+wr_ptr	fifo_vc0.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	wr_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+wr_ptr	fifo_vc1.v	/^    reg [MAIN_QUEUE_SIZE-1:0]	wr_ptr;			\/\/ To mem0 of RAM_memory.v$/;"	r
+write	RAM_memory.v	/^    input                             write,        \/\/enable del write$/;"	p

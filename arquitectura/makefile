@@ -28,7 +28,7 @@ all: compile synth rename assign assign_testbench
 	@echo 'All Done'
 
 autoinst_verilog: 
-	emacs --batch --no-site-file -l verilog-mode.el arqui.v -f verilog-auto -f save-buffer
+	emacs-tealeg --batch --no-site-file -l verilog-mode.el arqui.v -f verilog-auto -f save-buffer
 
 assign_testbench:
 	$(eval TARGET_TOP = testbench.v)
