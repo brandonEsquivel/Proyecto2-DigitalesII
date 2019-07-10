@@ -5,7 +5,7 @@
 module fifo_main#(
     //Parametros
     parameter DATA_SIZE = 6,               //cantidad de bits de entrada
-    parameter MAIN_QUEUE_SIZE = 3        //Cantiad de filas del main fifo    
+    parameter MAIN_QUEUE_SIZE = 2        //Cantiad de filas del main fifo    
 )(
     input                               clk,
     input                               reset_L,
