@@ -41,8 +41,8 @@ module  arqui #(parameter DATA_SIZE=6)(
     input [1:0]							aeDF_i,
 					// almost empty D FIFO
     output 							fifo_pause_main_cond,				// pause del FIFO main
-    output 							fifo_empty_d0,		// empty D0
-    output 							fifo_empty_d1,		// empty D1
+    output 							fifo_empty_d0_cond,		// empty D0
+    output 							fifo_empty_d1_cond,		// empty D1
 	// estado del fifo
     output  [4:0]					error_out_cond,			
     output  							active_out_cond,			
@@ -225,7 +225,7 @@ module  arqui #(parameter DATA_SIZE=6)(
 
     fifo_d0 d0(/*autoinst*/
 	       // Outputs
-	       .fifo_empty_d0		(fifo_empty_d0),
+	       .fifo_empty_d0_cond	(fifo_empty_d0_cond),
 	       .data_out_0_cond		(data_out_0_cond[DATA_SIZE-1:0]),
 	       .fifo_error_d0		(fifo_error_d0),
 	       .fifo_pause_d0		(fifo_pause_d0),
@@ -240,7 +240,7 @@ module  arqui #(parameter DATA_SIZE=6)(
 
     fifo_d1 d1(/*autoinst*/
 	       // Outputs
-	       .fifo_empty_d1		(fifo_empty_d1),
+	       .fifo_empty_d1_cond	(fifo_empty_d1_cond),
 	       .data_out_1_cond		(data_out_1_cond[DATA_SIZE-1:0]),
 	       .fifo_error_d1		(fifo_error_d1),
 	       .fifo_pause_d1		(fifo_pause_d1),
@@ -264,8 +264,8 @@ module  arqui #(parameter DATA_SIZE=6)(
     		FIFO_empties[0]=fifo_empty_main;
     		FIFO_empties[1]=fifo_empty_vc0;
     		FIFO_empties[2]=fifo_empty_vc1;
-    		FIFO_empties[3]=fifo_empty_d0;
-    		FIFO_empties[4]=fifo_empty_d1;
+    		FIFO_empties[3]=fifo_empty_d0_cond;
+    		FIFO_empties[4]=fifo_empty_d1_cond;
     		FIFO_errors[0]=fifo_error_main;
     		FIFO_errors[1]=fifo_error_vc0;
     		FIFO_errors[2]=fifo_error_vc1;

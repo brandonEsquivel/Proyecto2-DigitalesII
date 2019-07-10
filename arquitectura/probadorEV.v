@@ -9,15 +9,24 @@
 // `include "checker_arqui.v"
     module probadorEV(
 	input 							fifo_pause_main_cond,				// fifo_pause_main_cond del FIFO main
-    input 							fifo_empty_d0,		// empty D0
-    input 							fifo_empty_d1,		// empty D1
+    input 							fifo_empty_d0_cond,		// empty D0
+    input 							fifo_empty_d1_cond,		// empty D1
     input [4:0]					error_out_cond,			
     input 							active_out_cond,			
     input 							idle_out_cond,			
     input  [5:0]       			data_out_0_cond,
     input  [5:0]		       		data_out_1_cond,
-	// input pause_main_estruct,
-
+	
+	//
+	input 							fifo_pause_main_estruct,				// fifo_pause_main_estruct del FIFO main
+    input 							fifo_empty_d0_estruct,		// empty D0
+    input 							fifo_empty_d1_estruct,		// empty D1
+    input [4:0]					error_out_estruct,			
+    input 							active_out_estruct,			
+    input 							idle_out_estruct,			
+    input  [5:0]       			data_out_0_estruct,
+    input  [5:0]		       		data_out_1_estruct,
+	//  
     output reg           clk,
     output reg           reset_L,
     output reg [5:0]  	data_in,            //datos para hacerle push 
@@ -77,13 +86,13 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 					push_main<='b0;
 				end
 
-				if(!fifo_empty_d0)begin
+				if(!fifo_empty_d0_cond)begin
 					pop_d0<='b1;
 				end else begin
 					pop_d0<='b0;
 				end
 
-				if (!fifo_empty_d1) begin
+				if (!fifo_empty_d1_cond) begin
 					pop_d1<='b1;
 				end else begin
 					pop_d1<='b0;
@@ -111,13 +120,13 @@ reg [4:0]		salida_arqui_e;		// To ch0 of checker_arqui.v
 					push_main<='b0;
 				end
 
-				if(!fifo_empty_d0)begin
+				if(!fifo_empty_d0_cond)begin
 					pop_d0<='b1;
 				end else begin
 					pop_d0<='b0;
 				end
 
-				if (!fifo_empty_d1) begin
+				if (!fifo_empty_d1_cond) begin
 					pop_d1<='b1;
 				end else begin
 					pop_d1<='b0;

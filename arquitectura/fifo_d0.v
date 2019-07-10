@@ -17,7 +17,7 @@ module fifo_d0#(
     
     //Estados del FIFO
     //output reg                          fifo_full,
-    output reg                          fifo_empty_d0, 
+    output reg                          fifo_empty_d0_cond, 
     
 //  output reg  [DATA_SIZE-1:0]         data_count,           //numero de datos
     output reg [DATA_SIZE-1:0]          data_out_0_cond,            //datos para hacerle pop
@@ -59,7 +59,7 @@ module fifo_d0#(
 
 
     always@(*) begin
-        fifo_empty_d0 = 0;
+        fifo_empty_d0_cond = 0;
         fifo_full = 0;
         almost_full = 0;
         almost_empty = 0;
@@ -67,7 +67,7 @@ module fifo_d0#(
         fifo_error_d0 = 0;
         fifo_pause_d0=0;
         if ( ~reset_L ) begin
-            fifo_empty_d0 = 1;
+            fifo_empty_d0_cond = 1;
             fifo_full = 0;
             almost_full = 0;
             almost_empty = 0;
@@ -80,7 +80,7 @@ module fifo_d0#(
         
         else begin
             if ( data_count == 0 )begin
-                fifo_empty_d0 = 1;
+                fifo_empty_d0_cond = 1;
                 fifo_pause_d0=0;
             end
 
@@ -103,7 +103,7 @@ module fifo_d0#(
                 fifo_error_d0 = 1;
             end
 
-            if( pop_d0 && fifo_empty_d0 )begin
+            if( pop_d0 && fifo_empty_d0_cond )begin
                 fifo_error_d0 = 1;
             end
         end
@@ -125,14 +125,14 @@ module fifo_d0#(
             if( !fifo_full && push_d0 )begin
                 wr_ptr <= wr_ptr + 1;                   //wr_ptr incrementa
                 
-                if ( !fifo_empty_d0 && pop_d0 )begin
+                if ( !fifo_empty_d0_cond && pop_d0 )begin
                     rd_ptr <= rd_ptr + 1;               //rd_ptr incrementa
                     data_count <= data_count;
                 end else begin
                     rd_ptr <= rd_ptr;
                     data_count <= data_count + 1;
                 end
-            end else if( !fifo_empty_d0 && pop_d0 ) begin
+            end else if( !fifo_empty_d0_cond && pop_d0 ) begin
                 rd_ptr <= rd_ptr + 1;                   //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
                 data_count  <= data_count - 1;
