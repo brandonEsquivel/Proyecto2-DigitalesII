@@ -4,21 +4,26 @@ module fsm (
         input init,
         input [4:0] FIFO_errors,
         input [4:0]FIFO_empties,
-        input [2:0] afMFs,
-        input [2:0] aeMFs,
-        input [2:0] afVCs,
-        input [2:0] aeVCs,
-        input [2:0] afDs,
-        input [2:0] aeDs,
+        input [1:0] afMF_i,
+        input [1:0] aeMF_i,
+        input [3:0] afVCs_i,
+        input [3:0] aeVCs_i,
+        input [1:0] afDs_i,
+        input [1:0] aeDs_i,
         output reg [4:0]error_out_cond,
         output reg active_out_cond,
-        output reg idle_out_cond);
+        output reg idle_out_cond,
+        output reg [1:0] afMF_o_cond,
+        output reg [1:0] aeMF_o_cond,
+        output reg [1:0] afD_o_cond,
+        output reg [1:0] aeD_o_cond,
+        output reg [3:0] afVC_o_cond,
+        output reg [3:0] aeVC_o_cond);
 
     //FF
     reg [4:0] estado, estado_proximo;
-    reg [2:0] iafMF,iaeMF,iafVC,iaeVC,iafD,iaeD;
     reg [4:0] error_ant;
-
+  
     //Estados
     parameter RESET='b00001;
     parameter INIT='b00010;
@@ -30,26 +35,33 @@ module fsm (
     always @(posedge clk)begin
       if (!reset_L) begin
         estado<=RESET;
-        iafMF<='b0;
-        iaeMF<='b0;
-        iafVC<='b0;
-        iaeVC<='b0;
-        iafD<='b0;
-        iaeD<='b0;
+        afMF_o_cond<='b0;
+        aeMF_o_cond<='b0;
+        afVC_o_cond<='b0;
+        aeVC_o_cond<='b0;
+        afD_o_cond<='b0;
+        aeD_o_cond<='b0;
         error_ant<='b0;
       end else begin
         estado<=estado_proximo;
+        if(estado==INIT)begin    
+            afMF_o_cond<=afMF_i;
+            aeMF_o_cond<=aeMF_i;
+            afVC_o_cond<=afVCs_i;
+            aeVC_o_cond<=aeVCs_i;
+            afD_o_cond<=afDs_i;
+            aeD_o_cond<=aeDs_i;
+        end
       end
     end
 
 
 
     always @(*)begin
-        error_out_cond='b0;
-        active_out_cond='b0;
+        error_out_cond=0;
+        active_out_cond=0;
         idle_out_cond='b0;
         estado_proximo=RESET;
-
         //Seleccion de proximos estados
         case (estado)
         RESET: begin
@@ -68,12 +80,13 @@ module fsm (
             error_out_cond='b0;
             active_out_cond='b0;
             idle_out_cond='b0;
-            iafMF=afMFs;
-            iaeMF=aeMFs;
-            iafVC=afVCs;
-            iaeVC=aeVCs;
-            iafD=afDs;
-            iaeD=aeDs;
+
+            // afMF_o_cond=afMF_i;
+            // aeMF_o_cond=aeMF_i;
+            // afVC_o_cond=afVCs_i;
+            // aeVC_o_cond=aeVCs_i;
+            // afD_o_cond=afDs_i;
+            // aeD_o_cond=aeDs_i;
         end
 
         IDLE:begin
@@ -81,7 +94,7 @@ module fsm (
                 if (init==1) begin
                     estado_proximo=INIT;
                 end else begin
-                    if (FIFO_empties==0) begin
+                    if (FIFO_empties==31) begin
                         estado_proximo=IDLE;
                     end else begin
                         estado_proximo=ACTIVE;
@@ -105,7 +118,7 @@ module fsm (
                 if (init==1) begin
                     estado_proximo=INIT;
                 end else begin
-                    if (FIFO_empties==0) begin
+                    if (FIFO_empties==31) begin
                         estado_proximo=IDLE;
                     end else begin
                         estado_proximo=ACTIVE;
