@@ -12,8 +12,8 @@ module fifo_d0#(
     input                               pop_d0,
     input                               push_d0,
     input       [DATA_SIZE-1:0]         data_d0,            //datos para hacerle push
-    input       [DATA_SIZE-1:0]         afD_o,               //umbral almost full d0 buffer
-    input       [DATA_SIZE-1:0]         aeD_o,               // umbral almost empty d0 buffer
+    input       [1:0]         afD_o,               //umbral almost full d0 buffer
+    input       [1:0]         aeD_o,               // umbral almost empty d0 buffer
     
     //Estados del FIFO
     //output reg                          fifo_full,

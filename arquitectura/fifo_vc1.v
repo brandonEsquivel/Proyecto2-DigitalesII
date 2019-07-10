@@ -12,8 +12,8 @@ module fifo_vc1#(
     input                               pop_vc1,
     input                               push_vc1,
     input       [DATA_SIZE-1:0]         data_vc1,            //datos para hacerle push
-    input       [DATA_SIZE-1:0]         afVC_o,               //umbral almost full vc1 buffer
-    input       [DATA_SIZE-1:0]         aeVC_o,               // umbral almost empty vc1 buffer
+    input       [3:0]         afVC_o,               //umbral almost full vc1 buffer
+    input       [3:0]         aeVC_o,               // umbral almost empty vc1 buffer
     
     //Estados del FIFO
     //output reg                          fifo_full,

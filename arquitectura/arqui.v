@@ -44,12 +44,12 @@ module  arqui #(parameter DATA_SIZE=6)(
     output reg 							empty_out_0,		// empty D0
     output reg 							empty_out_1,		// empty D1
 	// estado del fifo
-    output reg [4:0]					error_out_cond,			
-    output reg 							active_out_cond,			
-    output reg 							idle_out_cond,	
+    output  [4:0]					error_out_cond,			
+    output  							active_out_cond,			
+    output  							idle_out_cond,	
 	//salidas 
-    output reg  [5:0]       			data_out_0_cond,
-    output reg  [5:0]		       		data_out_1_cond
+    output   [5:0]       			data_out_0_cond,
+    output   [5:0]		       		data_out_1_cond
 );
 	
 	/*AUTOREGS*/
@@ -134,8 +134,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 		   .pop_main		(pop_main),
 		   .push_main		(push_main),
 		   .data_in		(data_in[DATA_SIZE-1:0]),
-		   .afMF_o		(afMF_o[DATA_SIZE-1:0]),
-		   .aeMF_o		(aeMF_o[DATA_SIZE-1:0]));
+		   .afMF_o		(afMF_o[1:0]),
+		   .aeMF_o		(aeMF_o[1:0]));
 
     input_flow in_flow (/*autoinst*/
 			// Outputs
@@ -170,8 +170,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 		 .pop_vc0		(pop_vc0),
 		 .push_vc0		(push_vc0),
 		 .data_vc0		(data_vc0[DATA_SIZE-1:0]),
-		 .afVC_o		(afVC_o[DATA_SIZE-1:0]),
-		 .aeVC_o		(aeVC_o[DATA_SIZE-1:0]));
+		 .afVC_o		(afVC_o[3:0]),
+		 .aeVC_o		(aeVC_o[3:0]));
 
     fifo_vc1 vc1(/*autoinst*/
 		 // Outputs
@@ -185,8 +185,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 		 .pop_vc1		(pop_vc1),
 		 .push_vc1		(push_vc1),
 		 .data_vc1		(data_vc1[DATA_SIZE-1:0]),
-		 .afVC_o		(afVC_o[DATA_SIZE-1:0]),
-		 .aeVC_o		(aeVC_o[DATA_SIZE-1:0]));
+		 .afVC_o		(afVC_o[3:0]),
+		 .aeVC_o		(aeVC_o[3:0]));
 
     output_flow of(/*autoinst*/
 		   // Outputs
@@ -232,8 +232,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 	       .pop_d0			(pop_d0),
 	       .push_d0			(push_d0),
 	       .data_d0			(data_d0[DATA_SIZE-1:0]),
-	       .afD_o			(afD_o[DATA_SIZE-1:0]),
-	       .aeD_o			(aeD_o[DATA_SIZE-1:0]));
+	       .afD_o			(afD_o[1:0]),
+	       .aeD_o			(aeD_o[1:0]));
 
     fifo_d1 d1(/*autoinst*/
 	       // Outputs
@@ -247,8 +247,8 @@ module  arqui #(parameter DATA_SIZE=6)(
 	       .pop_d1			(pop_d1),
 	       .push_d1			(push_d1),
 	       .data_d1			(data_d1[DATA_SIZE-1:0]),
-	       .afD_o			(afD_o[DATA_SIZE-1:0]),
-	       .aeD_o			(aeD_o[DATA_SIZE-1:0]));
+	       .afD_o			(afD_o[1:0]),
+	       .aeD_o			(aeD_o[1:0]));
 
     // asignacion de buses intermedios
     

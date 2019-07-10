@@ -12,8 +12,8 @@ module fifo_main#(
     input                               pop_main,
     input                               push_main,
     input       [DATA_SIZE-1:0]         data_in,            //datos para hacerle push
-    input       [DATA_SIZE-1:0]         afMF_o,               //umbral almost full main buffer
-    input       [DATA_SIZE-1:0]         aeMF_o,               // umbral almost empty main buffer
+    input       [1:0]         afMF_o,               //umbral almost full main buffer
+    input       [1:0]         aeMF_o,               // umbral almost empty main buffer
     
     //Estados del FIFO
     //output reg                          fifo_full,
