@@ -9,7 +9,7 @@ module mux #(
     input                       pop_delay_vc1,      //funciona como un enable
     input       [DATA_SIZE-1:0] data_mux_0,
     input       [DATA_SIZE-1:0] data_mux_1,
-    output reg  [DATA_SIZE-1:0] data_demux_
+    output reg  [DATA_SIZE-1:0] data_demux_d
 );
     reg         [DATA_SIZE-1:0] reg_VC0, reg_VC1;
 

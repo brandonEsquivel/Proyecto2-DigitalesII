@@ -49,7 +49,9 @@ module arqui(
     output reg  [5:0]		       		data_out1_cond
 );
 	
-	/*AUTOREG*/
+	/*AUTOREGS*/
+	ref [4:0]	FIFO_errors;
+	ref [4:0]	FIFO_empties;
 	/*AUTOWIRE*/
 	// Beginning of automatic wires (for undeclared instantiated-module outputs)
 	wire [1:0]	aeD;			// From fsm0 of fsm.v
@@ -200,7 +202,7 @@ module arqui(
 
     mux mux0(/*autoinst*/
 	     // Outputs
-	     .data_demux_		(data_demux_[5:0]),
+	     .data_demux_d		(data_demux_d[5:0]),
 	     // Inputs
 	     .clk			(clk),
 	     .pop_delay_vc0		(pop_delay_vc0),
@@ -248,6 +250,26 @@ module arqui(
 	       .data_d1			(data_d1[5:0]),
 	       .afd			(afd[5:0]),
 	       .aed			(aed[5:0]));
+
+    // asignacion de buses intermedios
+    always @(*) begin
+    	FIFO_empties=0;
+    	FIFO_errors=0;
+    	if(~reset_L) begin
+    		FIFO_empties = 0;
+    	end else begin
+    		FIFO_empties[0]=fifo_empty_main;
+    		FIFO_empties[1]=fifo_empty_vc0;
+    		FIFO_empties[2]=fifo_empty_vc1;
+    		FIFO_empties[3]=fifo_empty_d0;
+    		FIFO_empties[4]=fifo_empty_d1;
+    		FIFO_errors[0]=fifo_error_main;
+    		FIFO_errors[1]=fifo_error_vc0;
+    		FIFO_errors[2]=fifo_error_vc1;
+    		FIFO_errors[3]=fifo_error_d0;
+    		FIFO_errors[4]=fifo_error_d1;
+    	end
+    end
     
     // salidas necesarias para el bloque externo
     always @(posedge clk) begin
@@ -257,8 +279,8 @@ module arqui(
     		empty_out_1 <=0;
     	end else begin
     		pause <= fifo_pause_main;
-    		empty_out_0 <= fifo_empty_d0;
-    		empty_out_1 <= fifo_empty_d1;
+    		empty_out_0 <= FIFO_empties[3];
+    		empty_out_1 <= FIFO_empties[4];
     	end
     end
 
