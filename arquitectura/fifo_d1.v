@@ -120,8 +120,12 @@ module fifo_d1#(
             datamod         <= 'b0;
             // fifo_pause_d1     <= 'b0;
         end else begin
-            
+            if(pop_d1 && push_d1) begin
+              	data_out_1_cond <= data_out;
+              	rd_ptr <= rd_ptr + 1;                   //rd_ptr incrementa
+              	wr_ptr <= wr_ptr + 1;                   //wr_ptr incrementa
 
+            end 
             if( !fifo_full && push_d1 )begin
                 wr_ptr <= wr_ptr + 1;                   //wr_ptr incrementa
                 
@@ -136,7 +140,7 @@ module fifo_d1#(
                 rd_ptr <= rd_ptr + 1;                   //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
                 data_count  <= data_count - 1;
-                data_out_1_cond    <= data_out; 
+                data_out_1_cond    <= data_out;
             end else begin
                 rd_ptr <= rd_ptr;                       //rd_ptr incrementa
                 wr_ptr <= wr_ptr;                       //wr_ptr es el mismo
